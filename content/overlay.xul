@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://open_tortoise_svn/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://open_tortoise_svn/locale/open_tortoise_svn.dtd">
+<overlay id="open_tortoise_svn-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="overlay.js" />
+</overlay>

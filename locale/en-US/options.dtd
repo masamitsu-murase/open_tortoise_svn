@@ -1,0 +1,10 @@
+<!ENTITY dialog.title "Open TortoiseSVN preferences">
+<!ENTITY tsvn.description "Select TortoiseProc.exe path.">
+<!ENTITY tsvn.path "Select">
+<!ENTITY url.description "Add URLs of Subversion repositories.">
+<!ENTITY url.example "e.g.">
+<!ENTITY url.label "URL: ">
+<!ENTITY url.add "Add">
+<!ENTITY url.enable "Enable">
+<!ENTITY url.title "URL">
+<!ENTITY url.remove "Remove">

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://open_tortoise_svn/locale/about.dtd">
+<dialog title="&about; Open TortoiseSVN" orient="vertical" autostretch="always" onload="sizeToContent()" buttons="accept" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+<groupbox align="center" orient="horizontal">
+<vbox>
+  <hbox align="end">
+	<image src="chrome://open_tortoise_svn/skin/open_tortoise_svn.png" />
+	<text value="Open TortoiseSVN" style="font-weight: bold; font-size: x-large;" />
+  </hbox>
+  <separator class="thin" />
+  <hbox align="end">
+	<spacer flex="1" />
+	<text value="&createdBy;" style="font-weight: bold;" />
+	<text value="&creator;" style="margin-left: 1ex;" />
+  </hbox>
+  <separator class="thin" />
+</vbox>
+</groupbox>
+</dialog>

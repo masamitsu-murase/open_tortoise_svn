@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://open_tortoise_svn/skin/options/options.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://open_tortoise_svn/locale/options.dtd">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&dialog.title;"
+  buttons="accept,cancel" onload="gOpenTortoiseSvn.initialize();"
+  ondialogaccept="gOpenTortoiseSvn.saveOptions();">
+
+  <script type="application/x-javascript" src="chrome://open_tortoise_svn/content/options.js" />
+
+  <stringbundleset>
+    <stringbundle id="open_tortoise_svn_strings" src="chrome://open_tortoise_svn/locale/open_tortoise_svn.properties"/>
+  </stringbundleset>
+
+  <preferences>
+    <preference id="url_list_pref" name="open_tortoise_svn.url_list_pref" type="string" />
+    <preference id="tortoise_svn_path_pref" name="open_tortoise_svn.tortoise_svn_path_pref" type="file" />
+  </preferences>
+
+  <vbox>
+    <description>&tsvn.description;</description>
+    <hbox>
+      <filefield id="tortoise_svn_filefield" flex="1" />
+      <button label="&tsvn.path;" id="set_path_button" accesskey="s" oncommand="gOpenTortoiseSvn.setPath();" />
+    </hbox>
+    <separator class="groove" />
+
+    <description>&url.description;</description>
+    <hbox>
+      <description style="padding-left: 1em;">&url.example;)</description>
+      <vbox>
+        <description>http://example.net/svn_repos/</description>
+        <description>svn://example.com/svn_repos/</description>
+      </vbox>
+    </hbox>
+    <hbox align="center">
+      <textbox id="url_textbox" oninput="gOpenTortoiseSvn.updateButtons();" flex="1" />
+      <button id="add_url_button" label="&url.add;" oncommand="gOpenTortoiseSvn.addUrl();" accesskey="a" />
+    </hbox>
+    <tree id="url_list_tree" editable="true" minheight="250" minwidth="420" onselect="gOpenTortoiseSvn.updateButtons();">
+      <treecols>
+        <treecol label="&url.enable;" type="checkbox" editable="true" />
+        <treecol label="&url.title;" flex="1" />
+      </treecols>
+      <treechildren id="url_list_treechildren" />
+    </tree>
+    <hbox>
+      <spacer flex="1" />
+      <button id="remove_url_button" label="&url.remove;" oncommand="gOpenTortoiseSvn.removeUrl();" accesskey="r" />
+    </hbox>
+  </vbox>
+</dialog>

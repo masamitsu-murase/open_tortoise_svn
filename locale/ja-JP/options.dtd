@@ -1,0 +1,10 @@
+<!ENTITY dialog.title "Open TortoiseSVN のオプション">
+<!ENTITY tsvn.description "TortoiseProc.exe のパスを設定してください。">
+<!ENTITY tsvn.path "設定">
+<!ENTITY url.description "Subversion リポジトリの URL を追加してください。">
+<!ENTITY url.example "例">
+<!ENTITY url.label "URL: ">
+<!ENTITY url.add "追加">
+<!ENTITY url.enable "有効">
+<!ENTITY url.title "URL">
+<!ENTITY url.remove "削除">

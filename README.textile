@@ -1,0 +1,47 @@
+h1. open_tortoise_svn (Firefox Addon to open TortoiseSVN directly)
+
+h2. Overview
+
+* This Firefox Addon enables you to open TortoiseSVN directly when you click the link to the registered URLs.
+* If the link has some specific attributes, this addon opens TortoiseSVN Repository Browser, Log Viewer or Blame Viewer.
+
+h2. How to use
+
+h3. Prepare to use
+
+# Open setting dialog and set the path of TortoiseProc.exe.
+# Add URLs of Subversion repositories that you want to open in TortoiseSVN.
+
+For example, if you add the URL "http://example.net/svn_repos/" and click the link to "http://example.net/svn_repos/some_dir/", TortoiseSVN Browser is opened automatically.
+<pre><a href="http://example.net/svn_repos/some_dir/">Open TortoiseSVN</a></pre>
+
+h3. How to open TortoiseSVN Log/Blame View
+
+You have to modify your HTML source to open TortoiseSVN Log or Blame view as follows.
+
+# To open TortoiseSVN Log view
+<pre><a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[log]">Open Log view</a></pre>
+# To open TortoiseSVN Log of specific revision
+<pre><a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[log][1004,1000]">Open Log view</a></pre>
+# To open TortoiseSVN Blame view
+<pre><a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[blame]">Open Blame view</a></pre>
+# To open TortoiseSVN Browser
+<pre><a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[browser]">Open TortoiseSVN Browser</a></pre>
+
+h3. LICENSE
+
+Copyright (C) 2011  Masamitsu MURASE
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+
