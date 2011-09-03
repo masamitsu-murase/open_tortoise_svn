@@ -28,6 +28,7 @@
       <vbox>
         <description>http://example.net/svn_repos/</description>
         <description>svn://example.com/svn_repos/</description>
+        <description>file:///C:/repository/</description>
       </vbox>
     </hbox>
     <hbox align="center">
