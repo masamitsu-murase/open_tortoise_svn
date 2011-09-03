@@ -16,6 +16,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 var gOpenTortoiseSvn = (function(){
+    var Cc = Components.classes;
+    var Ci = Components.interfaces;
+    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+
     var initialize = function(){
         initializeTree();
         initializeFileField();
@@ -28,12 +32,17 @@ var gOpenTortoiseSvn = (function(){
     };
 
     var initializeTree = function(){
-        var string = document.getElementById("url_list_pref");
-        if (!string || !string.value){
+        var url_list_pref = "open_tortoise_svn.url_list_pref";
+        if (!prefs.prefHasUserValue(url_list_pref)){
             return;
         }
 
-        var data = string.value.split("\n").forEach(function(v, i, ary){
+        var string = prefs.getCharPref(url_list_pref);
+        if (!string){
+            return;
+        }
+
+        var data = string.split("\n").forEach(function(v, i, ary){
             if (i % 2 == 0){
                 addUrlTreeItem(v, ary[i+1]!="0");
             }
@@ -41,11 +50,16 @@ var gOpenTortoiseSvn = (function(){
     };
 
     var initializeFileField = function(){
-        var file = document.getElementById("tortoise_svn_path_pref");
-        if (!file || !file.value){
+        var pref_name = "open_tortoise_svn.tortoise_svn_path_pref";
+        if (!prefs.prefHasUserValue(pref_name)){
             return;
         }
-        updateFileField(file.value);
+
+        var file = prefs.getComplexValue(pref_name, Ci.nsILocalFile);
+        if (!file){
+            return;
+        }
+        updateFileField(file);
     };
 
     var addUrl = function(){
@@ -120,7 +134,8 @@ var gOpenTortoiseSvn = (function(){
                 data.push(cell_enabled.getAttribute("value") == "true" ? "1" : "0");
             }
         }
-        document.getElementById("url_list_pref").value = data.join("\n");
+        var url_list_pref = "open_tortoise_svn.url_list_pref";
+        prefs.setCharPref(url_list_pref, data.join("\n"));
     };
 
     var setPath = function(){
@@ -149,12 +164,8 @@ var gOpenTortoiseSvn = (function(){
             return;
         }
 
-        var file = document.getElementById("tortoise_svn_path_pref");
-        if (!file || !file.value){
-            return;
-        }
-
-        file.value = file_field.file;
+        var pref_name = "open_tortoise_svn.tortoise_svn_path_pref";
+        prefs.setComplexValue(pref_name, Ci.nsILocalFile, file_field.file);
     };
 
     var updateButtons = function(){

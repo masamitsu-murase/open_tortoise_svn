@@ -13,11 +13,6 @@
     <stringbundle id="open_tortoise_svn_strings" src="chrome://open_tortoise_svn/locale/open_tortoise_svn.properties"/>
   </stringbundleset>
 
-  <preferences>
-    <preference id="url_list_pref" name="open_tortoise_svn.url_list_pref" type="string" />
-    <preference id="tortoise_svn_path_pref" name="open_tortoise_svn.tortoise_svn_path_pref" type="file" />
-  </preferences>
-
   <vbox>
     <description>&tsvn.description;</description>
     <description style="padding-left: 1em;">&tsvn.path_note;</description>
