@@ -7,7 +7,7 @@ h2. Overview
 
 h2. How to use
 
-h3. Prepare to use
+h3. Prepare for use
 
 # Open setting dialog and set the path of TortoiseProc.exe.
 # Add URLs of Subversion repositories that you want to open in TortoiseSVN.
@@ -17,19 +17,21 @@ For example, if you add the URL "http://example.net/svn_repos/" and click the li
 
 h3. How to open TortoiseSVN Log/Blame View
 
-You have to modify your HTML source and add specific class name and rel attribute to open TortoiseSVN Log or Blame view as follows.
-You can use "data-tsvn-info" on HTML5 instead of "rel" attribute.
+You have to modify your HTML source and add @rel@ attribute to open TortoiseSVN Log or Blame view as follows.
+You can use @data-tsvn-info@ on HTML5 instead of @rel@ attribute.
 
 # To open TortoiseSVN Log view
-<pre>&lt;a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[log]"&gt;Open Log view&lt;/a&gt;</pre>
+<pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[log]"&gt;Open Log view&lt;/a&gt;</pre>
 # To open TortoiseSVN Log of specific revision
-<pre>&lt;a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[log][1004,1000]"&gt;Open Log view&lt;/a&gt;</pre>
+<pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[log][1004,1000]"&gt;Open Log view&lt;/a&gt;</pre>
 # To open TortoiseSVN Blame view
-<pre>&lt;a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[blame]"&gt;Open Blame view&lt;/a&gt;</pre>
+<pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[blame]"&gt;Open Blame view&lt;/a&gt;</pre>
 # To open TortoiseSVN Browser
-<pre>&lt;a href="http://example.net/svn_repos/some_dir/" class="open_tsvn_link" rel="tsvn[browser]"&gt;Open TortoiseSVN Browser&lt;/a&gt;</pre>
+<pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[browser]"&gt;Open TortoiseSVN Browser&lt;/a&gt;</pre>
 
-h3. LICENSE
+h2. License
+
+You can use this addon under the GPL license.
 
 Copyright (C) 2011  Masamitsu MURASE
 

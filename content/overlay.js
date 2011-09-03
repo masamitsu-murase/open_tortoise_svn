@@ -1,4 +1,3 @@
-
 /*
 Copyright (C) 2011  Masamitsu MURASE
 
@@ -21,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     var Ci = Components.interfaces;
     var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
 
-    var TARGET_CLASS_NAME = "open_tsvn_link";
     var INFO_ATTRIBUTE1 = "data-tsvn-info";  // for HTML5
     var INFO_ATTRIBUTE2 = "rel";             // for HTML4.01
 
@@ -65,10 +63,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     };
 
     var callbackClickEvent = function(event){
-        if (!isValidClickEvent(event)){
-            return;
-        }
-
         if (!processEvent(event)){
             return;
         }
@@ -86,70 +80,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         }
     };
 
-    var isValidClickEvent = function(event){
-        return isValidElement(event.originalTarget);
-    };
-
-    var isValidElement = function(element){
-        try{
-            if (element.tagName.toLowerCase()!="a" || !element.getAttribute("href")){
-                return false;
-            }
-
-            return true;
-        }catch(e){
-            return false;
-        }
-    };
-
     var processEvent = function(event){
         var element = event.originalTarget;
 
-        if (processNormalUrl(element)){
-            return true;
-        }
-
-        if (processRegisteredUrl(element)){
-            return true;
-        }
-
-        return false;
+        return processAnchorTag(element);
     };
 
-    var processNormalUrl = function(element){
-        if (element.className.split(/\s+/).every(function(i){ return i!=TARGET_CLASS_NAME; })){
+    var processAnchorTag = function(element){
+        if (element.tagName.toLowerCase()!="a"){
             return false;
         }
+
+        var url = element.getAttribute("href");
+        if (!url || !isRegisteredUrl(url)){
+            return false;
+        }
+
+        var callback_type = "browser";
+        var callback_args = [];
 
         var info = element.getAttribute(INFO_ATTRIBUTE1);
         if (!info){
             info = element.getAttribute(INFO_ATTRIBUTE2);
-            if (!info){
-                return false;
+        }
+        if (info){
+            var reg = /^\btsvn\[(.*?)\](?:\[(.*?)\])?$/;
+            var match_data = info.match(reg);
+            if (match_data){
+                callback_type = match_data[1];
+                if (match_data[2]){
+                    callback_args = match_data[2].split(",");
+                }
             }
         }
 
-        var url = element.getAttribute("href");
-        if (!url){
-            return false;
-        }
-
-        var reg = /^tsvn\[([^\]]*)\](?:\[(.*)\])?$/;
-        var match_data = info.match(reg);
-        if (!match_data){
-            return false;
-        }
-
-        var callback = CALLBACKS[match_data[1]];
+        var callback = CALLBACKS[callback_type];
         if (!callback){
             return false;
         }
 
-        callback(url, match_data[2] ? match_data[2].split(",") : []);
+        callback(url, callback_args);
         return true;
     };
 
-    var processRegisteredUrl = function(element){
+    var isRegisteredUrl = function(url){
         var pref_name = "open_tortoise_svn.url_list_pref";
         if (!prefs.prefHasUserValue(pref_name)){
             return false;
@@ -158,13 +132,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             return ((i % 2 == 0) && ary[i+1] != "0");
         });
 
-        var url = element.getAttribute("href");
-        if (urls.every(function(i){ return url.indexOf(i)!=0; })){
-            return false;
-        }
-
-        runTortoiseSvnBrowser(url);
-        return true;
+        return urls.some(function(u){ return url.indexOf(u)==0; });
     };
 
     var runTortoiseSvnBrowser = function(repos){
