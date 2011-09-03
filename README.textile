@@ -55,3 +55,6 @@ Initial version.
 
 * 0.0.2
 Add help text for TortoiseProc.exe path.
+
+* 0.0.3
+Bug fix.
