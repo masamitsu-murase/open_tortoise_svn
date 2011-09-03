@@ -35,10 +35,10 @@
       </vbox>
     </hbox>
     <hbox align="center">
-      <textbox id="url_textbox" oninput="gOpenTortoiseSvn.updateButtons();" flex="1" />
+      <textbox id="url_textbox" oninput="gOpenTortoiseSvn.updateAddButton();" flex="1" />
       <button id="add_url_button" label="&url.add;" oncommand="gOpenTortoiseSvn.addUrl();" accesskey="a" />
     </hbox>
-    <tree id="url_list_tree" editable="true" minheight="250" minwidth="420" onselect="gOpenTortoiseSvn.updateButtons();">
+    <tree id="url_list_tree" editable="true" minheight="250" minwidth="420" onselect="gOpenTortoiseSvn.updateRemoveButton();">
       <treecols>
         <treecol label="&url.enable;" type="checkbox" editable="true" />
         <treecol label="&url.title;" flex="1" />

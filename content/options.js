@@ -1,3 +1,19 @@
+/*
+Copyright (C) 2011  Masamitsu MURASE
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>
+*/
 
 var gOpenTortoiseSvn = (function(){
     var initialize = function(){
@@ -45,7 +61,7 @@ var gOpenTortoiseSvn = (function(){
         addUrlTreeItem(url_textbox.value.trim(), true);
         url_textbox.value = "";
 
-        updateButtons();
+        updateAddButton();
     };
 
     var removeUrl = function(){
@@ -142,12 +158,19 @@ var gOpenTortoiseSvn = (function(){
     };
 
     var updateButtons = function(){
+        updateAddButton();
+        updateRemoveButton();
+    };
+
+    var updateAddButton = function(){
         var url_textbox = document.getElementById("url_textbox");
         var add_url_button = document.getElementById("add_url_button");
         if (url_textbox && add_url_button){
             add_url_button.disabled = (url_textbox.value.trim().length == 0);
         }
+    };
 
+    var updateRemoveButton = function(){
         var url_list_tree = document.getElementById("url_list_tree");
         var remove_url_button = document.getElementById("remove_url_button");
         if (url_list_tree && remove_url_button){
@@ -155,13 +178,15 @@ var gOpenTortoiseSvn = (function(){
         }
     };
 
+    // publish functions
     return {
         initialize: initialize,
         saveOptions: saveOptions,
         setPath: setPath,
         addUrl: addUrl,
         removeUrl: removeUrl,
-        updateButtons: updateButtons
+        updateAddButton: updateAddButton,
+        updateRemoveButton: updateRemoveButton
     };
 })();
 
