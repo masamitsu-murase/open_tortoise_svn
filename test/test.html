@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Open TortoiseSVN Test</title>
+  </head>
+  <body>
+    <h1>Open TortoiseSVN Test</h1>
+    <h2>Prepare for test</h2>
+    <p>
+      Open <code>Open TortoiseSVN</code> Setting dialog, then add the following URLs.
+    </p>
+    <ul>
+      <li><code>http://localhost/</code></li>
+    </ul>
+
+    <h2>Test</h2>
+    <p>The following links are <strong>not</strong> opened in TortoiseSVN.</p>
+    <ul>
+      <li><a href="http://example.net/">http://example.net/</a> is an unregistered URL.</li>
+      <li>
+        <a href="http://localhost:3000/">http://localhost:3000/</a> is an unregistered URL
+        because port number is wrong.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[unknown]">href="http://localhost/" rel="tsvn[unknown]"</a> is
+        not opened in TortoiseSVN because <code>rel</code> attribute has an unknown action,
+        <code>unknown</code>.
+      </li>
+      <li>
+        <a href="http://example.net/" rel="tsvn[browser]">href="http://example.net/" rel="tsvn[browser]"</a>
+        is not an unregistered URL.
+      </li>
+    </ul>
+
+    <p>
+      The following links are <strong>opened</strong> in TortoiseSVN
+      <strong>repository browser</strong>.
+    </p>
+    <ul>
+      <li><a href="http://localhost/svn/">http://localhost/svn/</a> is a registered URL.</li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[browser]">href="http://localhost/" rel="tsvn[browser]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[browser][]">href="http://localhost/" rel="tsvn[browser][]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+    </ul>
+
+    <p>
+      The following links are <strong>opened</strong> in TortoiseSVN
+      <strong>log browser</strong>.
+    </p>
+    <ul>
+      <li>
+        <a href="http://localhost/" rel="tsvn[log]">href="http://localhost/" rel="tsvn[log]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[log][]">href="http://localhost/" rel="tsvn[log][]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[log][10]">href="http://localhost/" rel="tsvn[log][10]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+        This link shows logs from revision 10.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[log][10,3]">href="http://localhost/" rel="tsvn[log][10,3]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+        This link shows logs from revision 3 to 10.
+      </li>
+    </ul>
+
+    <p>
+      The following links are <strong>opened</strong> in TortoiseSVN
+      <strong>blame browser</strong>.
+    </p>
+    <ul>
+      <li>
+        <a href="http://localhost/" rel="tsvn[blame]">href="http://localhost/" rel="tsvn[blame]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+      <li>
+        <a href="http://localhost/" rel="tsvn[blame][]">href="http://localhost/" rel="tsvn[blame][]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+    </ul>
+  </body>
+</html>
