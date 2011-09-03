@@ -136,12 +136,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     };
 
     var runTortoiseSvnBrowser = function(repos){
-        var args = ["/command:repobrowser", "/path:\"" + repos + "\""];
+        var args = ["/command:repobrowser", "/path:" + repos];
         runTortoiseSvn(args);
     };
 
     var runTortoiseSvnLog = function(repos, start_rev, end_rev){
-        var args = ["/command:log", "/path:\"" + repos + "\""];
+        var args = ["/command:log", "/path:" + repos];
         if (start_rev || start_rev==="0"){
             args.push("/startrev:" + start_rev);
         }
@@ -153,7 +153,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     };
 
     var runTortoiseSvnBlame = function(repos){
-        var args = ["/command:blame", "/path:\"" + repos + "\""];
+        var args = ["/command:blame", "/path:" + repos];
         runTortoiseSvn(args);
     };
 
