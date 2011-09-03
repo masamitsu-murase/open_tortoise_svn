@@ -1,5 +1,6 @@
 <!ENTITY dialog.title "Open TortoiseSVN preferences">
 <!ENTITY tsvn.description "Select TortoiseProc.exe path.">
+<!ENTITY tsvn.path_note "Typically, it is found at 'C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe'.">
 <!ENTITY tsvn.path "Select">
 <!ENTITY url.description "Add URLs of Subversion repositories.">
 <!ENTITY url.example "e.g.">

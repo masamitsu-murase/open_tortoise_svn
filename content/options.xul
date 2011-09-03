@@ -20,6 +20,7 @@
 
   <vbox>
     <description>&tsvn.description;</description>
+    <description style="padding-left: 1em;">&tsvn.path_note;</description>
     <hbox>
       <filefield id="tortoise_svn_filefield" flex="1" />
       <button label="&tsvn.path;" id="set_path_button" accesskey="s" oncommand="gOpenTortoiseSvn.setPath();" />

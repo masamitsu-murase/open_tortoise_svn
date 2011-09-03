@@ -1,5 +1,6 @@
 <!ENTITY dialog.title "Open TortoiseSVN のオプション">
 <!ENTITY tsvn.description "TortoiseProc.exe のパスを設定してください。">
+<!ENTITY tsvn.path_note "通常は 'C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe' です。">
 <!ENTITY tsvn.path "設定">
 <!ENTITY url.description "Subversion リポジトリの URL を追加してください。">
 <!ENTITY url.example "例">
