@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://open_tortoise_svn/locale/open_tortoise_svn.dtd">
 <overlay id="open_tortoise_svn-overlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <popup id="contentAreaContextMenu">
+    <menuitem id="open_tortoise_svn_menu_browser" label="&action.browser;" insertbefore="context-bookmarklink"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('browser');" />
+    <menuitem id="open_tortoise_svn_menu_log" label="&action.log;" insertbefore="context-bookmarklink"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('log');" />
+    <menuitem id="open_tortoise_svn_menu_blame" label="&action.blame;" insertbefore="context-bookmarklink"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('blame');" />
+    <menuitem id="open_tortoise_svn_menu_open_in_firefox" label="&action.open_in_firefox;" insertbefore="context-bookmarklink"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('open_in_firefox');" />
+
+    <menuseparator id="open_tortoise_svn_menu_separator" insertbefore="context-bookmarklink" />
+  </popup>
+
   <script type="application/x-javascript" src="chrome://open_tortoise_svn/content/overlay.js" />
 </overlay>

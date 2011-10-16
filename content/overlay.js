@@ -16,11 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 
-(function(){
+var gOpenTortoiseSvnMain = (function(){
     var Cc = Components.classes;
     var Ci = Components.interfaces;
-//    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
-    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("extensions.open_tortoise_svn.");
+    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).
+      getBranch("extensions.open_tortoise_svn.");
 
     var INFO_ATTRIBUTE1 = "data-tsvn-info";  // for HTML5
     var INFO_ATTRIBUTE2 = "rel";             // for HTML4.01
@@ -44,8 +44,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         if (appcontent){
             appcontent.addEventListener("DOMContentLoaded", load, true);
 		}
+
+        var contentAreaContextMenu = document.getElementById("contentAreaContextMenu");
+        if (contentAreaContextMenu){
+            contentAreaContextMenu.addEventListener("popupshowing", contextMenuPopupShowing, false);
+        }
     };
 
+    ///////////////////////////////////////////////////////////////
     var load = function(event){
         if (!event || !event.originalTarget){
             return;
@@ -92,7 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             return false;
         }
 
-        var url = element.getAttribute("href");
+        var url = element.href;
         if (!url || !isRegisteredUrl(url)){
             return false;
         }
@@ -230,5 +236,61 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         }
     };
 
+    /////////////////////////////////////////////////////
+    var contextMenuPopupShowing = function(e){
+        var menu = document.getElementById("contentAreaContextMenu");
+        if (!menu || e.originalTarget != menu){
+            return;
+        }
+
+        var hidden = !isPopupMenuShown();
+        [ "browser", "log", "blame", "open_in_firefox", "separator" ].forEach(function(id){
+            var item = document.getElementById("open_tortoise_svn_menu_" + id);
+            if (item){
+                item.hidden = hidden;
+            }
+        });
+    };
+
+    var contextMenuOpenTortoiseSvn = function(action){
+        var url = (gContextMenu && gContextMenu.linkURL);
+        if (!url || !isRegisteredUrl(url)){
+            return;
+        }
+
+        var callback = CALLBACKS[action];
+        if (!callback){
+            return;
+        }
+
+        callback(url, []);
+    };
+
+    var isPopupMenuShown = function(){
+        if (!gContextMenu.onLink){
+            return false;
+        }
+
+        var pref_name = "context_menu_pref";
+        var menu_enabled = true;
+        if (prefs.prefHasUserValue(pref_name)){
+            menu_enabled = prefs.getBoolPref(pref_name);
+        }
+        if (!menu_enabled){
+            return false;
+        }
+
+        var url = (gContextMenu && gContextMenu.linkURL);
+        if (!url || !isRegisteredUrl(url)){
+            return false;
+        }
+
+        return true;
+    };
+
     window.addEventListener("load", registerCallback, false);
+
+    return {
+        contextMenuOpenTortoiseSvn: contextMenuOpenTortoiseSvn
+    };
 })();

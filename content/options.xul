@@ -3,7 +3,7 @@
 <?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css" type="text/css"?>
 <?xml-stylesheet href="chrome://open_tortoise_svn/skin/options/options.css" type="text/css"?>
 
-<!DOCTYPE prefwindow SYSTEM "chrome://open_tortoise_svn/locale/options.dtd">
+<!DOCTYPE prefwindow SYSTEM "chrome://open_tortoise_svn/locale/open_tortoise_svn.dtd">
 <prefwindow id="open_tortoise_svn_prefwindow"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&dialog.title;"
   onload="gOpenTortoiseSvn.initialize();">
@@ -14,6 +14,7 @@
       <preference id="url_list_pref" name="extensions.open_tortoise_svn.url_list_pref" type="string" />
       <preference id="default_action_pref" name="extensions.open_tortoise_svn.default_action_pref" type="string" />
       <preference id="extension_actions_pref" name="extensions.open_tortoise_svn.extension_actions_pref" type="string" />
+      <preference id="context_menu_pref" name="extensions.open_tortoise_svn.context_menu_pref" type="bool" />
     </preferences>
     <stringbundleset>
       <stringbundle id="open_tortoise_svn_strings" src="chrome://open_tortoise_svn/locale/open_tortoise_svn.properties"/>
@@ -23,6 +24,7 @@
       <tabs>
         <tab label="&tab.main_title;" />
         <tab label="&tab.extension_title;" />
+        <tab label="&tab.other;" />
       </tabs>
 
       <tabpanels>
@@ -123,6 +125,14 @@
               <spacer flex="1" />
               <button id="remove_extension_button" label="&tsvn.remove;" oncommand="gOpenTortoiseSvn.removeExtension();" accesskey="r" />
             </hbox>
+          </vbox>
+        </tabpanel>
+
+        <tabpanel>
+          <vbox>
+            <checkbox id="context_menu_enable_checkbox" label="&context_menu.enable;" checked="false"
+              oncommand="gOpenTortoiseSvn.checkContextMenuEnable();" />
+            <description style="padding-left: 2em;" maxwidth="420">&context_menu.enable_description;</description>
           </vbox>
         </tabpanel>
       </tabpanels>

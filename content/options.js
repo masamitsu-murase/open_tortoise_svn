@@ -31,6 +31,8 @@ var gOpenTortoiseSvn = (function(){
         initializeExtensionTree();
         updateExtensionAddButton();
         updateExtensionRemoveButton();
+        // Other pane
+        initializeContextMenuEnable();
     };
 
     ////////////////////////////////////////////////////
@@ -354,6 +356,31 @@ var gOpenTortoiseSvn = (function(){
         });
     };
 
+    // Other pane
+    var CONTEXT_MENU_PREF_ID = "context_menu_pref";
+    var initializeContextMenuEnable = function(){
+        var elem = document.getElementById(CONTEXT_MENU_PREF_ID);
+        var checkbox = document.getElementById("context_menu_enable_checkbox");
+        if (!elem || !checkbox){
+            return;
+        }
+        if (elem.value !== false && elem.value !== true){
+            elem.value = true;
+        }
+
+        checkbox.checked = elem.value;
+    };
+
+    var checkContextMenuEnable = function(){
+        var elem = document.getElementById(CONTEXT_MENU_PREF_ID);
+        var checkbox = document.getElementById("context_menu_enable_checkbox");
+        if (!elem || !checkbox){
+            return;
+        }
+
+        elem.value = checkbox.checked;
+    };
+
 
     // publish functions
     return {
@@ -369,6 +396,8 @@ var gOpenTortoiseSvn = (function(){
         removeExtension: removeExtension,
         updateExtensionAddButton: updateExtensionAddButton,
         updateExtensionRemoveButton: updateExtensionRemoveButton,
+        // Other pane
+        checkContextMenuEnable: checkContextMenuEnable,
 
         initialize: initialize
     };

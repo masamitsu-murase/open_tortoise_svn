@@ -10,6 +10,7 @@
 <!ENTITY pane.main_title "一般">
 <!ENTITY tab.main_title "一般">
 <!ENTITY tab.extension_title "拡張子ごとの動作">
+<!ENTITY tab.other "その他">
 
 <!ENTITY url.description "Subversion リポジトリの URL を追加してください。">
 <!ENTITY url.description_detail "登録されたURLへのリンクをクリックした場合、TortoiseSVNが開きます。">
@@ -26,3 +27,6 @@
 <!ENTITY action.log "ログ">
 <!ENTITY action.blame "注釈履歴">
 <!ENTITY action.open_in_firefox "Firefoxで開く">
+
+<!ENTITY context_menu.enable "コンテキストメニューに項目を追加する">
+<!ENTITY context_menu.enable_description "チェックすると、Subversionリポジトリへのリンクをクリックしたときに、コンテキストメニューにTortoiseSVNを開く項目を追加します。">
