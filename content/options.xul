@@ -1,50 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://browser/skin/preferences/preferences.css" type="text/css"?>
 <?xml-stylesheet href="chrome://open_tortoise_svn/skin/options/options.css" type="text/css"?>
 
-<!DOCTYPE window SYSTEM "chrome://open_tortoise_svn/locale/options.dtd">
-<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&dialog.title;"
-  buttons="accept,cancel" onload="gOpenTortoiseSvn.initialize();"
-  ondialogaccept="gOpenTortoiseSvn.saveOptions();">
+<!DOCTYPE prefwindow SYSTEM "chrome://open_tortoise_svn/locale/options.dtd">
+<prefwindow id="open_tortoise_svn_prefwindow"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="&dialog.title;"
+  onload="gOpenTortoiseSvn.initialize();">
 
-  <script type="application/x-javascript" src="chrome://open_tortoise_svn/content/options.js" />
+  <prefpane id="main_pane" label="&pane.main_title;">
+    <preferences>
+      <preference id="svn_path_pref" name="extensions.open_tortoise_svn.tortoise_svn_path_pref" type="file" />
+      <preference id="url_list_pref" name="extensions.open_tortoise_svn.url_list_pref" type="string" />
+      <preference id="default_action_pref" name="extensions.open_tortoise_svn.default_action_pref" type="string" />
+      <preference id="extension_actions_pref" name="extensions.open_tortoise_svn.extension_actions_pref" type="string" />
+    </preferences>
+    <stringbundleset>
+      <stringbundle id="open_tortoise_svn_strings" src="chrome://open_tortoise_svn/locale/open_tortoise_svn.properties"/>
+    </stringbundleset>
 
-  <stringbundleset>
-    <stringbundle id="open_tortoise_svn_strings" src="chrome://open_tortoise_svn/locale/open_tortoise_svn.properties"/>
-  </stringbundleset>
+    <tabbox id="main_tab">
+      <tabs>
+        <tab label="&tab.main_title;" />
+        <tab label="&tab.extension_title;" />
+      </tabs>
 
-  <vbox>
-    <description>&tsvn.description;</description>
-    <description style="padding-left: 1em;">&tsvn.path_note;</description>
-    <hbox>
-      <filefield id="tortoise_svn_filefield" flex="1" />
-      <button label="&tsvn.path;" id="set_path_button" accesskey="s" oncommand="gOpenTortoiseSvn.setPath();" />
-    </hbox>
-    <separator class="groove" />
+      <tabpanels>
+        <tabpanel>
+          <vbox flex="1">
+            <description>&tsvn.description;</description>
+            <description style="padding-left: 1em;">&tsvn.path_note;</description>
+            <hbox>
+              <filefield id="tortoise_svn_filefield" flex="1" />
+              <button label="&tsvn.path;" id="set_path_button" accesskey="s" oncommand="gOpenTortoiseSvn.setPath();" />
+            </hbox>
+            <separator class="groove" />
 
-    <description>&url.description;</description>
-    <hbox>
-      <description style="padding-left: 1em;">&url.example;)</description>
-      <vbox>
-        <description>http://example.net/svn_repos/</description>
-        <description>svn://example.com/svn_repos/</description>
-        <description>file:///C:/repository/</description>
-      </vbox>
-    </hbox>
-    <hbox align="center">
-      <textbox id="url_textbox" oninput="gOpenTortoiseSvn.updateAddButton();" flex="1" />
-      <button id="add_url_button" label="&url.add;" oncommand="gOpenTortoiseSvn.addUrl();" accesskey="a" />
-    </hbox>
-    <tree id="url_list_tree" editable="true" minheight="250" minwidth="420" onselect="gOpenTortoiseSvn.updateRemoveButton();">
-      <treecols>
-        <treecol label="&url.enable;" type="checkbox" editable="true" />
-        <treecol label="&url.title;" flex="1" />
-      </treecols>
-      <treechildren id="url_list_treechildren" />
-    </tree>
-    <hbox>
-      <spacer flex="1" />
-      <button id="remove_url_button" label="&url.remove;" oncommand="gOpenTortoiseSvn.removeUrl();" accesskey="r" />
-    </hbox>
-  </vbox>
-</dialog>
+            <description>&url.description;</description>
+            <description style="padding-left: 1em;">&url.description_detail;</description>
+            <hbox>
+              <description style="padding-left: 1em;">&tsvn.example;)</description>
+              <vbox>
+                <description style="padding: 0px; margin: 0px;">http://example.net/svn_repos/</description>
+                <description style="padding: 0px; margin: 0px;">svn://example.com/svn_repos/</description>
+                <description style="padding: 0px; margin: 0px;">file:///C:/repository/</description>
+              </vbox>
+            </hbox>
+            <hbox align="center">
+              <textbox id="url_textbox" oninput="gOpenTortoiseSvn.updateUrlAddButton();" flex="1"
+                placeholder="&tsvn.example; http://example.net/svn_repos/" />
+              <button id="add_url_button" label="&tsvn.add;" oncommand="gOpenTortoiseSvn.addUrl();" accesskey="a" />
+            </hbox>
+            <tree id="url_list_tree" editable="true" minheight="250" minwidth="420" flex="1" onselect="gOpenTortoiseSvn.updateUrlRemoveButton();">
+              <treecols>
+                <treecol label="&tsvn.enable;" type="checkbox" editable="true" onclick="alert('click 20');" />
+                <treecol label="&url.title;" flex="1" editable="true" />
+              </treecols>
+              <treechildren id="url_list_treechildren" />
+            </tree>
+            <hbox>
+              <spacer flex="1" />
+              <button id="remove_url_button" label="&tsvn.remove;" oncommand="gOpenTortoiseSvn.removeUrl();" accesskey="r" />
+            </hbox>
+          </vbox>
+        </tabpanel>
+
+        <tabpanel>
+          <vbox flex="1">
+            <description>&extension.description_for_default_setting;</description>
+            <hbox align="center">
+              <description style="padding-left: 1em;">&extension.default_setting;</description>
+              <menulist id="default_action_menulist" oncommand="gOpenTortoiseSvn.saveDefaultAction();">
+                <menupopup>
+                  <menuitem label="&action.browser;" value="browser" />
+                  <menuitem label="&action.log;" value="log" />
+                  <menuitem label="&action.blame;" value="blame" />
+                  <menuitem label="&action.open_in_firefox;" value="open_in_firefox" />
+                </menupopup>
+              </menulist>
+            </hbox>
+            <separator class="groove" />
+
+            <description>&extension.description_for_each_extension;</description>
+            <hbox>
+              <description style="padding-left: 1em;">&tsvn.example;)</description>
+              <vbox>
+                <hbox>
+                  <description>*.html, *.htm</description>
+                  <description> : </description>
+                  <description>&action.open_in_firefox;</description>
+                </hbox>
+                <hbox>
+                  <description>*.c, *.cpp, *.h</description>
+                  <description> : </description>
+                  <description>&action.log;</description>
+                </hbox>
+              </vbox>
+            </hbox>
+            <hbox align="center">
+              <textbox id="extension_textbox" oninput="gOpenTortoiseSvn.updateExtensionAddButton();" flex="1"
+                placeholder="&tsvn.example; *.html, *.htm" />
+              <menulist id="extension_action_menulist">
+                <menupopup>
+                  <menuitem label="&action.browser;" value="browser" />
+                  <menuitem label="&action.log;" value="log" />
+                  <menuitem label="&action.blame;" value="blame" />
+                  <menuitem label="&action.open_in_firefox;" value="open_in_firefox" />
+                </menupopup>
+              </menulist>
+              <spacer style="width: 1em;" />
+              <button id="add_extension_button" label="&tsvn.add;" oncommand="gOpenTortoiseSvn.addExtension();" accesskey="a" />
+            </hbox>
+
+            <tree id="extension_list_tree" minheight="250" minwidth="420" flex="1" onselect="gOpenTortoiseSvn.updateExtensionRemoveButton();">
+              <treecols>
+                <treecol label="&extension.text;" flex="1" />
+                <treecol label="&extension.action;" flex="1" />
+              </treecols>
+              <treechildren id="extension_list_treechildren" />
+            </tree>
+            <hbox>
+              <spacer flex="1" />
+              <button id="remove_extension_button" label="&tsvn.remove;" oncommand="gOpenTortoiseSvn.removeExtension();" accesskey="r" />
+            </hbox>
+          </vbox>
+        </tabpanel>
+      </tabpanels>
+    </tabbox>
+  </prefpane>
+
+  <script type="application/x-javascript" src="chrome://open_tortoise_svn/content/options.js"></script>
+</prefwindow>

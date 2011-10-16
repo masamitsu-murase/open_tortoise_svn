@@ -15,10 +15,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+
 (function(){
     var Cc = Components.classes;
     var Ci = Components.interfaces;
-    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+//    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+    var prefs = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefService).getBranch("extensions.open_tortoise_svn.");
 
     var INFO_ATTRIBUTE1 = "data-tsvn-info";  // for HTML5
     var INFO_ATTRIBUTE2 = "rel";             // for HTML4.01
@@ -82,7 +84,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 
     var processEvent = function(event){
         var element = event.originalTarget;
-
         return processAnchorTag(element);
     };
 
@@ -96,15 +97,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
             return false;
         }
 
-        var callback_type = "browser";
+        var callback_type = null;
         var callback_args = [];
 
+        // Action:
+        //  priority 1
+        //  "action" is defined by HTML attribute.
         var info = element.getAttribute(INFO_ATTRIBUTE1);
         if (!info){
             info = element.getAttribute(INFO_ATTRIBUTE2);
         }
         if (info){
-            var reg = /^\btsvn\[(.*?)\](?:\[(.*?)\])?$/;
+            var reg = /\btsvn\[(.*?)\](?:\[(.*?)\])?/;
             var match_data = info.match(reg);
             if (match_data){
                 callback_type = match_data[1];
@@ -112,6 +116,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
                     callback_args = match_data[2].split(",");
                 }
             }
+        }
+        //  priority 2
+        //  "action" is defined by extension-specific setting.
+        if (!callback_type){
+            callback_type = callbackTypeForSpecialExtension(url);
+        }
+        //  priority 3
+        //  "action" is defined by default setting.
+        if (!callback_type){
+            callback_type = defaultCallbackType();
         }
 
         var callback = CALLBACKS[callback_type];
@@ -124,7 +138,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     };
 
     var isRegisteredUrl = function(url){
-        var pref_name = "open_tortoise_svn.url_list_pref";
+        var pref_name = "url_list_pref";
         if (!prefs.prefHasUserValue(pref_name)){
             return false;
         }
@@ -133,6 +147,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
         });
 
         return urls.some(function(u){ return url.indexOf(u)==0; });
+    };
+
+    var defaultCallbackType = function(){
+        var pref_name = "default_action_pref";
+        if (!prefs.prefHasUserValue(pref_name)){
+            return "browser";
+        }
+        return prefs.getCharPref(pref_name);
+    };
+
+    var callbackTypeForSpecialExtension = function(url){
+        var pref_name = "extension_actions_pref";
+        if (!prefs.prefHasUserValue(pref_name)){
+            return null;
+        }
+
+        var callback_type = null;
+        prefs.getCharPref(pref_name).split("\n").some(function(v, i, ary){
+            if (i % 2 != 0){
+                return false;
+            }
+
+            var matched = v.split(",").some(function(ext){
+                var str = ext.trim().toLowerCase();
+                if (str.substr(0, 1)=="*"){
+                    str = str.substr(1);
+                }
+                return url.toLowerCase().lastIndexOf(str) == url.length - str.length;
+            });
+            if (!matched){
+                return false;
+            }
+
+            callback_type = ary[i+1];
+            return true;
+        });
+
+        return callback_type;
     };
 
     var runTortoiseSvnBrowser = function(repos){
@@ -158,7 +210,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
     };
 
     var runTortoiseSvn = function(args){
-        var pref_name = "open_tortoise_svn.tortoise_svn_path_pref";
+        var pref_name = "tortoise_svn_path_pref";
         if (!prefs.prefHasUserValue(pref_name)){
             return;
         }

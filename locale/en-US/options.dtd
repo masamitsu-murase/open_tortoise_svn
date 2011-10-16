@@ -2,10 +2,27 @@
 <!ENTITY tsvn.description "Select TortoiseProc.exe path.">
 <!ENTITY tsvn.path_note "Typically, it is found at 'C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe'.">
 <!ENTITY tsvn.path "Select">
+<!ENTITY tsvn.example "e.g.">
+<!ENTITY tsvn.add "Add">
+<!ENTITY tsvn.remove "Remove">
+<!ENTITY tsvn.enable "Enable">
+
+<!ENTITY pane.main_title "General">
+<!ENTITY tab.main_title "General">
+<!ENTITY tab.extension_title "Action for each extension">
+
 <!ENTITY url.description "Add URLs of Subversion repositories.">
-<!ENTITY url.example "e.g.">
+<!ENTITY url.description_detail "When users click a link to one of the registered URLs, TortoiseSVN is opened.">
 <!ENTITY url.label "URL: ">
-<!ENTITY url.add "Add">
-<!ENTITY url.enable "Enable">
 <!ENTITY url.title "URL">
-<!ENTITY url.remove "Remove">
+
+<!ENTITY extension.description_for_default_setting "Set default action.">
+<!ENTITY extension.default_setting "Default action">
+<!ENTITY extension.description_for_each_extension "Set action for each extension.">
+<!ENTITY extension.text "Extension">
+<!ENTITY extension.action "Action">
+
+<!ENTITY action.browser "Repository browser">
+<!ENTITY action.log "Log viewer">
+<!ENTITY action.blame "Blame viewer">
+<!ENTITY action.open_in_firefox "Open in Firefox">

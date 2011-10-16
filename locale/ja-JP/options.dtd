@@ -2,10 +2,27 @@
 <!ENTITY tsvn.description "TortoiseProc.exe のパスを設定してください。">
 <!ENTITY tsvn.path_note "通常は 'C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe' です。">
 <!ENTITY tsvn.path "設定">
+<!ENTITY tsvn.example "例">
+<!ENTITY tsvn.add "追加">
+<!ENTITY tsvn.remove "削除">
+<!ENTITY tsvn.enable "有効">
+
+<!ENTITY pane.main_title "一般">
+<!ENTITY tab.main_title "一般">
+<!ENTITY tab.extension_title "拡張子ごとの動作">
+
 <!ENTITY url.description "Subversion リポジトリの URL を追加してください。">
-<!ENTITY url.example "例">
+<!ENTITY url.description_detail "登録されたURLへのリンクをクリックした場合、TortoiseSVNが開きます。">
 <!ENTITY url.label "URL: ">
-<!ENTITY url.add "追加">
-<!ENTITY url.enable "有効">
 <!ENTITY url.title "URL">
-<!ENTITY url.remove "削除">
+
+<!ENTITY extension.description_for_default_setting "既定の動作を指定してください。">
+<!ENTITY extension.default_setting "既定の動作">
+<!ENTITY extension.description_for_each_extension "拡張子ごとの動作を指定してください。">
+<!ENTITY extension.text "拡張子">
+<!ENTITY extension.action "動作">
+
+<!ENTITY action.browser "リポジトリブラウザ">
+<!ENTITY action.log "ログ">
+<!ENTITY action.blame "注釈履歴">
+<!ENTITY action.open_in_firefox "Firefoxで開く">
