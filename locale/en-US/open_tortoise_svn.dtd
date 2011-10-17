@@ -24,9 +24,13 @@
 <!ENTITY extension.action "Action">
 
 <!ENTITY action.browser "Repository browser">
+<!ENTITY action.long_browser "Open repository browser">
 <!ENTITY action.log "Log viewer">
+<!ENTITY action.long_log "Open log viewer">
 <!ENTITY action.blame "Blame viewer">
+<!ENTITY action.long_blame "Open blame viewer">
 <!ENTITY action.open_in_firefox "Open in Firefox">
+<!ENTITY action.long_open_in_firefox "Open in Firefox">
 
 <!ENTITY context_menu.enable "Add items in context menu.">
 <!ENTITY context_menu.enable_description "If you check, items to open TortoiseSVN are added in context menu when you right-click a link to Subversion repository.">

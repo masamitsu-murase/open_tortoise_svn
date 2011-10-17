@@ -24,9 +24,13 @@
 <!ENTITY extension.action "動作">
 
 <!ENTITY action.browser "リポジトリブラウザ">
+<!ENTITY action.long_browser "リポジトリブラウザを表示する">
 <!ENTITY action.log "ログ">
+<!ENTITY action.long_log "ログを表示する">
 <!ENTITY action.blame "注釈履歴">
+<!ENTITY action.long_blame "注釈履歴を表示する">
 <!ENTITY action.open_in_firefox "Firefoxで開く">
+<!ENTITY action.long_open_in_firefox "Firefoxで開く">
 
 <!ENTITY context_menu.enable "コンテキストメニューに項目を追加する">
 <!ENTITY context_menu.enable_description "チェックすると、Subversionリポジトリへのリンクをクリックしたときに、コンテキストメニューにTortoiseSVNを開く項目を追加します。">

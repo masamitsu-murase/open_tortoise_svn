@@ -80,7 +80,7 @@ var gOpenTortoiseSvnMain = (function(){
 
     var isValidPage = function(doc){
         try{
-            var href = doc.location.href;
+            var href = gBrowser.currentURI.spec;
             var match_data = href.match(new RegExp("^(https?|file)://"));
             return !!match_data;
         }catch(e){
@@ -252,9 +252,18 @@ var gOpenTortoiseSvnMain = (function(){
         });
     };
 
-    var contextMenuOpenTortoiseSvn = function(action){
+    var contextMenuOpenTortoiseSvn = function(event, action){
         var url = (gContextMenu && gContextMenu.linkURL);
         if (!url || !isRegisteredUrl(url)){
+            return;
+        }
+
+        if (action == "open_in_firefox"){
+            if (event.button == 1){  // center button
+                gBrowser.addTab(url);
+            }else{
+                gBrowser.loadURI(url);
+            }
             return;
         }
 

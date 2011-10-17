@@ -31,7 +31,7 @@
         <tabpanel>
           <vbox flex="1">
             <description>&tsvn.description;</description>
-            <description style="padding-left: 1em;">&tsvn.path_note;</description>
+            <description class="indent">&tsvn.path_note;</description>
             <hbox>
               <filefield id="tortoise_svn_filefield" flex="1" />
               <button label="&tsvn.path;" id="set_path_button" accesskey="s" oncommand="gOpenTortoiseSvn.setPath();" />
@@ -39,13 +39,13 @@
             <separator class="groove" />
 
             <description>&url.description;</description>
-            <description style="padding-left: 1em;">&url.description_detail;</description>
+            <description class="indent">&url.description_detail;</description>
             <hbox>
-              <description style="padding-left: 1em;">&tsvn.example;)</description>
+              <description class="indent">&tsvn.example;)</description>
               <vbox>
-                <description style="padding: 0px; margin: 0px;">http://example.net/svn_repos/</description>
-                <description style="padding: 0px; margin: 0px;">svn://example.com/svn_repos/</description>
-                <description style="padding: 0px; margin: 0px;">file:///C:/repository/</description>
+                <description class="monospace plain">http://example.net/svn_repos/</description>
+                <description class="monospace plain">svn://example.com/svn_repos/</description>
+                <description class="monospace plain">file:///C:/repository/</description>
               </vbox>
             </hbox>
             <hbox align="center">
@@ -71,7 +71,7 @@
           <vbox flex="1">
             <description>&extension.description_for_default_setting;</description>
             <hbox align="center">
-              <description style="padding-left: 1em;">&extension.default_setting;</description>
+              <description class="indent">&extension.default_setting;</description>
               <menulist id="default_action_menulist" oncommand="gOpenTortoiseSvn.saveDefaultAction();">
                 <menupopup>
                   <menuitem label="&action.browser;" value="browser" />
@@ -85,15 +85,15 @@
 
             <description>&extension.description_for_each_extension;</description>
             <hbox>
-              <description style="padding-left: 1em;">&tsvn.example;)</description>
+              <description class="indent">&tsvn.example;)</description>
               <vbox>
                 <hbox>
-                  <description>*.html, *.htm</description>
+                  <description class="monospace">*.html, *.htm</description>
                   <description> : </description>
                   <description>&action.open_in_firefox;</description>
                 </hbox>
                 <hbox>
-                  <description>*.c, *.cpp, *.h</description>
+                  <description class="monospace">*.c, *.cpp, *.h</description>
                   <description> : </description>
                   <description>&action.log;</description>
                 </hbox>
@@ -132,7 +132,7 @@
           <vbox>
             <checkbox id="context_menu_enable_checkbox" label="&context_menu.enable;" checked="false"
               oncommand="gOpenTortoiseSvn.checkContextMenuEnable();" />
-            <description style="padding-left: 2em;" maxwidth="420">&context_menu.enable_description;</description>
+            <description class="indent" maxwidth="420">&context_menu.enable_description;</description>
           </vbox>
         </tabpanel>
       </tabpanels>

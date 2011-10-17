@@ -4,14 +4,18 @@
 <overlay id="open_tortoise_svn-overlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <popup id="contentAreaContextMenu">
-    <menuitem id="open_tortoise_svn_menu_browser" label="&action.browser;" insertbefore="context-bookmarklink"
-      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('browser');" />
-    <menuitem id="open_tortoise_svn_menu_log" label="&action.log;" insertbefore="context-bookmarklink"
-      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('log');" />
-    <menuitem id="open_tortoise_svn_menu_blame" label="&action.blame;" insertbefore="context-bookmarklink"
-      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('blame');" />
-    <menuitem id="open_tortoise_svn_menu_open_in_firefox" label="&action.open_in_firefox;" insertbefore="context-bookmarklink"
-      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn('open_in_firefox');" />
+    <menuitem id="open_tortoise_svn_menu_browser" label="&action.long_browser;"
+      insertbefore="context-bookmarklink" accesskey="r"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn(event, 'browser');" />
+    <menuitem id="open_tortoise_svn_menu_log" label="&action.long_log;"
+      insertbefore="context-bookmarklink" accesskey="l"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn(event, 'log');" />
+    <menuitem id="open_tortoise_svn_menu_blame" label="&action.long_blame;"
+      insertbefore="context-bookmarklink" accesskey="b"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn(event, 'blame');" />
+    <menuitem id="open_tortoise_svn_menu_open_in_firefox" label="&action.long_open_in_firefox;"
+      insertbefore="context-bookmarklink" accesskey="f"
+      oncommand="gOpenTortoiseSvnMain.contextMenuOpenTortoiseSvn(event, 'open_in_firefox');" />
 
     <menuseparator id="open_tortoise_svn_menu_separator" insertbefore="context-bookmarklink" />
   </popup>
