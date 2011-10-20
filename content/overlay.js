@@ -16,6 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
 
+if (typeof(gOpenTortoiseSvnMain) == "undefined"){
+
 var gOpenTortoiseSvnMain = (function(){
     var Cc = Components.classes;
     var Ci = Components.interfaces;
@@ -40,6 +42,8 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var registerCallback = function(event){
+        checkVersion();
+
         var appcontent = document.getElementById("appcontent"); // Firefox browser
         if (appcontent){
             appcontent.addEventListener("DOMContentLoaded", load, true);
@@ -80,7 +84,7 @@ var gOpenTortoiseSvnMain = (function(){
 
     var isValidPage = function(doc){
         try{
-            var href = gBrowser.currentURI.spec;
+            var href = doc.location.href;
             var match_data = href.match(new RegExp("^(https?|file)://"));
             return !!match_data;
         }catch(e){
@@ -94,7 +98,7 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var processAnchorTag = function(element){
-        if (element.tagName.toLowerCase()!="a"){
+        if (element.localName.toLowerCase()!="a"){
             return false;
         }
 
@@ -109,8 +113,10 @@ var gOpenTortoiseSvnMain = (function(){
         // Action:
         //  priority 1
         //  "action" is defined by HTML attribute.
-        var info = element.getAttribute(INFO_ATTRIBUTE1);
-        if (!info){
+        var info = null;
+        if (element.hasAttribute(INFO_ATTRIBUTE1)){
+            info = element.getAttribute(INFO_ATTRIBUTE1);
+        }else if (element.hasAttribute(INFO_ATTRIBUTE2)){
             info = element.getAttribute(INFO_ATTRIBUTE2);
         }
         if (info){
@@ -297,9 +303,55 @@ var gOpenTortoiseSvnMain = (function(){
         return true;
     };
 
+    ////////////////////////////////////////
+    var VERSION_PREF = "version";
+    var CURRENT_VERSION = "0.1.0";
+    var WIKI_PAGE = "https://github.com/masamitsu-murase/open_tortoise_svn/blob/master/README.textile";
+
+    var checkVersion = function(){
+        var old_version = null;
+        if (prefs.prefHasUserValue(VERSION_PREF)){
+            old_version = prefs.getCharPref(VERSION_PREF);
+            if (old_version == CURRENT_VERSION){
+                return;
+            }
+        }
+
+        switch(old_version){
+          case null:
+            // Initial version does not have "VERSION_PREF".
+            // So no VERSION_PREF means that previous version is 0.0.3 or not installed.
+            // Version 0.0.3 has the following preferences:
+            //  - open_tortoise_svn.tortoise_svn_path_pref
+            //  - open_tortoise_svn.url_list_pref.
+            // I forgot to add "extensions." in version 0.0.3, so copy values carefully...
+            {
+                var root_pref = Cc["@mozilla.org/preferences-service;1"].getService(Ci.nsIPrefBranch);
+                if (!root_pref.prefHasUserValue("open_tortoise_svn.tortoise_svn_path_pref")
+                     || !root_pref.prefHasUserValue("open_tortoise_svn.url_list_pref")){
+                    break;
+                }
+                prefs.setComplexValue("tortoise_svn_path_pref", Ci.nsILocalFile,
+                                      root_pref.getComplexValue("open_tortoise_svn.tortoise_svn_path_pref",
+                                                                Ci.nsILocalFile));
+                prefs.setCharPref("url_list_pref", root_pref.getCharPref("open_tortoise_svn.url_list_pref"));
+            }
+            break;
+        }
+
+        prefs.setCharPref(VERSION_PREF, CURRENT_VERSION);
+        if (gBrowser){
+            gBrowser.addTab(WIKI_PAGE);
+        }
+
+        return true;
+    };
+
     window.addEventListener("load", registerCallback, false);
 
     return {
         contextMenuOpenTortoiseSvn: contextMenuOpenTortoiseSvn
     };
 })();
+
+}

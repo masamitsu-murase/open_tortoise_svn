@@ -15,6 +15,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
+if (typeof(gOpenTortoiseSvn) == "undefined"){
+
 var gOpenTortoiseSvn = (function(){
     var Cc = Components.classes;
     var Ci = Components.interfaces;
@@ -149,8 +151,9 @@ var gOpenTortoiseSvn = (function(){
         }
 
         var data = [];
-        for (var i=0; i<url_list_treechildren.childNodes.length; i++){
-            var treeitem = url_list_treechildren.childNodes[i];
+        var child_nodes = url_list_treechildren.childNodes;
+        for (var i=0; i<child_nodes.length; i++){
+            var treeitem = child_nodes[i];
             var treerow = treeitem.firstChild;
             var cell_enabled = treerow.firstChild;
             var cell_url = cell_enabled.nextSibling;
@@ -276,8 +279,9 @@ var gOpenTortoiseSvn = (function(){
         }
 
         var data = [];
-        for (var i=0; i<extension_list_treechildren.childNodes.length; i++){
-            var treeitem = extension_list_treechildren.childNodes[i];
+        var child_nodes = extension_list_treechildren.childNodes;
+        for (var i=0; i<child_nodes.length; i++){
+            var treeitem = child_nodes[i];
             var treerow = treeitem.firstChild;
             var cell_extension = treerow.firstChild;
             var cell_action = cell_extension.nextSibling;
@@ -346,9 +350,10 @@ var gOpenTortoiseSvn = (function(){
         }
 
         var removed = [];
-        for (var i=0; i<treechildren.childNodes.length; i++){
+        var child_nodes = treechildren.childNodes;
+        for (var i=0; i<child_nodes.length; i++){
             if (tree.view.selection.isSelected(i)){
-                removed.push(treechildren.childNodes[i]);
+                removed.push(child_nodes[i]);
             }
         }
         removed.forEach(function(elem){
@@ -403,3 +408,4 @@ var gOpenTortoiseSvn = (function(){
     };
 })();
 
+}

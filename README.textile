@@ -5,19 +5,39 @@ h2. Overview
 * This Firefox Addon enables you to open TortoiseSVN directly when you click the link to the registered URLs.
 * If the link has some specific attributes, this addon opens TortoiseSVN Repository Browser, Log Viewer or Blame Viewer.
 
+h2. New features of version 0.1.0
+
+You can select a default TortoiseSVN action: "Open repository browser", "Open log viewer", "Open blame viewer" or "Open in Firefox".
+
+You can also set TortoiseSVN actions for each extension.
+For example, you can set as follows:
+* TortoiseSVN repository browser is opened when you click *.html file,
+* TortoiseSVN blame viewer is opened when you click *.c file.
+
+
 h2. How to use
 
 h3. Prepare for use
 
-# Open setting dialog and set the path of TortoiseProc.exe.
-# Add URLs of Subversion repositories that you want to open in TortoiseSVN.
+Please open setting dialog and set options.
+# "General" Tab
+## Set the path of TortoiseProc.exe.
+   You can typically find TortoiseProc.exe at C:\Program Files\TortoiseSVN\bin.
+   You may find it at at C:\Program Files(x86)\TortoiseSVN\bin if you use 64bit platform.
+## Add URLs of Subversion repositories that you want to open in TortoiseSVN.
+   When you click one of the listed URLs, the URL is opened in TortoiseSVN.
+   For example, if you add the URL "http://example.net/svn_repos/" and click the link to "http://example.net/svn_repos/some_dir/", TortoiseSVN is opened automatically.
+# "Action for each extension" Tab
+## Set the default action.
+   You can select the default action of TortoiseSVN.
+## Set the action for each extension.
+# "Other settings" Tab
+## You can show four TortoiseSVN menus in context menu.
+   Four TortoiseSVN menus are shown in context menu only when you right-click the registered URL.
 
-For example, if you add the URL "http://example.net/svn_repos/" and click the link to "http://example.net/svn_repos/some_dir/", TortoiseSVN Browser is opened automatically.
-<pre>&lt;a href="http://example.net/svn_repos/some_dir/"&gt;Open TortoiseSVN&lt;/a&gt;</pre>
+h3. For Developers
 
-h3. How to open TortoiseSVN Log/Blame View
-
-You have to modify your HTML source and add @rel@ attribute to open TortoiseSVN Log or Blame view as follows.
+If you modify your HTML source and add @rel@ attribute to open TortoiseSVN Log or Blame view as follows.
 You can use @data-tsvn-info@ on HTML5 instead of @rel@ attribute.
 
 # To open TortoiseSVN Log view
@@ -51,10 +71,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>
 h2. Changelog
 
 * 0.0.1
-Initial version.
-
+  Initial version.
 * 0.0.2
-Add help text for TortoiseProc.exe path.
-
+  Add help text for TortoiseProc.exe path.
 * 0.0.3
-Bug fix.
+  Bug fix.
+* 0.1.0
+  The following features are added:
+## You can set the default action.
+## You can set the action of each extension.
+## TortoiseSVN menus are shown in context menu.
+
