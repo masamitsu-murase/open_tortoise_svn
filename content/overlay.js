@@ -306,7 +306,7 @@ var gOpenTortoiseSvnMain = (function(){
     ////////////////////////////////////////
     var VERSION_PREF = "version";
     var CURRENT_VERSION = "0.1.0";
-    var WIKI_PAGE = "https://github.com/masamitsu-murase/open_tortoise_svn/blob/master/README.textile";
+    var WIKI_PAGE = "https://github.com/masamitsu-murase/open_tortoise_svn/wiki/Open-TortoiseSVN";
 
     var checkVersion = function(){
         var old_version = null;
@@ -341,7 +341,7 @@ var gOpenTortoiseSvnMain = (function(){
 
         prefs.setCharPref(VERSION_PREF, CURRENT_VERSION);
         if (gBrowser){
-            gBrowser.addTab(WIKI_PAGE);
+            gBrowser.selectedTab = gBrowser.addTab(WIKI_PAGE);
         }
 
         return true;

@@ -1,4 +1,4 @@
-h1. open_tortoise_svn (Firefox Addon to open TortoiseSVN directly)
+h1. Open TortoiseSVN (Firefox add-on)
 
 h2. Overview
 
@@ -20,19 +20,19 @@ h2. How to use
 h3. Prepare for use
 
 Please open setting dialog and set options.
-# "General" Tab
-## Set the path of TortoiseProc.exe.
+* "General" Tab
+** Set the path of TortoiseProc.exe.
    You can typically find TortoiseProc.exe at C:\Program Files\TortoiseSVN\bin.
    You may find it at at C:\Program Files(x86)\TortoiseSVN\bin if you use 64bit platform.
-## Add URLs of Subversion repositories that you want to open in TortoiseSVN.
+** Add URLs of Subversion repositories that you want to open in TortoiseSVN.
    When you click one of the listed URLs, the URL is opened in TortoiseSVN.
    For example, if you add the URL "http://example.net/svn_repos/" and click the link to "http://example.net/svn_repos/some_dir/", TortoiseSVN is opened automatically.
-# "Action for each extension" Tab
-## Set the default action.
+* "Action for each extension" Tab
+** Set the default action.
    You can select the default action of TortoiseSVN.
-## Set the action for each extension.
-# "Other settings" Tab
-## You can show four TortoiseSVN menus in context menu.
+** Set the action for each extension.
+* "Other settings" Tab
+** You can show four TortoiseSVN menus in context menu.
    Four TortoiseSVN menus are shown in context menu only when you right-click the registered URL.
 
 h3. For Developers
@@ -40,13 +40,13 @@ h3. For Developers
 If you modify your HTML source and add @rel@ attribute to open TortoiseSVN Log or Blame view as follows.
 You can use @data-tsvn-info@ on HTML5 instead of @rel@ attribute.
 
-# To open TortoiseSVN Log view
+* To open TortoiseSVN Log view
 <pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[log]"&gt;Open Log view&lt;/a&gt;</pre>
-# To open TortoiseSVN Log of specific revision
+* To open TortoiseSVN Log of specific revision
 <pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[log][1004,1000]"&gt;Open Log view&lt;/a&gt;</pre>
-# To open TortoiseSVN Blame view
+* To open TortoiseSVN Blame view
 <pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[blame]"&gt;Open Blame view&lt;/a&gt;</pre>
-# To open TortoiseSVN Browser
+* To open TortoiseSVN Browser
 <pre>&lt;a href="http://example.net/svn_repos/some_dir/" rel="tsvn[browser]"&gt;Open TortoiseSVN Browser&lt;/a&gt;</pre>
 
 h2. License
