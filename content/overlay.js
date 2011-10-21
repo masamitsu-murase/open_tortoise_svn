@@ -265,11 +265,7 @@ var gOpenTortoiseSvnMain = (function(){
         }
 
         if (action == "open_in_firefox"){
-            if (event.button == 1){  // center button
-                gBrowser.addTab(url);
-            }else{
-                gBrowser.loadURI(url);
-            }
+            gBrowser.loadURI(url);
             return;
         }
 

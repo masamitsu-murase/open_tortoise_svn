@@ -14,6 +14,16 @@
     </p>
     <ul>
       <li><code>http://localhost/</code></li>
+      <li><code>file:///HOME/</code></li>
+    </ul>
+    <p>
+      Add extension action as follows:
+    </p>
+    <ul>
+      <li><code>*.html, *.htm</code>: Repository Browser</li>
+      <li><code>*.cpp</code>: Log</li>
+      <li><code>*.c</code>: Blame</li>
+      <li><code>*.txt</code>: Open in Firefox</li>
     </ul>
 
     <h2>Test</h2>
@@ -90,5 +100,15 @@
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
     </ul>
+
+    <p>
+      <ul>
+        <li><a href="file:///HOME/test.html">test.html</a> should be opened in Repository Browser.</li>
+        <li><a href="file:///HOME/test.htm">test.htm</a> should be opened in Repository Browser.</li>
+        <li><a href="file:///HOME/test.cpp">test.cpp</a> should be opened in Log..</li>
+        <li><a href="file:///HOME/test.c">test.c</a> should be opened in Blame.</li>
+        <li><a href="file:///HOME/test.txt">test.txt</a> should be opened in Firefox.</li>
+      </ul>
+    </p>
   </body>
 </html>
