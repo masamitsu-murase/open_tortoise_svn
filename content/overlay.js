@@ -340,9 +340,11 @@ var gOpenTortoiseSvnMain = (function(){
         }
 
         prefs.setCharPref(VERSION_PREF, CURRENT_VERSION);
-        if (gBrowser){
-            gBrowser.selectedTab = gBrowser.addTab(WIKI_PAGE);
-        }
+        setTimeout(function(){
+            if (gBrowser){
+                gBrowser.selectedTab = gBrowser.addTab(WIKI_PAGE);
+            }
+        }, 500);
 
         return true;
     };
