@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open TortoiseSVN Options</title>
+  <script type="text/javascript" src="value.js"></script>
+  <script type="text/javascript" src="options.js"></script>
+  <style type="text/css">
+    ul#added_url_list li{
+      line-height: 1.5em;
+    }
+    ul#added_url_list li span{
+      padding-right: 1em;
+    }
+    ul#added_url_list li input{
+      display: none;
+      margin: 0px;
+    }
+    ul#added_url_list li:hover input{
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <h1><img src="icon48.png" alt="Open TortoiseSVN"> Open TortoiseSVN Options</h1>
+
+  <h2>Path of TortoiseProc.exe</h2>
+  <div style="border-radius: 1em; border: 1px solid #B8860B; background-color: #FFFACD; padding: 0em 1em; margin: 0em 1em;">
+    <p>
+      Set path of TortoiseProc.exe.
+    </p>
+    <p style="font-size: smaller;">
+      Typically, you find it in "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe".
+    </p>
+    <p>
+      Path: <input id="tortoise_proc_path" type="text" maxlength="500" style="min-width: 40em;" />
+    </p>
+  </div>
+
+  <h2>URL list of Subversion repositories</h2>
+  <div style="border-radius: 1em; border: 1px solid #B8860B; background-color: #FFFACD; padding: 0em 1em; margin: 0em 1em;">
+    <p>Add URLs of Subversion repositories.</p>
+    <p>When you click one of the registered URL, TortoiseSVN is opened automatically.</p>
+    <p style="font-size: smaller;">
+      e.g. If you add "http://svn_repos/" and click "http://svn_repos/dir/test.cpp", this file is opened in TortoiseSVN.
+    </p>
+    <p>
+      URL: <input id="added_url" type="text" maxlength="500" style="min-width: 30em;" /><input id="add_button" type="button" value="Add" />
+    </p>
+    <ul id="added_url_list"></ul>
+  </div>
+
+  <p><input id="save_button" type="button" value="Save" />
+
+</body>
+</html>

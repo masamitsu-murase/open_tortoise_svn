@@ -1,0 +1,39 @@
+{
+    "name": "Open TortoiseSVN for Google Chrome",
+    "version": "0.0.1",
+
+    "description": "Extension to open TortoiseSVN directory.",
+    "icons": {
+        "32": "icon32.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+
+    "default_locale": "en",
+
+    "browser_action": {
+        "default_icon": "icon32.png",
+        "default_title": "Open TortoiseSVN"
+    },
+
+    "plugins": [
+        {
+            "path": "npoptsvn.dll",
+            "public": false
+        }
+    ],
+
+    "background_page": "background.html",
+
+    "content_scripts": [
+        {
+            "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
+            "js": [ "handle_click.js" ],
+            "run_at": "document_end"
+        }
+     ],
+
+    "options_page": "options.html",
+
+    "permissions": [ "tabs", "contextMenus" ]
+}
