@@ -1,0 +1,4 @@
+h1. Open TortoiseSVN for Google Chrome
+
+This is a google chrome extension to open TortoiseSVN directly.
+
