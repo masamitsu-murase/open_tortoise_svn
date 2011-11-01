@@ -3,12 +3,12 @@
         "message": "Cannot open TortoiseSVN. Please check URL and settings."
     },
     "open_reposbrowser": {
-        "message": "Open Repository Browser."
+        "message": "Open Repository Browser"
     },
     "open_log": {
-        "message": "Open Log Viewer."
+        "message": "Open Log Viewer"
     },
     "open_blame": {
-        "message": "Open Blame Viewer."
+        "message": "Open Blame Viewer"
     }
 }
