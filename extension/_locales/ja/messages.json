@@ -3,12 +3,12 @@
         "message": "TortoiseSVNを開けません。URLや設定を確認してください。"
     },
     "open_reposbrowser": {
-        "message": "TortoiseSVNリポジトリブラウザを開く"
+        "message": "リポジトリブラウザを開く"
     },
     "open_log": {
-        "message": "TortoiseSVNログを開く"
+        "message": "ログを開く"
     },
     "open_blame": {
-        "message": "TortoiseSVN注釈履歴を開く"
+        "message": "注釈履歴を開く"
     }
 }

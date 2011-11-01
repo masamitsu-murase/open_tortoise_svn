@@ -43,21 +43,50 @@
         input.setAttribute("value", "Remove");
         input.addEventListener("click", function(e){
             ul.removeChild(li);
+            setSaveButtonAlert();
         });
     };
 
+    var setSaveButtonAlert = function(){
+        var save_button = document.getElementById("save_button");
+        var names = save_button.className.split(" ").filter(function(item){ return !!item; });
+        if (names.indexOf("alert") >= 0){
+            return;
+        }
+
+        names.push("alert");
+        save_button.className = names.join(" ");
+    };
+
+    var clearSaveButtonAlert = function(){
+        var save_button = document.getElementById("save_button");
+        var names = save_button.className.split(" ").filter(function(item){ return !!item; });
+        if (names.indexOf("alert") < 0){
+            return;
+        }
+
+        names = names.filter(function(item){ return item != "alert"; });
+        save_button.className = names.join(" ");
+    };
+
     var setEventHandler = function(){
+        document.getElementById("tortoise_proc_path").addEventListener("change", function(e){
+            setSaveButtonAlert();
+        });
+
         document.getElementById("add_button").addEventListener("click", function(e){
             var elem = document.getElementById("added_url");
             var url = elem.value.trim();
             if (url != ""){
                 addRepositoryUrl(url);
                 elem.value = "";
+                setSaveButtonAlert();
             }
         });
 
         document.getElementById("save_button").addEventListener("click", function(e){
             saveValue();
+            clearSaveButtonAlert();
         });
     };
 

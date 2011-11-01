@@ -6,6 +6,14 @@
   <script type="text/javascript" src="value.js"></script>
   <script type="text/javascript" src="options.js"></script>
   <style type="text/css">
+    div.option_box{
+      max-width: 45em;
+      border-radius: 1em;
+      border: 1px solid #B8860B;
+      background-color: #FFFACD;
+      padding: 0em 1em;
+      margin: 0em 1em;
+    }
     ul#added_url_list li{
       line-height: 1.5em;
     }
@@ -19,15 +27,18 @@
     ul#added_url_list li:hover input{
       display: inline;
     }
+    input.alert{
+      background-color: #FAA;
+    }
   </style>
 </head>
 <body>
-  <h1><img src="icon48.png" alt="Open TortoiseSVN"> Open TortoiseSVN Options</h1>
+  <h1><img src="icon128.png" alt="Open TortoiseSVN"> Open TortoiseSVN Options</h1>
 
   <h2>Path of TortoiseProc.exe</h2>
-  <div style="border-radius: 1em; border: 1px solid #B8860B; background-color: #FFFACD; padding: 0em 1em; margin: 0em 1em;">
+  <div class="option_box">
     <p>
-      Set path of TortoiseProc.exe.
+      Set path of <strong>TortoiseProc.exe</strong>.
     </p>
     <p style="font-size: smaller;">
       Typically, you find it in "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe".
@@ -38,7 +49,7 @@
   </div>
 
   <h2>URL list of Subversion repositories</h2>
-  <div style="border-radius: 1em; border: 1px solid #B8860B; background-color: #FFFACD; padding: 0em 1em; margin: 0em 1em;">
+  <div class="option_box">
     <p>Add URLs of Subversion repositories.</p>
     <p>When you click one of the registered URL, TortoiseSVN is opened automatically.</p>
     <p style="font-size: smaller;">
