@@ -2,7 +2,7 @@
     "name": "Open TortoiseSVN for Google Chrome™",
     "version": "0.0.1",
 
-    "description": "Extension to open TortoiseSVN directory.",
+    "description": "Extension to open TortoiseSVN directly.",
     "icons": {
         "32": "icon32.png",
         "48": "icon48.png",
