@@ -1,4 +1,18 @@
-h1. Open TortoiseSVN for Google Chrome
+h1. !https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/raw/master/extension/icon128.png! Open TortoiseSVN for Google Chrome™
 
-This is a google chrome extension to open TortoiseSVN directly.
+h2. Overview
+
+This extension enables you to open "TortoiseSVN":http://tortoisesvn.tigris.org/ directly.
+When you click the link to one of the registered URLs, TortoiseSVN Repository Browser is opened automatically.
+
+This extension also provide some context menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer.
+
+This extension is a Google Chrome™ version of "Open TortoiseSVN for Firefox":https://addons.mozilla.org/en/firefox/addon/open-tortoisesvn/.
+
+h2. For Developers
+
+Because of restriction of Google Chrome™, we have to use NPAPI plugin to run local programs.
+Therefore, I developed NPAPI plugin which runs TortoiseSVN.
+
+"Gecko SDK":https://developer.mozilla.org/en/Gecko_SDK "ver. 1.9.2":http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/3.6.23/sdk/xulrunner-3.6.23.en-US.win32.sdk.zip is needed to compile this NPAPI plugin.
 
