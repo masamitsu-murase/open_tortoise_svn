@@ -1,21 +1,31 @@
 
 (function(){
     var tsvn = document.getElementById("tsvn");
+    if (!tsvn){
+        return;
+    }
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
         var ret = { ret: false };
 
-        switch(request.action){
-          case "targetUrlList":
-            ret.target_url_list = gOptionValue.loadValue().added_url_list;
-            ret.ret = true;
-            break;
-          case "openUrl":
-            ret.ret = openRepobrowser(request.url);
-            break;
-          default:
+        try{
+            switch(request.action){
+              case "targetUrlList":
+                ret.target_url_list = gOptionValue.loadValue().added_url_list;
+                ret.ret = true;
+                break;
+              case "browser":
+                ret.ret = openRepobrowser(request.url);
+                break;
+              case "log":
+                ret.ret = openLog(request.url, request.args[0], request.args[1]);
+                break;
+              case "blame":
+                ret.ret = openBlame(request.url);
+                break;
+            }
+        }catch(e){
             ret.ret = false;
-            break;
         }
 
         sendResponse(ret);
