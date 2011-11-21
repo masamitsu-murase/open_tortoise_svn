@@ -92,16 +92,26 @@ var gOpenTortoiseSvnMain = (function(){
         }
     };
 
+    var findAnchorInAncestors = function(elem){
+        try{
+            var fail_safe = 0;
+            while(elem && fail_safe++ < 100){
+                if (elem.localName.toLowerCase() == "a"){
+                    return elem;
+                }
+                elem = elem.parentNode;
+            }
+        }catch(e){
+        }
+        return null;
+    };
+
     var processEvent = function(event){
-        var element = event.originalTarget;
-        return processAnchorTag(element);
+        var anchor = findAnchorInAncestors(event.originalTarget);
+        return processAnchorTag(anchor);
     };
 
     var processAnchorTag = function(element){
-        if (element.localName.toLowerCase()!="a"){
-            return false;
-        }
-
         var url = element.href;
         if (!url || !isRegisteredUrl(url)){
             return false;
