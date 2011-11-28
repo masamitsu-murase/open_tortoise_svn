@@ -1,62 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
   <title>Open TortoiseSVN Options</title>
   <script type="text/javascript" src="value.js"></script>
   <script type="text/javascript" src="options.js"></script>
-  <style type="text/css">
-    div#main{
-      max-width: 45em;
-      min-width: 30em;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    h1,h2,p{
-      margin: 5px;
-    }
-    h1{
-      font-size: x-large;
-      text-align: center;
-    }
-    h2{
-      font-size: medium;
-      text-decoration: underline;
-    }
-    div.option_page{
-      border-radius: 1em;
-      border: 1px solid #B8860B;
-      background-color: #FFFACD;
-      padding: 0em 1em;
-      margin: 0em 1em;
-    }
-    div.option_box{
-      margin: 0.5em;
-      border-bottom: 1px solid black;
-    }
-    p{
-      margin-left: 1em;
-      margin-right: 1em;
-    }
-    ul#added_url_list li{
-      line-height: 1.5em;
-    }
-    ul#added_url_list li span{
-      padding-right: 1em;
-    }
-    ul#added_url_list li input{
-      display: none;
-      margin: 0px;
-    }
-    ul#added_url_list li:hover input{
-      display: inline;
-    }
-    input#save_button{
-      font-size: large;
-    }
-    input.alert{
-      background-color: #FAA;
-    }
-  </style>
+  <link rel="stylesheet" href="options.css" type="text/css" />
 </head>
 <body>
   <div id="main">
@@ -71,15 +20,15 @@
         <p style="font-size: smaller;">
           Typically, you find it in "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe".
         </p>
-        <p>
+        <p class="option_data">
           Path: <input id="tortoise_proc_path" type="text" maxlength="500" style="min-width: 40em;" />
         </p>
       </div>
 
       <div class="option_box">
         <h2>TortoiseSVN action</h2>
-        <p>Select default action when you click one of URL links to Subversion repositories.</p>
-        <p>Action:
+        <p>Select default action when you click one of the URL links to Subversion repositories.</p>
+        <p class="option_data">Action:
           <select id="tortoise_svn_action">
             <option value="browser">Repository Browser</option>
             <option value="log">Log Viewer</option>
@@ -95,7 +44,7 @@
         <p style="font-size: smaller;">
           e.g. If you add "http://svn_repos/" and click "http://svn_repos/dir/test.cpp", this file is opened in TortoiseSVN.
         </p>
-        <p>
+        <p class="option_data">
           URL: <input id="added_url" type="text" maxlength="500" style="min-width: 30em;" /><input id="add_button" type="button" value="Add" />
         </p>
         <ul id="added_url_list"></ul>
