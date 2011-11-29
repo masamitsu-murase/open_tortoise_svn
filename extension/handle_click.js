@@ -2,7 +2,7 @@
 (function(){
     var INFO_ATTRIBUTE1 = "data-tsvn-info";  // for HTML5
     var INFO_ATTRIBUTE2 = "rel";             // for HTML4.01
-    var DEFAULT_ACTION = "browser";
+    var DEFAULT_ACTION = "not_specified";
 
     var target_url_list = [];
 

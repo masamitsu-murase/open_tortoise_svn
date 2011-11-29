@@ -1,5 +1,7 @@
 
 (function(){
+    var DEFAULT_ACTION = "not_specified";
+
     var tsvn = document.getElementById("tsvn");
     if (!tsvn){
         return;
@@ -9,7 +11,12 @@
         var ret = { ret: false };
 
         try{
-            switch(request.action){
+            var action = request.action;
+            if (action == DEFAULT_ACTION){
+                action = gOptionValue.loadValue().tortoise_svn_action;
+            }
+
+            switch(action){
               case "targetUrlList":
                 ret.target_url_list = gOptionValue.loadValue().added_url_list;
                 ret.ret = true;
@@ -18,7 +25,8 @@
                 ret.ret = openRepobrowser(request.url);
                 break;
               case "log":
-                ret.ret = openLog(request.url, request.args[0], request.args[1]);
+                var args = (request.args || []);
+                ret.ret = openLog(request.url, args[0], args[1]);
                 break;
               case "blame":
                 ret.ret = openBlame(request.url);

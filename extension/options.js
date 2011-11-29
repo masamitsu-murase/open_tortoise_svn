@@ -13,6 +13,7 @@
     var saveValue = function(){
         var value = {};
         value.tortoise_proc_path = document.getElementById("tortoise_proc_path").value;
+        value.tortoise_svn_action = document.getElementById("tortoise_svn_action").value;
         value.added_url_list = [];
         var lis = document.getElementById("added_url_list").childNodes;
         for (var i=0; i<lis.length; i++){
@@ -24,6 +25,7 @@
 
     var initializeView = function(value){
         document.getElementById("tortoise_proc_path").value = value.tortoise_proc_path;
+        document.getElementById("tortoise_svn_action").value = value.tortoise_svn_action;
         value.added_url_list.forEach(addRepositoryUrl);
     };
 
@@ -71,6 +73,10 @@
 
     var setEventHandler = function(){
         document.getElementById("tortoise_proc_path").addEventListener("change", function(e){
+            setSaveButtonAlert();
+        });
+
+        document.getElementById("tortoise_svn_action").addEventListener("change", function(e){
             setSaveButtonAlert();
         });
 
