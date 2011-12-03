@@ -76,6 +76,22 @@
           </p>
         </div>
         <div class="option_box">
+          <h3>For Developers</h3>
+          <p>If you modify your HTML source and add <code>rel</code> attribute, you can open TortoiseSVN Log or Blame viewer as follows.</p>
+          <p>You can also use <code>data-tsvn-info</code> on HTML5 instead of <code>rel</code> attribute.</p>
+          <ul>
+            <li>To open TortoiseSVN Log viewer
+              <pre>&lt;a href=&quot;http://svn_repos/&quot; rel=&quot;tsvn[log]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+            </li>
+            <li>To open TortoiseSVN Log of specific revision
+              <pre>&lt;a href=&quot;http://svn_repos/&quot; rel=&quot;tsvn[log][12,8]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+            </li>
+            <li>To open TortoiseSVN Blame viewer
+              <pre>&lt;a href=&quot;http://svn_repos/&quot; rel=&quot;tsvn[blame]&quot;&gt;Open Blame Viewer&lt;/a&gt;</pre>
+            </li>
+          </ul>
+        </div>
+        <div class="option_box">
           <h3>Change Log</h3>
           <dl>
             <dt>0.0.1</dt>

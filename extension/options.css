@@ -115,3 +115,8 @@ p.option_data{
 dl{
     margin: 0.5em;
 }
+pre{
+    margin: 0px;
+    padding: 0.1em;
+    background-color: #DDD;
+}
