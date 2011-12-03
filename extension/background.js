@@ -71,6 +71,11 @@
         return tsvn.tsvn(value.tortoise_proc_path, "/command:blame", "/path:" + url);
     };
 
+    // event handler of icon clicking
+    chrome.browserAction.onClicked.addListener(function(tab){
+        chrome.tabs.create({ url: "options.html" });
+    });
+
     // context menu
     var parent = chrome.contextMenus.create({
         title: "Open TortoiseSVN",
