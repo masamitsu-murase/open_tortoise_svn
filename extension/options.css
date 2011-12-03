@@ -1,32 +1,89 @@
-div#main{
-    max-width: 45em;
+
+h1, div#main{
+    max-width: 50em;
     min-width: 30em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 10px auto;
 }
-h1,h2,p{
-    margin: 5px;
+h1 > *{
+    vertical-align: middle;
 }
-h1{
+
+h1,h2{
     font-size: x-large;
     text-align: center;
 }
 h2{
+    margin: 5px;
+    text-decoration: underline;
+}
+h3{
+    margin: 5px 0px;
     font-size: medium;
     padding-left: 10px;
     border-left: 10px solid #999;
     background-color: #666;
     color: #FFF;
 }
-div.option_page{
+p{
+    margin: 5px;
+}
+div#main{
     border-radius: 1em;
-    border: 1px solid #B8860B;
-    background-color: #FFFACD;
+    border: 1px solid #6688dd;
+    background-color: #6688dd;
+    padding: 0.5em;
+    position: relative;
+}
+
+ul#option_index{
+    position: absolute;
+    width: 11em;
+    margin: 0em;
+    padding: 0em;
+}
+ul#option_index li{
+    cursor: pointer;
+    list-style-type: none;
+    margin-bottom: 1px;
+    padding: 0.5em;
+    border-radius: 0.5em 0px 0px 0.5em;
+    background: -webkit-gradient(linear, left top, left bottom, from(#A8BCEE), to(#8EA9EE));
+    border-left: 0.5em solid transparent;
+}
+ul#option_index li:hover:not(.selected){
+    background: -webkit-gradient(linear, left top, left bottom, from(#8EA9EE), to(#A8BCEE));
+}
+ul#option_index li:first-child{
+    border-bottom-left-radius: 0px;
+}
+ul#option_index li:last-child{
+    border-top-left-radius: 0px;
+}
+ul#option_index li.selected{
+    cursor: default;
+    background: -webkit-gradient(linear, left top, left bottom, from(#8EA9EE), to(#A8BCEE));
+    border-left: 0.5em solid #214190;
+}
+
+div#option_pages{
+    margin-left: 11em;
+    background-color: #FFF;
+    border-radius: 0px 0.5em 0.5em 0px;
     padding: 0.5em;
 }
+div#option_pages div.option_page{
+    display: none;
+}
+div#option_pages div.option_page.selected{
+    display: block;
+}
+
 div.option_box{
     margin: 0.5em;
     border-bottom: 1px solid black;
+}
+div.option_box:last-child{
+    border-bottom: none;
 }
 p{
     margin-left: 1em;
@@ -54,4 +111,7 @@ input.alert{
 p.option_data{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+}
+dl{
+    margin: 0.5em;
 }

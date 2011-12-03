@@ -8,49 +8,103 @@
   <link rel="stylesheet" href="options.css" type="text/css" />
 </head>
 <body>
+  <h1><img src="icon128.png" width="64" alt="Open TortoiseSVN" /> Open TortoiseSVN Options</h1>
+
   <div id="main">
-    <h1><img src="icon128.png" width="64" alt="Open TortoiseSVN" /> Open TortoiseSVN Options</h1>
+    <ul id="option_index">
+      <li class="selected">General Settings</li>
+      <li>About Open TortoiseSVN</li>
+    </ul>
 
-    <div class="option_page">
-      <div class="option_box">
-        <h2>Path of TortoiseProc.exe</h2>
-        <p>
-          Set path of <strong>TortoiseProc.exe</strong>.
-        </p>
-        <p style="font-size: smaller;">
-          Typically, you find it in "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe".
-        </p>
-        <p class="option_data">
-          Path: <input id="tortoise_proc_path" type="text" maxlength="500" style="min-width: 40em;" />
-        </p>
+    <div id="option_pages">
+      <div class="option_page selected">
+        <h2>General Settings</h2>
+        <div class="option_box">
+          <h3>Path of TortoiseProc.exe</h3>
+          <p>
+            Set path of <strong>TortoiseProc.exe</strong>.
+          </p>
+          <p style="font-size: smaller;">
+            Typically, you find it in "C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe".
+          </p>
+          <p class="option_data">
+            Path: <input id="tortoise_proc_path" type="text" maxlength="500" style="min-width: 40em;" />
+          </p>
+        </div>
+
+        <div class="option_box">
+          <h3>TortoiseSVN action</h3>
+          <p>Select default action when you click one of the URL links to Subversion repositories.</p>
+          <p class="option_data">Action:
+            <select id="tortoise_svn_action">
+              <option value="browser">Repository Browser</option>
+              <option value="log">Log Viewer</option>
+              <option value="blame">Blame Viewer</option>
+            </select>
+          </p>
+        </div>
+
+        <div class="option_box">
+          <h3>URL list of Subversion repositories</h3>
+          <p>Add URLs of Subversion repositories.</p>
+          <p>When you click one of the registered URL, TortoiseSVN is opened automatically.</p>
+          <p style="font-size: smaller;">
+            e.g. If you add "http://svn_repos/" and click "http://svn_repos/dir/test.cpp", this file is opened in TortoiseSVN.
+          </p>
+          <p class="option_data">
+            URL: <input id="added_url" type="text" maxlength="500" style="min-width: 30em;" /><input id="add_button" type="button" value="Add" />
+          </p>
+          <ul id="added_url_list"></ul>
+        </div>
+
+        <div class="option_box"><input id="save_button" type="button" value="Save" /></div>
       </div>
 
-      <div class="option_box">
-        <h2>TortoiseSVN action</h2>
-        <p>Select default action when you click one of the URL links to Subversion repositories.</p>
-        <p class="option_data">Action:
-          <select id="tortoise_svn_action">
-            <option value="browser">Repository Browser</option>
-            <option value="log">Log Viewer</option>
-            <option value="blame">Blame Viewer</option>
-          </select>
-        </p>
+      <div class="option_page" id="about_page">
+        <h2>About Open TortoiseSVN</h2>
+        <div class="option_box">
+          <h3>Overview</h3>
+          <p>
+            This extension enables you to open <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> directly.<br />
+            When you click the link to one of the registered URLs, TortoiseSVN Repository Browser is opened <em>automatically</em>.
+          </p>
+          <p>
+            This extension also provides some context menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer.
+          </p>
+          <p>
+            This extension is a Google Chrome™ version of <a href="https://addons.mozilla.org/en/firefox/addon/open-tortoisesvn/">Open TortoiseSVN add-on</a> that I developed for Firefox.
+          </p>
+        </div>
+        <div class="option_box">
+          <h3>Change Log</h3>
+          <dl>
+            <dt>0.0.1</dt>
+            <dd>Initial Release</dd>
+          </dl>
+        </div>
+        <div class="option_box">
+          <h3>License</h3>
+          <p>
+            You can use this extension under <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2</a>.
+          </p>
+          <p>
+            If you would like to get the source code of this extension, you can download from my <a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome">GitHub page</a>.
+          </p>
+        </div>
+        <div class="option_box">
+          <h3>Author</h3>
+          <dl>
+            <dt>Name</dt>
+            <dd>Masamitsu MURASE</dd>
+            <dt>Location</dt>
+            <dd>Kyoto, Japan</dd>
+            <dt>Homepage</dt>
+            <dd><a href="http://masamitsu-murase.blogspot.com/">Blog (Japanese only)</a></dd>
+            <dt>Repository</dt>
+            <dd><a href="https://github.com/masamitsu-murase">GitHub</a></dd>
+          </dl>
+        </div>
       </div>
-
-      <div class="option_box">
-        <h2>URL list of Subversion repositories</h2>
-        <p>Add URLs of Subversion repositories.</p>
-        <p>When you click one of the registered URL, TortoiseSVN is opened automatically.</p>
-        <p style="font-size: smaller;">
-          e.g. If you add "http://svn_repos/" and click "http://svn_repos/dir/test.cpp", this file is opened in TortoiseSVN.
-        </p>
-        <p class="option_data">
-          URL: <input id="added_url" type="text" maxlength="500" style="min-width: 30em;" /><input id="add_button" type="button" value="Add" />
-        </p>
-        <ul id="added_url_list"></ul>
-      </div>
-
-      <p><input id="save_button" type="button" value="Save" /></p>
     </div>
   </div>
 </body>

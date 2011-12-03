@@ -4,6 +4,8 @@
         var value = loadValue();
         initializeView(value);
         setEventHandler();
+
+        setPageSelectEventHandler();
     };
 
     var loadValue = function(){
@@ -93,6 +95,45 @@
         document.getElementById("save_button").addEventListener("click", function(e){
             saveValue();
             clearSaveButtonAlert();
+        });
+    };
+
+    var setPageSelectEventHandler = function(){
+        // Both "getElementsByTagName" and "getElementsByClassName" do not return Array instance,
+        // but they return NodeList.
+        var to_array = function(obj){
+            var ary = [];
+            for (var i=0; i<obj.length; i++){
+                ary.push(obj[i]);
+            }
+            return ary;
+        };
+        var list_items = to_array(document.getElementById("option_index").getElementsByTagName("li"));
+        var pages = to_array(document.getElementById("option_pages").getElementsByClassName("option_page"));
+        if (list_items.length != pages.length){
+            return;
+        }
+
+        list_items.forEach(function(li, index){
+            li.addEventListener("click", function(event){
+                if (li.className.split(/\s+/).indexOf("selected") >= 0){
+                    return;
+                }
+
+                var set_selected = function(target, target_index){
+                    if (target_index != index){
+                        target.className = target.className.split(/\s+/).filter(function(cl){
+                            return cl!="selected";
+                        }).join(" ");
+                    }else{
+                        target.className = target.className.split(/\s+/).filter(function(cl){
+                            return cl!="selected";
+                        }).concat("selected").join(" ");
+                    }
+                };
+                list_items.forEach(set_selected);
+                pages.forEach(set_selected);
+            });
         });
     };
 
