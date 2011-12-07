@@ -107,8 +107,50 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var processEvent = function(event){
-        var anchor = findAnchorInAncestors(event.originalTarget);
-        return processAnchorTag(anchor);
+        try{
+            var anchor = findAnchorInAncestors(event.originalTarget);
+            return processAnchorTag(anchor);
+        }catch(e){
+            return false;
+        }
+    };
+
+    var parseUrl = function(raw_url){
+        var match_data = raw_url.match(new RegExp("^[^?#]+"));
+        if (!match_data){
+            return null;
+        }
+
+        var url = match_data[0];
+        match_data = raw_url.substr(url.length).match(new RegExp("([^?#]*)(#.*)?$"));
+        if (!match_data){
+            return { url: url, params: {} };
+        }
+
+        var params = {};
+        match_data[1].split("&").forEach(function(key_value){
+            var sep_index = key_value.indexOf("=");
+            if (sep_index < 0){
+                return;
+            }
+
+            var key = decodeURIComponent(key_value.substr(0, sep_index));
+            var value = decodeURIComponent(key_value.substr(sep_index + 1));
+            if (key in params){
+                if (params[key] instanceof Array){
+                    params[key].push(value);
+                }else{
+                    params[key] = [ params[key], value ];
+                }
+            }else{
+                params[key] = value;
+            }
+        });
+
+        return {
+            url: url,
+            params: params
+        };
     };
 
     var processAnchorTag = function(element){
@@ -116,8 +158,8 @@ var gOpenTortoiseSvnMain = (function(){
             return false;
         }
 
-        var url = element.href;
-        if (!url || !isRegisteredUrl(url)){
+        var url_data = parseUrl(element.href);
+        if (!url_data || !isRegisteredUrl(url_data.url)){
             return false;
         }
 
@@ -142,11 +184,18 @@ var gOpenTortoiseSvnMain = (function(){
                     callback_args = match_data[2].split(",");
                 }
             }
+        }else{
+            // If tsvn attribute does not exist, URL parameter "p" or "r" is used as a revision.
+            if (url_data.params.r){
+                callback_args = [ url_data.params.r ];
+            }else if (url_data.params.p){
+                callback_args = [ url_data.params.p ];
+            }
         }
         //  priority 2
         //  "action" is defined by extension-specific setting.
         if (!callback_type){
-            callback_type = callbackTypeForSpecialExtension(url);
+            callback_type = callbackTypeForSpecialExtension(url_data.url);
         }
         //  priority 3
         //  "action" is defined by default setting.
@@ -159,7 +208,7 @@ var gOpenTortoiseSvnMain = (function(){
             return false;
         }
 
-        callback(url, callback_args);
+        callback(url_data.url, callback_args);
         return true;
     };
 
