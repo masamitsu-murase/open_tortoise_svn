@@ -116,6 +116,10 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var parseUrl = function(raw_url){
+        if (!raw_url){
+            return null;
+        }
+
         var match_data = raw_url.match(new RegExp("^[^?#]+"));
         if (!match_data){
             return null;
@@ -322,13 +326,14 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var contextMenuOpenTortoiseSvn = function(event, action){
-        var url = (gContextMenu && gContextMenu.linkURL);
-        if (!url || !isRegisteredUrl(url)){
+        var raw_url = (gContextMenu && gContextMenu.linkURL);
+        var url_data = parseUrl(raw_url);
+        if (!url_data || !isRegisteredUrl(url_data.url)){
             return;
         }
 
         if (action == "open_in_firefox"){
-            gBrowser.loadURI(url);
+            gBrowser.loadURI(raw_url);
             return;
         }
 
@@ -337,7 +342,7 @@ var gOpenTortoiseSvnMain = (function(){
             return;
         }
 
-        callback(url, []);
+        callback(url_data.url, []);
     };
 
     var isPopupMenuShown = function(){
