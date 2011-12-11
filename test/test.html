@@ -50,13 +50,17 @@
       <strong>repository browser</strong>.
     </p>
     <ul>
-      <li><a href="http://localhost/svn/">http://localhost/svn/</a> is a registered URL.</li>
+      <li><a href="file:///HOME/">http://localhost/svn/</a> is a registered URL.</li>
       <li>
-        <a href="http://localhost/" rel="tsvn[browser]">href="http://localhost/" rel="tsvn[browser]"</a>
+        <a href="file:///HOME/" rel="tsvn[browser]">href="file:///HOME/" rel="tsvn[browser]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
       <li>
-        <a href="http://localhost/" rel="tsvn[browser][]">href="http://localhost/" rel="tsvn[browser][]"</a>
+        <a href="file:///HOME/" rel="tsvn[browser][]">href="file:///HOME/" rel="tsvn[browser][]"</a>
+        is a registered URL and has correct <code>rel</code> attribute.
+      </li>
+      <li>
+        <a href="file:///HOME/" rel="tsvn[browser][2]">href="file:///HOME/" rel="tsvn[browser][2]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
     </ul>
@@ -67,7 +71,7 @@
     </p>
     <ul>
       <li>
-        <a href="http://localhost/" rel="tsvn[log]">href="http://localhost/" rel="tsvn[log]"</a>
+        <a href="file:///HOME/" rel="tsvn[log]">href="file:///HOME/" rel="tsvn[log]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
       <li>
@@ -75,14 +79,14 @@
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
       <li>
-        <a href="http://localhost/" rel="tsvn[log][10]">href="http://localhost/" rel="tsvn[log][10]"</a>
+        <a href="file:///HOME/" rel="tsvn[log][2]">href="file:///HOME/" rel="tsvn[log][2]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
-        This link shows logs from revision 10.
+        This link shows logs from revision 2.
       </li>
       <li>
-        <a href="http://localhost/" rel="tsvn[log][10,3]">href="http://localhost/" rel="tsvn[log][10,3]"</a>
+        <a href="file:///HOME/" rel="tsvn[log][2,1]">href="file:///HOME/" rel="tsvn[log][2,1]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
-        This link shows logs from revision 3 to 10.
+        This link shows logs from revision 1 to 2.
       </li>
     </ul>
 
@@ -92,21 +96,21 @@
     </p>
     <ul>
       <li>
-        <a href="http://localhost/" rel="tsvn[blame]">href="http://localhost/" rel="tsvn[blame]"</a>
+        <a href="file:///HOME/" rel="tsvn[blame]">href="file:///HOME/" rel="tsvn[blame]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
       <li>
-        <a href="http://localhost/" rel="tsvn[blame][]">href="http://localhost/" rel="tsvn[blame][]"</a>
+        <a href="file:///HOME/" rel="tsvn[blame][]">href="file:///HOME/" rel="tsvn[blame][]"</a>
         is a registered URL and has correct <code>rel</code> attribute.
       </li>
     </ul>
 
     <p>
       <ul>
-        <li><a href="file:///HOME/test.html">test.html</a> should be opened in Repository Browser.</li>
-        <li><a href="file:///HOME/test.htm">test.htm</a> should be opened in Repository Browser.</li>
-        <li><a href="file:///HOME/test.cpp">test.cpp</a> should be opened in Log..</li>
-        <li><a href="file:///HOME/test.c">test.c</a> should be opened in Blame.</li>
+        <li><a href="file:///HOME/test.html?p=3&amp;r=1">HTML file: <span>test.html</span></a> should be opened in Repository Browser.</li>
+        <li><a href="file:///HOME/test.htm?p=3">test.htm</a> should be opened in Repository Browser.</li>
+        <li><a href="file:///HOME/test.cpp?r=2">test.cpp</a> should be opened in Log..</li>
+        <li><a href="file:///HOME/test.c#name">test.c</a> should be opened in Blame.</li>
         <li><a href="file:///HOME/test.txt">test.txt</a> should be opened in Firefox.</li>
       </ul>
     </p>
