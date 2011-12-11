@@ -29,7 +29,7 @@ var gOpenTortoiseSvnMain = (function(){
 
     var CALLBACKS = {
       browser: function(url, args){
-          runTortoiseSvnBrowser(url);
+          runTortoiseSvnBrowser(url, args[0]);
       },
 
       log: function(url, args){
@@ -266,8 +266,11 @@ var gOpenTortoiseSvnMain = (function(){
         return callback_type;
     };
 
-    var runTortoiseSvnBrowser = function(repos){
+    var runTortoiseSvnBrowser = function(repos, rev){
         var args = ["/command:repobrowser", "/path:" + repos];
+        if (rev || rev==="0"){
+            args.push("/rev:" + rev);
+        }
         runTortoiseSvn(args);
     };
 
@@ -342,7 +345,14 @@ var gOpenTortoiseSvnMain = (function(){
             return;
         }
 
-        callback(url_data.url, []);
+        // When opened from context menu, only "p" or "r" parameter is used.
+        var callback_args = [];
+        if (url_data.params.r){
+            callback_args = [ url_data.params.r ];
+        }else if (url_data.params.p){
+            callback_args = [ url_data.params.p ];
+        }
+        callback(url_data.url, callback_args);
     };
 
     var isPopupMenuShown = function(){
