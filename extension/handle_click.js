@@ -41,8 +41,9 @@
             return;
         }
 
-        var url = anchor.href;
-        if (!url || !target_url_list.some(function(u){ return url.substr(0, u.length) == u; })){
+        var url_data = gCommon.parseUrl(anchor.href);
+        if (!url_data ||
+            !target_url_list.some(function(u){ return url_data.url.substr(0, u.length) == u; })){
             return;
         }
 
@@ -67,16 +68,27 @@
                     callback_args = match_data[2].split(",");
                 }
             }
+        }else{
+            // If tsvn attribute does not exist, URL parameter "p" or "r" is used as a revision.
+            if (url_data.params.r){
+                callback_args = [ url_data.params.r ];
+            }else if (url_data.params.p){
+                callback_args = [ url_data.params.p ];
+            }
         }
+
         if (!callback_type){
             callback_type = DEFAULT_ACTION;
         }
 
-        chrome.extension.sendRequest({ action: callback_type, url: url, args: callback_args }, function(response){
-            if (!response.ret){
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
-            }
-        });
+        chrome.extension.sendRequest({ action: callback_type,
+                                       url: url_data.url,
+                                       args: callback_args },
+                                     function(response){
+                                         if (!response.ret){
+                                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                                         }
+                                     });
         event.preventDefault();
     };
 
