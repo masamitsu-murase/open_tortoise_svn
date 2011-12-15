@@ -402,9 +402,22 @@ bool ScriptablePluginObject::checkTsvnArgument(const NPVariant *args, uint32_t a
     // check each command
     std::wstring command = stringToUtf16(args[1]);
     if (command == L"/command:repobrowser"){
-        if (argCount != 3 || !checkTsvnArgumentPath(stringToUtf16(args[2]))){
+        if (argCount < 3 || argCount > 4|| !checkTsvnArgumentPath(stringToUtf16(args[2]))){
             return false;
         }
+
+        if (argCount == 4){
+          std::wstring rev = stringToUtf16(args[3]);
+          const std::wstring rev_str(L"/rev:");
+
+          if (rev.size() <= rev_str.size() || !(std::equal(rev_str.begin(), rev_str.end(), rev.begin()))){
+            return false;
+          }
+
+          if (std::find_if(rev.begin() + rev_str.size(), rev.end(),
+                           std::not1(std::ptr_fun< wint_t, int >(std::iswdigit))) != rev.end()){
+            return false;
+          }
     }else if (command == L"/command:log"){
         if (argCount < 3 || argCount > 5 || !checkTsvnArgumentPath(stringToUtf16(args[2]))){
             return false;

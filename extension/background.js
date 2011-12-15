@@ -22,7 +22,8 @@
                 ret.ret = true;
                 break;
               case "browser":
-                ret.ret = openRepobrowser(request.url);
+                var args = (request.args || []);
+                ret.ret = openRepobrowser(request.url, args[0]);
                 break;
               case "log":
                 var args = (request.args || []);
@@ -39,14 +40,48 @@
         sendResponse(ret);
     });
 
-    var openRepobrowser = function(url){
+    var runTortoiseSvn = function(args){
         var value = gOptionValue.loadValue();
-        return tsvn.tsvn(value.tortoise_proc_path, "/command:repobrowser", "/path:" + url);
+        var path = value.tortoise_proc_path;
+        if (!path){
+            return false;
+        }
+
+        switch(args.length){
+          case 1:
+            return tsvn.tsvn(path, args[0]);
+          case 2:
+            return tsvn.tsvn(path, args[0], args[1]);
+          case 3:
+            return tsvn.tsvn(path, args[0], args[1], args[2]);
+          case 4:
+            return tsvn.tsvn(path, args[0], args[1], args[2], args[3]);
+          case 5:
+            return tsvn.tsvn(path, args[0], args[1], args[2], args[3], args[4]);
+          default:
+            return false;
+        }
+    };
+
+    var openRepobrowser = function(url, rev){
+        if (!url){
+            return false;
+        }
+
+        var args = [ "/command:repobrowser", "/path:" + url ];
+        if (rev===0 || rev){
+            args.push("/rev:" + rev);
+        }
+
+        return runTortoiseSvn(args);
     };
 
     var openLog = function(url, startrev, endrev){
-        var value = gOptionValue.loadValue();
-        var args = [ value.tortoise_proc_path, "/command:log", "/path:" + url ];
+        if (!url){
+            return false;
+        }
+
+        var args = [ "/command:log", "/path:" + url ];
         if (startrev===0 || startrev){
             args.push("/startrev:" + startrev);
         }
@@ -54,21 +89,16 @@
             args.push("/endrev:" + endrev);
         }
 
-        switch(args.length){
-          case 3:
-            return tsvn.tsvn(args[0], args[1], args[2]);
-          case 4:
-            return tsvn.tsvn(args[0], args[1], args[2], args[3]);
-          case 5:
-            return tsvn.tsvn(args[0], args[1], args[2], args[3], args[4]);
-          default:
-            return false;
-        }
+        return runTortoiseSvn(args);
     };
 
     var openBlame = function(url){
-        var value = gOptionValue.loadValue();
-        return tsvn.tsvn(value.tortoise_proc_path, "/command:blame", "/path:" + url);
+        if (!url){
+            return false;
+        }
+
+        var args = [ "/command:blame", "/path:" + url ];
+        return runTortoiseSvn(args);
     };
 
     // event handler of icon clicking

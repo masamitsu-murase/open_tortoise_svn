@@ -28,7 +28,7 @@
     "content_scripts": [
         {
             "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
-            "js": [ "handle_click.js" ],
+            "js": [ "handle_click.js", "common.js" ],
             "run_at": "document_end"
         }
      ],
