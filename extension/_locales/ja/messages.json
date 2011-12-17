@@ -10,5 +10,8 @@
     },
     "open_blame": {
         "message": "注釈履歴を開く"
+    },
+    "open_in_chrome": {
+        "message": "Google Chromeで開く"
     }
 }

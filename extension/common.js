@@ -15,7 +15,7 @@ var gCommon = (function(){
         var url = match_data[0];
         match_data = raw_url.substr(url.length).match(new RegExp("([^?#]*)(#.*)?$"));
         if (!match_data){
-            return { url: url, params: {} };
+            return { raw_url: raw_url, url: url, params: {} };
         }
 
         var params = {};
@@ -39,14 +39,15 @@ var gCommon = (function(){
         });
 
         return {
-            DEFAULT_ACTION: DEFAULT_ACTION,
-
+            raw_url: raw_url,
             url: url,
             params: params
         };
     };
 
     return {
+        DEFAULT_ACTION: DEFAULT_ACTION,
+
         parseUrl: parseUrl
     };
 })();

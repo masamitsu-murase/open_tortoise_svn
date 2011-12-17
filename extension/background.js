@@ -35,6 +35,10 @@
               case "blame":
                 ret.ret = openBlame(request.url);
                 break;
+              case "open_in_chrome":
+                chrome.tabs.update(sender.tab.id, { url: request.raw_url }, function(){});
+                ret.ret = true;
+                break;
             }
         }catch(e){
             ret.ret = false;
@@ -143,10 +147,18 @@
     var menu_callback_gen = function(func){
         return function(info, tab){
             var ret = false;
-            if (info.linkUrl){
-                ret = func(info.linkUrl);
-            }else{
-                ret = func(info.pageUrl);
+            var url_data = null;
+            try{
+                if (info.linkUrl){
+                    url_data = gCommon.parseUrl(info.linkUrl);
+                }else{
+                    url_data = gCommon.parseUrl(info.pageUrl);
+                }
+                if (url_data){
+                    ret = func(url_data.url, (url_data.params.p || url_data.params.r));
+                }
+            }catch(e){
+                ret = false;
             }
             if (!ret){
                 alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
@@ -170,6 +182,18 @@
         parentId: parent,
         contexts: [ "page", "link" ],
         onclick: menu_callback_gen(openBlame)
+    });
+    chrome.contextMenus.create({
+        title: chrome.i18n.getMessage("open_in_chrome"),
+        parentId: parent,
+        contexts: [ "page", "link" ],
+        onclick: function(info, tab){
+            if (info.linkUrl){
+                chrome.tabs.update(tab.id, { url: info.linkUrl }, function(){});
+            }else{
+                chrome.tabs.update(tab.id, { url: info.pageUrl }, function(){});
+            }
+        }
     });
 })();
 
