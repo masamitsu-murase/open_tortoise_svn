@@ -1,7 +1,5 @@
 
 (function(){
-    var DEFAULT_ACTION = "not_specified";
-
     var tsvn = document.getElementById("tsvn");
     if (!tsvn){
         return;
@@ -12,8 +10,13 @@
 
         try{
             var action = request.action;
-            if (action == DEFAULT_ACTION){
-                action = gOptionValue.loadValue().tortoise_svn_action;
+            if (action == gCommon.DEFAULT_ACTION){
+                // priority 2
+                action = extensionAction(request.url);
+                // priority 3
+                if (!action){
+                    action = gOptionValue.loadValue().tortoise_svn_action;
+                }
             }
 
             switch(action){
@@ -39,6 +42,32 @@
 
         sendResponse(ret);
     });
+
+    var extensionAction = function(url){
+        if (!url){
+            return false;
+        }
+
+        var value = gOptionValue.loadValue().extension_actions;
+        var action = null;
+        for (var i=0; i<value.length; i++){
+            var extensions = value[i].extension.split(",").map(function(item){ return item.trim(); });
+            if (extensions.some(function(ext){
+                // "*.ext" is expected.
+                if (ext[0] == "*"){
+                    ext = ext.substr(1);
+                }
+                if (ext == ""){
+                    return false;
+                }
+                return (url.substr(url.length - ext.length).toLowerCase() == ext.toLowerCase());
+            })){
+                action = value[i].action;
+                break;
+            }
+        }
+        return action;
+    };
 
     var runTortoiseSvn = function(args){
         var value = gOptionValue.loadValue();

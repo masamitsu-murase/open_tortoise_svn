@@ -2,7 +2,6 @@
 (function(){
     var INFO_ATTRIBUTE1 = "data-tsvn-info";  // for HTML5
     var INFO_ATTRIBUTE2 = "rel";             // for HTML4.01
-    var DEFAULT_ACTION = "not_specified";
 
     var target_url_list = [];
 
@@ -76,9 +75,8 @@
                 callback_args = [ url_data.params.p ];
             }
         }
-
         if (!callback_type){
-            callback_type = DEFAULT_ACTION;
+            callback_type = gCommon.DEFAULT_ACTION;
         }
 
         chrome.extension.sendRequest({ action: callback_type,
