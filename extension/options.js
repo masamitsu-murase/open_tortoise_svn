@@ -30,6 +30,7 @@
         document.getElementById("tortoise_svn_action").value = value.tortoise_svn_action;
         value.added_url_list.forEach(addRepositoryUrl);
         value.extension_actions.forEach(addExtensionAction);
+        updateExtensionActionTableVisibility();
     };
 
     var addRepositoryUrl = function(url){
@@ -87,12 +88,21 @@
 
             parent_td.parentNode.removeChild(parent_td);
             gValue.extension_actions.splice(index, 1);
+            updateExtensionActionTableVisibility();
             setSaveButtonAlert();
         });
         td.appendChild(input);
         tr.appendChild(td);
 
         tbody.appendChild(tr);
+    };
+
+    var updateExtensionActionTableVisibility = function(){
+        var value = "none";
+        if (gValue.extension_actions.length > 0){
+            value = "block";
+        }
+        document.getElementById("extension_action_list").style.display = value;
     };
 
     var setSaveButtonAlert = function(){
@@ -149,6 +159,7 @@
                 gValue.extension_actions.push(value);
                 addExtensionAction(value);
                 document.getElementById("extension_text").value = "";
+                updateExtensionActionTableVisibility();
                 setSaveButtonAlert();
             }
         });
