@@ -6,6 +6,7 @@ var gOptionValue = (function(){
         tortoise_proc_path: "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe",
         tortoise_svn_action: "browser",
         added_url_list: [],
+        extension_actions: [],
 
         version: VERSION
     };

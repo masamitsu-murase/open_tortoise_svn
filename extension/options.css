@@ -46,7 +46,6 @@ ul#option_index li{
     list-style-type: none;
     margin-bottom: 1px;
     padding: 0.5em;
-    border-radius: 0.5em 0px 0px 0.5em;
     background: -webkit-gradient(linear, left top, left bottom, from(#A8BCEE), to(#8EA9EE));
     border-left: 0.5em solid transparent;
 }
@@ -54,10 +53,10 @@ ul#option_index li:hover:not(.selected){
     background: -webkit-gradient(linear, left top, left bottom, from(#8EA9EE), to(#A8BCEE));
 }
 ul#option_index li:first-child{
-    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0.5em;
 }
 ul#option_index li:last-child{
-    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0.5em;
 }
 ul#option_index li.selected{
     cursor: default;
@@ -102,7 +101,35 @@ ul#added_url_list li input{
 ul#added_url_list li:hover input{
     display: inline;
 }
-input#save_button{
+dl.extension_action_control{
+    margin: 0.25em 1em;
+}
+dl.extension_action_control dt{
+    display: block;
+    width: 8em;
+    position: absolute;
+}
+dl.extension_action_control dd{
+    display: block;
+    margin-left: 8em;
+}
+dl.extension_action_control dd:last-child{
+    /* Add button */
+    padding-left: 5em;
+}
+table#extension_action_list{
+    border-collapse: collapse;
+    margin: 1em 2em;
+}
+table#extension_action_list thead, table#extension_action_list tbody{
+    border: 2px solid black;
+}
+table#extension_action_list th, table#extension_action_list td{
+    border: 1px solid black;
+    padding: 3px;
+}
+
+input.save_button{
     font-size: large;
 }
 input.alert{

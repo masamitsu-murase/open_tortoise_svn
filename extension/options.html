@@ -13,6 +13,7 @@
   <div id="main">
     <ul id="option_index">
       <li class="selected">General Settings</li>
+      <li>Action Settings</li>
       <li>About Open TortoiseSVN</li>
     </ul>
 
@@ -33,18 +34,6 @@
         </div>
 
         <div class="option_box">
-          <h3>TortoiseSVN action</h3>
-          <p>Select default action when you click one of the URL links to Subversion repositories.</p>
-          <p class="option_data">Action:
-            <select id="tortoise_svn_action">
-              <option value="browser">Repository Browser</option>
-              <option value="log">Log Viewer</option>
-              <option value="blame">Blame Viewer</option>
-            </select>
-          </p>
-        </div>
-
-        <div class="option_box">
           <h3>URL list of Subversion repositories</h3>
           <p>Add URLs of Subversion repositories.</p>
           <p>When you click one of the registered URL, TortoiseSVN is opened automatically.</p>
@@ -57,7 +46,50 @@
           <ul id="added_url_list"></ul>
         </div>
 
-        <div class="option_box"><input id="save_button" type="button" value="Save" /></div>
+        <div class="option_box"><input class="save_button" type="button" value="Save" /></div>
+      </div>
+
+      <div class="option_page" id="action_page">
+        <h2>Action Settings</h2>
+        <div class="option_box">
+          <h3>TortoiseSVN action</h3>
+          <p>Select default action when you click one of the URL links to Subversion repositories.</p>
+          <p class="option_data">Action:
+            <select id="tortoise_svn_action">
+              <option value="browser">Repository Browser</option>
+              <option value="log">Log Viewer</option>
+              <option value="blame">Blame Viewer</option>
+            </select>
+          </p>
+        </div>
+
+        <div class="option_box">
+          <h3>TortoiseSVN action for each extension</h3>
+          <p>Select action for each extension.</p>
+          <p style="font-size: smaller">If you add <code>"*.cpp"</code> as "Log Viewer" and then click a link to <code>http://svn_repos/path/sample.cpp</code>, "Log Viewer" is opened automatically.</p>
+          <dl class="extension_action_control">
+            <dt><label for="extension_text">Extension:</label></dt>
+            <dd><input type="text" placeholder="e.g.) *.cpp, *.h" id="extension_text" /></dd>
+            <dt><label for="extension_action">Action:</label></dt>
+            <dd>
+              <select id="extension_action">
+                <option value="browser">Repository Browser</option>
+                <option value="log">Log Viewer</option>
+                <option value="blame">Blame Viewer</option>
+              </select>
+            </dd>
+            <dd><input type="button" value="Add" id="extension_action_add_button" /></dd>
+          </dl>
+          <table id="extension_action_list">
+            <thead>
+              <tr><th>Extension</th><th>Action</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+            <caption>Action for each extension</caption>
+          </table>
+        </div>
+
+        <div class="option_box"><input class="save_button" type="button" value="Save" /></div>
       </div>
 
       <div class="option_page" id="about_page">

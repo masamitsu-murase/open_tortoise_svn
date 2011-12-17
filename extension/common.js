@@ -1,5 +1,7 @@
 
 var gCommon = (function(){
+    var DEFAULT_ACTION = "not_specified";
+
     var parseUrl = function(raw_url){
         if (!raw_url){
             return null;
@@ -37,6 +39,8 @@ var gCommon = (function(){
         });
 
         return {
+            DEFAULT_ACTION: DEFAULT_ACTION,
+
             url: url,
             params: params
         };
