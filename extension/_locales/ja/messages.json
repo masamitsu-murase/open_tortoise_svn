@@ -13,5 +13,12 @@
     },
     "open_in_chrome": {
         "message": "Google Chromeで開く"
+    },
+
+    "Add": {
+        "message": "追加"
+    },
+    "Remove": {
+        "message": "削除"
     }
 }

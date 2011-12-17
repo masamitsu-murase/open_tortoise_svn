@@ -1,10 +1,10 @@
 
 (function(){
     var ACTION_NAME_LIST = {
-        browser: "Repository Browser",
-        log: "Log Viewer",
-        blame: "Blame Viewer",
-        open_in_chrome: "Open in Google Chrome"
+        browser: chrome.i18n.getMessage("open_reposbrowser"),
+        log: chrome.i18n.getMessage("open_log"),
+        blame: chrome.i18n.getMessage("open_blame"),
+        open_in_chrome: chrome.i18n.getMessage("open_in_chrome")
     };
 
     var gValue = {};
@@ -45,7 +45,7 @@
         var input = document.createElement("input");
         li.appendChild(input);
         input.setAttribute("type", "button");
-        input.setAttribute("value", "Remove");
+        input.setAttribute("value", chrome.i18n.getMessage("Remove"));
         input.addEventListener("click", function(e){
             var li = e.target.parentNode;
             var index = Array.prototype.indexOf.call(li.parentNode.childNodes, li);
@@ -76,7 +76,7 @@
         td = document.createElement("td");
         var input = document.createElement("input");
         input.setAttribute("type", "button");
-        input.setAttribute("value", "Remove");
+        input.setAttribute("value", chrome.i18n.getMessage("Remove"));
         input.addEventListener("click", function(event){
             var parent_td = event.target.parentNode.parentNode;
             var index = Array.prototype.indexOf.call(parent_td.parentNode.childNodes, 

@@ -106,16 +106,16 @@ dl.extension_action_control{
 }
 dl.extension_action_control dt{
     display: block;
-    width: 8em;
+    width: 6.5em;
     position: absolute;
 }
 dl.extension_action_control dd{
     display: block;
-    margin-left: 8em;
+    margin-left: 6.5em;
 }
 dl.extension_action_control dd:last-child{
     /* Add button */
-    padding-left: 5em;
+    padding-left: 6em;
 }
 table#extension_action_list{
     border-collapse: collapse;

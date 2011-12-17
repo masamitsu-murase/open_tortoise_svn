@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Open TortoiseSVN Options</title>
+  <script type="text/javascript">
+    // <![CDATA[
+if (window.navigator.language == "ja"){
+    window.location.href = "options_ja.html";
+}
+    // ]]>
+  </script>
+
   <script type="text/javascript" src="value.js"></script>
   <script type="text/javascript" src="options.js"></script>
   <link rel="stylesheet" href="options.css" type="text/css" />
@@ -53,7 +61,7 @@
         <h2>Action Settings</h2>
         <div class="option_box">
           <h3>TortoiseSVN action</h3>
-          <p>Select default action when you click one of the URL links to Subversion repositories.</p>
+          <p>Select default action of TortoiseSVN.</p>
           <p class="option_data">Action:
             <select id="tortoise_svn_action">
               <option value="browser">Repository Browser</option>
@@ -83,11 +91,11 @@
             <dd><input type="button" value="Add" id="extension_action_add_button" /></dd>
           </dl>
           <table id="extension_action_list">
+            <caption>Action for each extension</caption>
             <thead>
-              <tr><th>Extension</th><th>Action</th><th></th></tr>
+              <tr><th>Extension</th><th>Action</th><th><span style="visibility: hidden;">Remove</span></th></tr>
             </thead>
             <tbody></tbody>
-            <caption>Action for each extension</caption>
           </table>
         </div>
 
