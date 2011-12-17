@@ -1,5 +1,12 @@
 
 (function(){
+    var ACTION_NAME_LIST = {
+        browser: "Repository Browser",
+        log: "Log Viewer",
+        blame: "Blame Viewer",
+        open_in_chrome: "Open in Google Chrome"
+    };
+
     var gValue = {};
 
     var load = function(){
@@ -63,7 +70,7 @@
         tr.appendChild(td);
 
         td = document.createElement("td");
-        td.appendChild(document.createTextNode(action));
+        td.appendChild(document.createTextNode(ACTION_NAME_LIST[action]));
         tr.appendChild(td);
         
         td = document.createElement("td");

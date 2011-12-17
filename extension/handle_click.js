@@ -80,6 +80,7 @@
         }
 
         chrome.extension.sendRequest({ action: callback_type,
+                                       raw_url: url_data.raw_url,
                                        url: url_data.url,
                                        args: callback_args },
                                      function(response){

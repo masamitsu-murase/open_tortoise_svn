@@ -10,5 +10,8 @@
     },
     "open_blame": {
         "message": "Open Blame Viewer"
+    },
+    "open_in_chrome": {
+        "message": "Open in Google Chrome"
     }
 }
