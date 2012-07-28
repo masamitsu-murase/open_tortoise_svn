@@ -7,9 +7,20 @@
         open_in_chrome: chrome.i18n.getMessage("open_in_chrome")
     };
 
+    var OPTIONS_PAGE = {
+        ja: "options_ja.html"
+    };
+
     var gValue = {};
 
     var load = function(){
+        // Check options page
+        var page = OPTIONS_PAGE[window.navigator.language];
+        if (page && window.location.href.substr(-page.length) != page){
+            window.location.href = page;
+            return;
+        }
+
         loadValue();
         setEventHandler();
 
