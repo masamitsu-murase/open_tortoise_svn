@@ -34,3 +34,7 @@
 
 <!ENTITY context_menu.enable "コンテキストメニューに項目を追加する">
 <!ENTITY context_menu.enable_description "チェックすると、Subversionリポジトリへのリンクをクリックしたときに、コンテキストメニューにTortoiseSVNを開く項目を追加します。">
+
+<!ENTITY toolbar.label "Open TortoiseSVN">
+<!ENTITY toolbar.label_enabled "Open TortoiseSVN: クリックすると無効になります">
+<!ENTITY toolbar.label_disabled "Open TortoiseSVN: クリックすると有効になります">

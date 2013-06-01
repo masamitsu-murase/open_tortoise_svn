@@ -34,3 +34,7 @@
 
 <!ENTITY context_menu.enable "Add items in context menu.">
 <!ENTITY context_menu.enable_description "If you check, items to open TortoiseSVN are added in context menu when you right-click a link to Subversion repository.">
+
+<!ENTITY toolbar.label "Open TortoiseSVN">
+<!ENTITY toolbar.label_enabled "Open TortoiseSVN: Click to disable.">
+<!ENTITY toolbar.label_disabled "Open TortoiseSVN: Click to enable.">

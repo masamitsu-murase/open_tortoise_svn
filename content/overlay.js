@@ -41,6 +41,9 @@ var gOpenTortoiseSvnMain = (function(){
       }
     };
 
+    var AddonEnabled = true;
+
+
     var registerCallback = function(event){
         checkVersion();
 
@@ -53,6 +56,44 @@ var gOpenTortoiseSvnMain = (function(){
         if (contentAreaContextMenu){
             contentAreaContextMenu.addEventListener("popupshowing", contextMenuPopupShowing, false);
         }
+
+        setupToolbarButton();
+    };
+
+    ///////////////////////////////////////////////////////////////
+    var isAddonEnabled = function(win){
+        // For fail safe, if toolbar is hidden, it is assumed that addon is enabled.
+
+        var toolbar_button = win.document.getElementById("open_tortoise_svn_toolbar_button");
+        if (!toolbar_button){
+            return true;
+        }
+
+        var box = toolbar_button.boxObject;
+        if (!box || !box.height || !box.width){
+            return true;
+        }
+
+        return win.gOpenTortoiseSvnMain.addonEnabled();
+    };
+
+    var findCurrentWindow = function(doc){
+        if (gBrowser && gBrowser.getBrowserForDocument && gBrowser.getBrowserForDocument(doc)){
+            // This document is included in current window.
+            return window;
+        }
+
+        var wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+        var enumerator = wm.getEnumerator("navigator:browser");
+        while(enumerator.hasMoreElements()) {
+            var win = enumerator.getNext();
+            if (win.gBrowser && win.gBrowser.getBrowserForDocument
+                  && win.gBrowser.getBrowserForDocument(doc)){
+                return win;
+            }
+        }
+
+        return window;
     };
 
     ///////////////////////////////////////////////////////////////
@@ -75,6 +116,12 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var callbackClickEvent = function(event){
+        var win = findCurrentWindow(event.originalTarget.ownerDocument);
+
+        if (!isAddonEnabled(win)){
+            return;
+        }
+
         if (!processEvent(event)){
             return;
         }
@@ -378,6 +425,55 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     ////////////////////////////////////////
+    var setupToolbarButton = function(){
+        var enabled = AddonEnabled;
+
+        var toolbar_button = document.getElementById("open_tortoise_svn_toolbar_button");
+        if (!toolbar_button){
+            return;
+        }
+
+        var cn = "open_tortoise_svn_disabled";
+        var class_names = toolbar_button.className.split(/\s+/).filter(function(elem){
+            return (elem && elem != cn);
+        });
+        if (enabled){
+            toolbar_button.setAttribute("tooltip", "open_tortoise_svn_toolbar_tooltip_enabled");
+        }else{
+            class_names.push(cn);
+            toolbar_button.setAttribute("tooltip", "open_tortoise_svn_toolbar_tooltip_disabled");
+        }
+        toolbar_button.className = class_names.join(" ");
+    };
+
+    var toggleEnabled = function(event){
+        AddonEnabled = !AddonEnabled;
+        setupToolbarButton();
+    };
+
+    var addToolbarButton = function(){
+        var toolbar_id = "nav-bar";
+        var id = "open_tortoise_svn_toolbar_button";
+
+        var toolbar = document.getElementById(toolbar_id);
+        if (!toolbar){
+            return false;
+        }
+
+        if (document.getElementById(id)){
+            return true;
+        }
+
+        toolbar.insertItem(id, null);
+        toolbar.setAttribute("currentset", toolbar.currentSet);
+        document.persist(toolbar.id, "currentset");
+
+        setupToolbarButton();
+
+        return true;
+    };
+
+    ////////////////////////////////////////
     var VERSION_PREF = "version";
     var CURRENT_VERSION = "0.1.5";
     var WIKI_PAGE = "https://github.com/masamitsu-murase/open_tortoise_svn/wiki/Open-TortoiseSVN";
@@ -425,15 +521,18 @@ var gOpenTortoiseSvnMain = (function(){
             if (gBrowser){
                 gBrowser.selectedTab = gBrowser.addTab(WIKI_PAGE);
             }
-        }, 500);
+        }, 1000);
 
         return true;
     };
 
     window.addEventListener("load", registerCallback, false);
+    window.addEventListener("aftercustomization", function(e){ setupToolbarButton(); }, false);
 
     return {
-        contextMenuOpenTortoiseSvn: contextMenuOpenTortoiseSvn
+        contextMenuOpenTortoiseSvn: contextMenuOpenTortoiseSvn,
+        toggleEnabled: toggleEnabled,
+        addonEnabled: function(){ return AddonEnabled; }
     };
 })();
 

@@ -2,4 +2,5 @@ content	open_tortoise_svn	content/
 locale	open_tortoise_svn	en-US	locale/en-US/
 locale	open_tortoise_svn	ja-JP	locale/ja-JP/
 skin	open_tortoise_svn	classic/1.0	skin/
-overlay	chrome://browser/content/browser.xul	chrome://open_tortoise_svn/content/overlay.xul
+overlay	chrome://browser/content/browser.xul  chrome://open_tortoise_svn/content/overlay.xul
+style   chrome://global/content/customizeToolbar.xul  chrome://open_tortoise_svn/skin/overlay.css

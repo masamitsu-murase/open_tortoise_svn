@@ -1,0 +1,6 @@
+#open_tortoise_svn_toolbar_button {
+  list-style-image: url("chrome://open_tortoise_svn/skin/logo18.png");
+}
+toolbar #open_tortoise_svn_toolbar_button.open_tortoise_svn_disabled {
+  list-style-image: url("chrome://open_tortoise_svn/skin/logo18gray.png");
+}

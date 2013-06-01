@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://open_tortoise_svn/skin/overlay.css" type="text/css"?>
 
 <!DOCTYPE overlay SYSTEM "chrome://open_tortoise_svn/locale/open_tortoise_svn.dtd">
 <overlay id="open_tortoise_svn-overlay"
@@ -21,4 +22,25 @@
   </popup>
 
   <script type="application/x-javascript" src="chrome://open_tortoise_svn/content/overlay.js" />
+
+
+  <window id="main-window">
+    <tooltip id="open_tortoise_svn_toolbar_tooltip_enabled" noautohide="true" orient="vertical" position="after_start">
+      <vbox>
+        <label value="&toolbar.label_enabled;" />
+	  </vbox>
+    </tooltip>
+    <tooltip id="open_tortoise_svn_toolbar_tooltip_disabled" noautohide="true" orient="vertical" position="after_start">
+      <vbox>
+        <label value="&toolbar.label_disabled;" />
+	  </vbox>
+    </tooltip>
+  </window>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton id="open_tortoise_svn_toolbar_button" label="&toolbar.label;"
+        class="toolbarbutton-1"
+        tooltip="open_tortoise_svn_toolbar_tooltip_enabled"
+        oncommand="gOpenTortoiseSvnMain.toggleEnabled(event);" />
+  </toolbarpalette>
 </overlay>
