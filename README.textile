@@ -7,7 +7,7 @@ h2. Overview
 
 h2. New features
 
-h3. New features of version 0.1.6
+h3. New features of version 0.1.7
 
 You can enable/disable this addon temporarily by clicking the toolbar icon.
 
@@ -99,5 +99,5 @@ h2. Changelog
   TortoiseSVN is opened when you click a URL which includes parameters.
 * 0.1.5
   You can open the revision specified by "peg revision" parameter.
-* 0.1.6
+* 0.1.7
   You can enable/disable this addon temporarily by clicking the toolbar icon.

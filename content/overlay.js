@@ -475,7 +475,7 @@ var gOpenTortoiseSvnMain = (function(){
 
     ////////////////////////////////////////
     var VERSION_PREF = "version";
-    var CURRENT_VERSION = "0.1.6";
+    var CURRENT_VERSION = "0.1.7";
     var WIKI_PAGE = "https://github.com/masamitsu-murase/open_tortoise_svn/wiki/Open-TortoiseSVN";
 
     var checkVersion = function(){
@@ -518,7 +518,8 @@ var gOpenTortoiseSvnMain = (function(){
             setTimeout(function(){
                 addToolbarButton();
             }, 1000);
-        // case "0.1.6":
+        case "0.1.6":
+        // case "0.1.7":
             break;
         }
 
