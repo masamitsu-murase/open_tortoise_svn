@@ -331,7 +331,7 @@ var gOpenTortoiseSvnMain = (function(){
     var contextMenuOpenTortoiseSvn = function(event, action){
         var raw_url = (gContextMenu && gContextMenu.linkURL);
         var url_data = parseUrl(raw_url);
-        if (!url_data || !isRegisteredUrl(url_data.url)){
+        if (!url_data){
             return;
         }
 
@@ -356,7 +356,7 @@ var gOpenTortoiseSvnMain = (function(){
     };
 
     var isPopupMenuShown = function(){
-        if (!gContextMenu.onLink){
+        if (!gContextMenu || !gContextMenu.onLink){
             return false;
         }
 
@@ -370,7 +370,7 @@ var gOpenTortoiseSvnMain = (function(){
         }
 
         var url = (gContextMenu && gContextMenu.linkURL);
-        if (!url || !isRegisteredUrl(url)){
+        if (!url){
             return false;
         }
 
