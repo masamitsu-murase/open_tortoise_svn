@@ -5,7 +5,13 @@ h2. Overview
 * This Firefox Addon enables you to open TortoiseSVN directly when you click the link to the registered URLs.
 * If the link has some specific attributes, this addon opens TortoiseSVN Repository Browser, Log Viewer or Blame Viewer.
 
-h2. New features of version 0.1.5
+h2. New features
+
+h3. New features of version 0.1.6
+
+You can enable/disable this addon temporarily by clicking the toolbar icon.
+
+h3. New features of version 0.1.5
 
 You can select a default TortoiseSVN action: "Open repository browser", "Open log viewer", "Open blame viewer" or "Open in Firefox".
 
@@ -93,3 +99,5 @@ h2. Changelog
   TortoiseSVN is opened when you click a URL which includes parameters.
 * 0.1.5
   You can open the revision specified by "peg revision" parameter.
+* 0.1.6
+  You can enable/disable this addon temporarily by clicking the toolbar icon.
