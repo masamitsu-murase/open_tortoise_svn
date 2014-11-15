@@ -56,6 +56,10 @@
 #include <memory>
 #include <initializer_list>
 
+#if _MSC_VER
+#define noexcept
+#endif
+
 namespace json11 {
 
 class JsonValue;
@@ -198,3 +202,7 @@ protected:
 };
 
 } // namespace json11
+
+#if _MSC_VER
+#undef noexcept
+#endif
