@@ -1,9 +1,6 @@
 
 (function(){
-    var tsvn = document.getElementById("tsvn");
-    if (!tsvn){
-        return;
-    }
+    var tsvn = gTortoiseSvn;
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
         var ret = { ret: false };
@@ -80,20 +77,7 @@
             return false;
         }
 
-        switch(args.length){
-          case 1:
-            return tsvn.tsvn(path, args[0]);
-          case 2:
-            return tsvn.tsvn(path, args[0], args[1]);
-          case 3:
-            return tsvn.tsvn(path, args[0], args[1], args[2]);
-          case 4:
-            return tsvn.tsvn(path, args[0], args[1], args[2], args[3]);
-          case 5:
-            return tsvn.tsvn(path, args[0], args[1], args[2], args[3], args[4]);
-          default:
-            return false;
-        }
+        return tsvn.tsvn(path, args);
     };
 
     var openRepobrowser = function(url, rev){
