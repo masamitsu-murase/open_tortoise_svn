@@ -12,5 +12,5 @@ open_tortoise_svn_host.exe: $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LIBS) -Wall -O3 -std=c++11 -s -static -static-libgcc -static-libstdc++
 
 .cpp.o:
-	$(CC) -c $< -o $@ -Wall -O3 -std=c++11
+	$(CC) -c $< -o $@ -Wall -O3 -std=c++11 -DNDEBUG
 

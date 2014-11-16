@@ -12,5 +12,5 @@ open_tortoise_svn_host.exe: $(OBJS)
 	$(CC) /EHsc $(OBJS) /Fe$@ /W3 /Ox $(LIBS)
 
 .cpp.obj:
-	$(CC) /EHsc $< /c /Fo$@ /W3 /Ox /D_CRT_SECURE_NO_WARNINGS
+	$(CC) /EHsc $< /c /Fo$@ /W3 /Ox /D_CRT_SECURE_NO_WARNINGS /DNDEBUG
 

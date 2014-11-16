@@ -2,7 +2,6 @@
 #include <cstdio>
 #include <cstdint>
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <stdexcept>
 #include <string>
@@ -92,9 +91,6 @@ bool exec_command(const std::wstring &app, const std::vector<std::wstring> &args
     std::vector<WCHAR> cmd(command_line.size() + 1);
     std::copy(command_line.begin(), command_line.end(), cmd.begin());
     cmd[cmd.size() - 1] = L'\0';
-
-std::ofstream output("M:/temp/log.txt");
-output.write(reinterpret_cast<char*>(&cmd[0]), cmd.size()*2);
 
     if (!CreateProcessW(app.c_str(), &cmd[0], NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS,
                         NULL, NULL, &si, &pi)){
