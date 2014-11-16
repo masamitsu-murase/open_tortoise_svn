@@ -18,13 +18,6 @@
         "default_title": "Open TortoiseSVN"
     },
 
-    "plugins": [
-        {
-            "path": "npoptsvn.dll",
-            "public": false
-        }
-    ],
-
     "background": {
         "page": "background.html"
     },
@@ -40,5 +33,5 @@
 
     "options_page": "options.html",
 
-    "permissions": [ "tabs", "contextMenus" ]
+    "permissions": [ "tabs", "contextMenus", "nativeMessaging" ]
 }

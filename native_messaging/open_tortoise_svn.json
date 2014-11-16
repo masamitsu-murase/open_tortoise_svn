@@ -1,0 +1,10 @@
+{
+    "name": "masamitsu.murase.open_tortoise_svn",
+    "description": "Open TortoiseSVN extension",
+    "path": "open_tortoise_svn_host.exe",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://mhhincgnohhopnakokkcoifmnahapihn/",
+        "chrome-extension://damilknpkhofkfgpelmjdcdgpdlnjfng/"
+    ]
+}

@@ -1,0 +1,16 @@
+
+CC = g++
+OBJS = open_tortoise_svn_host.o json11.o
+LIBS = -l shlwapi
+
+all: open_tortoise_svn_host.exe
+
+clean:
+	rm -f $(OBJS)
+
+open_tortoise_svn_host.exe: $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LIBS) -Wall -O3 -std=c++11 -s -static -static-libgcc -static-libstdc++
+
+.cpp.o:
+	$(CC) -c $< -o $@ -Wall -O3 -std=c++11 -DNDEBUG
+
