@@ -1,6 +1,7 @@
 
 #include <cstdio>
 #include <cstdint>
+#include <cctype>
 #include <iostream>
 #include <vector>
 #include <stdexcept>
@@ -14,6 +15,8 @@
 
 #include <windows.h>
 #include <Shlwapi.h>
+
+#define VERSION "1.0"
 
 namespace{
 
@@ -158,7 +161,9 @@ json11::Json search_tortoise_svn(const json11::Json &param)
 json11::Json process_param(const json11::Json &param)
 {
     std::string action = param["action"].string_value();
-    if (action == "tsvn"){
+    if (action == "version"){
+        return VERSION;
+    }else if (action == "tsvn"){
         return run_tortoise_svn(param);
     }else if (action == "search_tsvn"){
         return search_tortoise_svn(param);
@@ -196,6 +201,18 @@ void print_json_failure(std::ostream &out, const std::string &error)
 
 int main(int argc, char *argv[])
 {
+    if (argc == 2){
+        std::string arg(argv[1]);
+        std::transform(arg.begin(), arg.end(), arg.begin(), [](char c){
+            return static_cast<char>(std::tolower(c));
+        });
+
+        if (arg == "-v" || arg == "/v" || arg == "--version"){
+            std::cout << "Version: " << VERSION << std::endl;
+            return 0;
+        }
+    }
+
     set_binary_mode();
 
     try{
