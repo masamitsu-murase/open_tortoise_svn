@@ -21,15 +21,23 @@
       <div class="option_page selected">
         <h2>一般設定</h2>
         <div class="option_box">
+          <h3>インストール</h3>
+          <p>事前に、下記のインストールが必要です。</p>
+          <ol>
+            <li><a href="http://tortoisesvn.net/">TortoiseSVN</a> を<a href="http://tortoisesvn.net/downloads.html">ダウンロードページ</a>からダウンロードしてインストールしてください。<br />
+              既にインストール済みの方は不要です。</li>
+            <li><a href="open_tortoise_svn_host.zip">open_tortoise_svn_host.zip</a> をダウンロード、展開し、<code>install.bat</code> を実行してインストールしてください。<br />
+              このツールは、Chrome と連携して TortoiseSVN を起動します。</li>
+          </ol>
+        </div>
+
+        <div class="option_box">
           <h3>TortoiseProc.exe のパス</h3>
           <p>
             <strong>TortoiseProc.exe</strong>のパスを指定してください。
           </p>
-          <p style="font-size: smaller;">
-            通常は、"C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" になるはずです。
-          </p>
           <p class="option_data">
-            パス: <input id="tortoise_proc_path" type="text" maxlength="500" style="min-width: 40em;" />
+            <input id="tortoise_proc_path" type="text" maxlength="500" placeholder="例： C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" />
           </p>
         </div>
 
@@ -37,11 +45,11 @@
           <h3>Subversion リポジトリの URL</h3>
           <p>Subversion リポジトリの URL を追加してください。</p>
           <p>リストに追加された URL をクリックすると、TortoiseSVN が自動で立ち上がります。</p>
-          <p style="font-size: smaller;">
+          <p>
             例: "http://svn_repos/" を追加し、"http://svn_repos/dir/test.cpp" をクリックすると、このファイルが TortoiseSVN で開かれます。
           </p>
           <p class="option_data">
-            URL: <input id="added_url" type="text" maxlength="500" style="min-width: 30em;" /><input id="add_button" type="button" value="追加" />
+            <input id="added_url" type="text" maxlength="500" placeholder="URL を入力してください" /><input id="add_button" type="button" value="追加" />
           </p>
           <ul id="added_url_list"></ul>
         </div>
@@ -67,10 +75,10 @@
         <div class="option_box">
           <h3>拡張子ごとの TortoiseSVN の動作</h3>
           <p>拡張子ごとの TortoiseSVN の動作を指定してください。</p>
-          <p style="font-size: smaller"><code>"*.cpp"</code> を "ログを開く" と設定し、<code>http://svn_repos/path/sample.cpp</code> をクリックすると、ログ閲覧画面が自動で開かれます。</p>
+          <p><code>*.cpp</code> を "ログを開く" と設定し、<code>http://svn_repos/path/sample.cpp</code> をクリックすると、ログ閲覧画面が自動で開かれます。</p>
           <dl class="extension_action_control">
             <dt><label for="extension_text">拡張子:</label></dt>
-            <dd><input type="text" placeholder="例) *.cpp, *.h" id="extension_text" /></dd>
+            <dd><input type="text" placeholder="例: *.cpp, *.h" id="extension_text" /></dd>
             <dt><label for="extension_action">動作:</label></dt>
             <dd>
               <select id="extension_action">
@@ -143,7 +151,7 @@
         <div class="option_box">
           <h3>ライセンス</h3>
           <p>
-            <a href="http://www.gnu.org/licenses/gpl-2.0.html">GPLv2</a> の下でお使いください。
+            MIT License の下でお使いください。
           </p>
           <p>
             この拡張機能のソースコードが必要な場合は、<a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome">GitHub のページ</a>よりダウンロードしてください。
