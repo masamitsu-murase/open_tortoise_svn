@@ -27,6 +27,10 @@ h3{
 p{
     margin: 5px;
 }
+code{
+    color: black;
+    background-color: #FFA;
+}
 div#main{
     border-radius: 1em;
     border: 1px solid #6688dd;
@@ -88,6 +92,16 @@ p{
     margin-left: 1em;
     margin-right: 1em;
 }
+input#tortoise_proc_path{
+    width: 40em;
+    max-width: 95%;
+    display: line-block;
+}
+input#added_url{
+    display: line-block;
+    width: 30em;
+    max-width: 80%;
+}
 ul#added_url_list li{
     line-height: 1.5em;
 }
@@ -95,11 +109,11 @@ ul#added_url_list li span{
     padding-right: 1em;
 }
 ul#added_url_list li input{
-    display: none;
+    visibility: hidden;
     margin: 0px;
 }
 ul#added_url_list li:hover input{
-    display: inline;
+    visibility: visible;
 }
 dl.extension_action_control{
     margin: 0.25em 1em;
@@ -108,10 +122,11 @@ dl.extension_action_control dt{
     display: block;
     width: 6.5em;
     position: absolute;
+    text-align: right;
 }
 dl.extension_action_control dd{
     display: block;
-    margin-left: 6.5em;
+    margin-left: 6.75em;
 }
 dl.extension_action_control dd:last-child{
     /* Add button */

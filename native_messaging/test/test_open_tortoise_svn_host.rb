@@ -67,6 +67,12 @@ class TestOpenTortoiseSvnHost < MiniTest::Unit::TestCase
     assert obj["error"]
   end
 
+  def test_version
+    obj = run_tsvn_host({ "action" => "version" })
+    assert_equal true, obj["result"]
+    assert obj["data"].kind_of?(String)
+  end
+
   def test_action_tsvn
     sample_proc = TEMP_DIR + "®日本語" + "TortoiseProc.exe"
     sample_proc.parent.mkpath

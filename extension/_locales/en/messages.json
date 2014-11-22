@@ -2,6 +2,9 @@
     "cannot_open_tortoisesvn": {
         "message": "Cannot open TortoiseSVN. Please check URL and settings."
     },
+    "cannot_open_tortoisesvn_host": {
+        "message": "Please install 'open_tortoise_svn_host.exe'. See option page to get it."
+    },
     "open_reposbrowser": {
         "message": "Open Repository Browser"
     },

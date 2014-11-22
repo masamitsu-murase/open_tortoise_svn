@@ -1,6 +1,7 @@
 
 #include <cstdio>
 #include <cstdint>
+#include <cctype>
 #include <iostream>
 #include <vector>
 #include <stdexcept>
@@ -14,6 +15,11 @@
 
 #include <windows.h>
 #include <Shlwapi.h>
+
+#define VERSION "1.0"
+
+#define TSVN_PROC_NAME "TortoiseProc.exe"
+#define TSVN_PROC_NAME_W  L"TortoiseProc.exe"
 
 namespace{
 
@@ -105,9 +111,16 @@ bool exec_command(const std::wstring &app, const std::vector<std::wstring> &args
 
 json11::Json run_tortoise_svn(const json11::Json &param)
 {
-    std::wstring path = string_to_wstring(param["path"].string_value());
-    if (!PathFileExistsW(path.c_str())){
-        throw std::runtime_error("TortoiseProc.exe is not found.");
+    const std::string tsvn_proc("\\" TSVN_PROC_NAME);
+    const std::string &path = param["path"].string_value();
+    if (path.length() <= tsvn_proc.length()
+         || path.compare(path.length() - tsvn_proc.length(), tsvn_proc.length(), tsvn_proc) != 0){
+        throw std::runtime_error("Path should end with " TSVN_PROC_NAME ".");
+    }
+
+    std::wstring wpath = string_to_wstring(path);
+    if (!PathFileExistsW(wpath.c_str())){
+        throw std::runtime_error(TSVN_PROC_NAME " is not found.");
     }
 
     json11::Json::array args_in_json = param["args"].array_items();
@@ -116,9 +129,9 @@ json11::Json run_tortoise_svn(const json11::Json &param)
         return string_to_wstring(arg.string_value());
     });
 
-    bool result = exec_command(path, args);
+    bool result = exec_command(wpath, args);
     if (!result){
-        throw std::runtime_error("Failed to execute TortoiseProc.exe.");
+        throw std::runtime_error("Failed to execute " TSVN_PROC_NAME ".");
     }
 
     return true;
@@ -147,7 +160,7 @@ json11::Json search_tortoise_svn(const json11::Json &param)
     std::vector<const WCHAR*> additional_path_ptr(additional_path.size() + 1, NULL);
     std::transform(additional_path.begin(), additional_path.end(), additional_path_ptr.begin(),
                    [](const std::vector<WCHAR> &value){ return &value[0]; });
-    WCHAR tsvn_path[MAX_PATH] = L"TortoiseProc.exe";
+    WCHAR tsvn_path[MAX_PATH] = TSVN_PROC_NAME_W;
     if (!PathFindOnPathW(tsvn_path, &additional_path_ptr[0])){
         return false;
     }
@@ -158,7 +171,9 @@ json11::Json search_tortoise_svn(const json11::Json &param)
 json11::Json process_param(const json11::Json &param)
 {
     std::string action = param["action"].string_value();
-    if (action == "tsvn"){
+    if (action == "version"){
+        return VERSION;
+    }else if (action == "tsvn"){
         return run_tortoise_svn(param);
     }else if (action == "search_tsvn"){
         return search_tortoise_svn(param);
@@ -196,6 +211,18 @@ void print_json_failure(std::ostream &out, const std::string &error)
 
 int main(int argc, char *argv[])
 {
+    if (argc == 2){
+        std::string arg(argv[1]);
+        std::transform(arg.begin(), arg.end(), arg.begin(), [](char c){
+            return static_cast<char>(std::tolower(c));
+        });
+
+        if (arg == "-v" || arg == "/v" || arg == "--version"){
+            std::cout << "Version: " << VERSION << std::endl;
+            return 0;
+        }
+    }
+
     set_binary_mode();
 
     try{

@@ -1,6 +1,6 @@
 
 var gOptionValue = (function(){
-    var VERSION = "0.0.6";
+    var VERSION = "1.0.0";
 
     var DEFAULT_VALUE = {
         tortoise_proc_path: "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe",
@@ -43,7 +43,8 @@ var gOptionValue = (function(){
           case "0.0.3":
           case "0.0.4":
           case "0.0.5":
-            // 0.0.6
+          case "0.0.6":
+            // 1.0.0
         }
         value.version = VERSION;
     };
