@@ -1,0 +1,46 @@
+
+require("fileutils")
+require("pathname")
+
+NM_DIR = "../native_messaging"
+TARGET_DIR = "../extension"
+
+task :default => "create_open_tortoise_svn_host"
+
+task :clean => "remove_files"
+
+task "remove_files" do |t|
+  files = [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe", "open_tortoise_svn_host.zip" ]
+  files.each do |file|
+    f = Pathname(file)
+    f.rmtree if f.exist?
+  end
+end
+
+
+task "create_open_tortoise_svn_host" => [ "prepare_files", "compress_files", "copy_files" ]
+
+task "prepare_files" => [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe" ]
+
+file "open_tortoise_svn.json" => "#{NM_DIR}/open_tortoise_svn.json" do |t|
+  FileUtils.cp(t.prerequisites.first, t.name)
+end
+
+file "open_tortoise_svn_host.exe" => "#{NM_DIR}/open_tortoise_svn_host.exe" do |t|
+  FileUtils.cp(t.prerequisites.first, t.name)
+end
+
+task "compress_files" => "open_tortoise_svn_host.zip"
+
+file "open_tortoise_svn_host.zip" => [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe", "install.bat", "main.js", "uninstall.bat" ] do |t|
+  target = Pathname(t.name)
+  target.rmtree if target.exist?
+  system("\"C:/Program Files/7-Zip/7z.exe\" a #{target} #{t.prerequisites.join(' ')}")
+end
+
+task "copy_files" => "#{TARGET_DIR}/open_tortoise_svn_host.zip"
+
+file "#{TARGET_DIR}/open_tortoise_svn_host.zip" => "open_tortoise_svn_host.zip" do |t|
+  FileUtils.cp(t.prerequisites.first, t.name)
+end
+
