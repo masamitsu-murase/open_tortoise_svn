@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "Open TortoiseSVN for Google Chrome™",
-    "version": "1.0.0",
+    "version": "1.0.1",
 
     "description": "Extension to open TortoiseSVN directly.",
     "icons": {
