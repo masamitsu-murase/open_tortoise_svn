@@ -13,7 +13,8 @@
         var body = bodies[0];
         body.addEventListener("click", handleClickEvent, false);
 
-        chrome.extension.sendRequest({ action: "targetUrlList" }, function(response){
+        gChromeDeferred.sendRequest({ action: "targetUrlList" })
+        .next(function(response){
             if (response.ret && (response.target_url_list instanceof Array)){
                 target_url_list = response.target_url_list;
             }
@@ -79,15 +80,17 @@
             callback_type = gCommon.DEFAULT_ACTION;
         }
 
-        chrome.extension.sendRequest({ action: callback_type,
-                                       raw_url: url_data.raw_url,
-                                       url: url_data.url,
-                                       args: callback_args },
-                                     function(response){
-                                         if (!response.ret){
-                                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
-                                         }
-                                     });
+        gChromeDeferred.sendRequest({
+          action: callback_type,
+          raw_url: url_data.raw_url,
+          url: url_data.url,
+          args: callback_args
+        }).next(function(response){
+            if (!response.ret){
+                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+            }
+        });
+
         event.preventDefault();
     };
 

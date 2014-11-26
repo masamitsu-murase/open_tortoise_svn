@@ -23,15 +23,36 @@
                 break;
               case "browser":
                 var args = (request.args || []);
-                ret.ret = openRepobrowser(request.url, args[0]);
-                break;
+                openRepobrowser(request.url, args[0])
+                .next(function(result){
+                    ret.ret = result;
+                    sendResponse(ret);
+                }).error(function(){
+                    ret.ret = false;
+                    sendResponse(ret);
+                });
+                return;  // deferred
               case "log":
                 var args = (request.args || []);
-                ret.ret = openLog(request.url, args[0], args[1]);
-                break;
+                openLog(request.url, args[0], args[1])
+                .next(function(result){
+                    ret.ret = result;
+                    sendResponse(ret);
+                }).error(function(){
+                    ret.ret = false;
+                    sendResponse(ret);
+                });
+                return;  // deferred
               case "blame":
-                ret.ret = openBlame(request.url);
-                break;
+                openBlame(request.url)
+                .next(function(result){
+                    ret.ret = result;
+                    sendResponse(ret);
+                }).error(function(){
+                    ret.ret = false;
+                    sendResponse(ret);
+                });
+                return;  // deferred
               case "open_in_chrome":
                 chrome.tabs.update(sender.tab.id, { url: request.raw_url }, function(){});
                 ret.ret = true;
@@ -74,7 +95,9 @@
         var value = gOptionValue.loadValue();
         var path = value.tortoise_proc_path;
         if (!path){
-            return false;
+            var d = Deferred();
+            setTimeout(function(){ d.fail(false); }, 0);
+            return d;
         }
 
         return tsvn.tsvn(path, args);
@@ -82,7 +105,9 @@
 
     var openRepobrowser = function(url, rev){
         if (!url){
-            return false;
+            var d = new Deferred();
+            setTimeout(function(){ d.fail(false); }, 0);
+            return d;
         }
 
         var args = [ "/command:repobrowser", "/path:" + url ];
@@ -95,7 +120,9 @@
 
     var openLog = function(url, startrev, endrev){
         if (!url){
-            return false;
+            var d = new Deferred();
+            setTimeout(function(){ d.fail(false); }, 0);
+            return d;
         }
 
         var args = [ "/command:log", "/path:" + url ];
@@ -111,7 +138,9 @@
 
     var openBlame = function(url){
         if (!url){
-            return false;
+            var d = new Deferred();
+            setTimeout(function(){ d.fail(false); }, 0);
+            return d;
         }
 
         var args = [ "/command:blame", "/path:" + url ];
@@ -139,7 +168,14 @@
                     url_data = gCommon.parseUrl(info.pageUrl);
                 }
                 if (url_data){
-                    ret = func(url_data.url, (url_data.params.p || url_data.params.r));
+                    func(url_data.url, (url_data.params.p || url_data.params.r))
+                    .next(function(result){
+                        if (!result){
+                            alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                        }
+                    }).error(function(){
+                        alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                    });
                 }
             }catch(e){
                 ret = false;
