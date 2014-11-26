@@ -17,10 +17,10 @@ var gTortoiseSvn = (function(){
                 if (response){
                     if (response.result){
                         ret.result = gCommon.RESULT_SUCCESS;
-                        ret.data = result.data;
+                        ret.data = response.data;
                     }else{
                         ret.result = gCommon.RESULT_FAILURE;
-                        ret.error = result.error;
+                        ret.error = response.error;
                     }
                 }else{
                     ret.result = gCommon.RESULT_INVALID_NATIVE_MESSAGING;
