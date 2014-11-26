@@ -90,9 +90,19 @@
             if (response.result == gCommon.RESULT_SUCCESS){
                 //
             }else if (response.result == gCommon.RESULT_FAILURE){
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                gChromeDeferred.sendRequest({
+                    action: "setWarningInBadge",
+                    show: true
+                }).next(function(response){
+                    alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                });
             }else{
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
+                gChromeDeferred.sendRequest({
+                    action: "setWarningInBadge",
+                    show: true
+                }).next(function(response){
+                    alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
+                });
             }
         });
 

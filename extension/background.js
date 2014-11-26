@@ -21,6 +21,10 @@
                 ret.target_url_list = gOptionValue.loadValue().added_url_list;
                 ret.result = gCommon.RESULT_SUCCESS;
                 break;
+              case "setWarningInBadge":
+                setWarningInBadge(request.show);
+                ret.result = gCommon.RESULT_SUCCESS;
+                break;
               case "browser":
                 var args = (request.args || []);
                 openRepobrowser(request.url, args[0])
@@ -64,6 +68,15 @@
 
         sendResponse(ret);
     });
+
+    var setWarningInBadge = function(show){
+        if (show){
+            chrome.browserAction.setBadgeText({ text: "!" });
+            chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
+        }else{
+            chrome.browserAction.setBadgeText({ text: "" });
+        }
+    };
 
     var extensionAction = function(url){
         if (!url){
@@ -149,6 +162,7 @@
 
     // event handler of icon clicking
     chrome.browserAction.onClicked.addListener(function(tab){
+        setWarningInBadge(false);
         chrome.tabs.create({ url: "options.html" });
     });
 
@@ -176,8 +190,10 @@
                         if (response.result == gCommon.RESULT_SUCCESS){
                             //
                         }else if (response.result == gCommon.RESULT_FAILURE){
+                            setWarningInBadge(true);
                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
                         }else{
+                            setWarningInBadge(true);
                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
                         }
                     }).error(function(){
