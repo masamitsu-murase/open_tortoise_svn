@@ -168,8 +168,8 @@
                 }
                 if (url_data){
                     func(url_data.url, (url_data.params.p || url_data.params.r))
-                    .next(function(result){
-                        if (!result){
+                    .next(function(response){
+                        if (!response){
                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
                         }
 
