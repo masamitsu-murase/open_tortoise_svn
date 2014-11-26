@@ -2,6 +2,10 @@
 var gCommon = (function(){
     var DEFAULT_ACTION = "not_specified";
 
+    var RESULT_SUCCESS = 0;
+    var RESULT_FAILURE = 1;
+    var RESULT_INVALID_NATIVE_MESSAGING = 2;
+
     var parseUrl = function(raw_url){
         if (!raw_url){
             return null;
@@ -47,6 +51,10 @@ var gCommon = (function(){
 
     return {
         DEFAULT_ACTION: DEFAULT_ACTION,
+
+        RESULT_SUCCESS: RESULT_SUCCESS,
+        RESULT_FAILURE: RESULT_FAILURE,
+        RESULT_INVALID_NATIVE_MESSAGING: RESULT_INVALID_NATIVE_MESSAGING,
 
         parseUrl: parseUrl
     };

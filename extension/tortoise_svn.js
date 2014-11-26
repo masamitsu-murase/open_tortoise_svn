@@ -9,24 +9,28 @@ var gTortoiseSvn = (function(){
             args: args
         };
 
+        var d = new Deferred();
         chrome.runtime.sendNativeMessage(NATIVE_MESSAGING_HOST, obj, function(response){
-            if (chrome.runtime.lastError){
-                // console.log("ERROR: " + chrome.runtime.lastError.message + ":" + response);
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
-                return;
-            }
-
-            // console.log("Messaging host: ", JSON.stringify(response));
-            if (response && response.result){
-                return;
-            }
-
-            if (response){
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn") + "\n" + response.error);
-            }
+            var error = chrome.runtime.lastError;
+            Deferred.next(function(){
+                var ret = {};
+                if (response){
+                    if (response.result){
+                        ret.result = gCommon.RESULT_SUCCESS;
+                        ret.data = result.data;
+                    }else{
+                        ret.result = gCommon.RESULT_FAILURE;
+                        ret.error = result.error;
+                    }
+                }else{
+                    ret.result = gCommon.RESULT_INVALID_NATIVE_MESSAGING;
+                    ret.error = error;
+                }
+                d.call(ret);
+            });
         });
 
-        return true;
+        return d;
     };
 
     return {
