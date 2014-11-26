@@ -67,7 +67,8 @@
                     callback_args = match_data[2].split(",");
                 }
             }
-        }else{
+        }
+        if (!callback_type){
             // If tsvn attribute does not exist, URL parameter "p" or "r" is used as a revision.
             if (url_data.params.r){
                 callback_args = [ url_data.params.r ];
