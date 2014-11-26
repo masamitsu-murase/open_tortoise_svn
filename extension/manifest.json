@@ -26,7 +26,7 @@
         {
             "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
             "all_frames": true,
-            "js": [ "handle_click.js", "common.js" ],
+            "js": [ "jsdeferred.nodoc.js", "chrome_jsdeferred.js", "handle_click.js", "common.js" ],
             "run_at": "document_end"
         }
      ],

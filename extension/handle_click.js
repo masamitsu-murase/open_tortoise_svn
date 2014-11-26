@@ -15,7 +15,7 @@
 
         gChromeDeferred.sendRequest({ action: "targetUrlList" })
         .next(function(response){
-            if (response.ret && (response.target_url_list instanceof Array)){
+            if (response.result == gCommon.RESULT_SUCCESS && (response.target_url_list instanceof Array)){
                 target_url_list = response.target_url_list;
             }
         });
@@ -86,8 +86,12 @@
           url: url_data.url,
           args: callback_args
         }).next(function(response){
-            if (!response.ret){
+            if (response.result == gCommon.RESULT_SUCCESS){
+                //
+            }else if (response.result == gCommon.RESULT_FAILURE){
                 alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+            }else{
+                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
             }
         });
 

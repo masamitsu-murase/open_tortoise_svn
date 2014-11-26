@@ -3,7 +3,7 @@
     var tsvn = gTortoiseSvn;
 
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
-        var ret = { ret: false };
+        var ret = { result: gCommon.RESULT_FAILURE };
 
         try{
             var action = request.action;
@@ -19,47 +19,47 @@
             switch(action){
               case "targetUrlList":
                 ret.target_url_list = gOptionValue.loadValue().added_url_list;
-                ret.ret = true;
+                ret.result = gCommon.RESULT_SUCCESS;
                 break;
               case "browser":
                 var args = (request.args || []);
                 openRepobrowser(request.url, args[0])
                 .next(function(result){
-                    ret.ret = result;
-                    sendResponse(ret);
+                    sendResponse(result);
                 }).error(function(){
-                    ret.ret = false;
-                    sendResponse(ret);
+                    sendResponse({
+                        result: gCommon.INVALID_TSVN_NATIVE_MESSAGING_HOST
+                    });
                 });
                 return;  // deferred
               case "log":
                 var args = (request.args || []);
                 openLog(request.url, args[0], args[1])
                 .next(function(result){
-                    ret.ret = result;
-                    sendResponse(ret);
+                    sendResponse(result);
                 }).error(function(){
-                    ret.ret = false;
-                    sendResponse(ret);
+                    sendResponse({
+                        result: gCommon.INVALID_TSVN_NATIVE_MESSAGING_HOST
+                    });
                 });
                 return;  // deferred
               case "blame":
                 openBlame(request.url)
                 .next(function(result){
-                    ret.ret = result;
-                    sendResponse(ret);
+                    sendResponse(result);
                 }).error(function(){
-                    ret.ret = false;
-                    sendResponse(ret);
+                    sendResponse({
+                        result: gCommon.INVALID_TSVN_NATIVE_MESSAGING_HOST
+                    });
                 });
                 return;  // deferred
               case "open_in_chrome":
                 chrome.tabs.update(sender.tab.id, { url: request.raw_url }, function(){});
-                ret.ret = true;
+                ret.result = gCommon.RESULT_SUCCESS;
                 break;
             }
         }catch(e){
-            ret.ret = false;
+            ret.result = gCommon.RESULT_FAILURE;
         }
 
         sendResponse(ret);
@@ -96,7 +96,7 @@
         var path = value.tortoise_proc_path;
         if (!path){
             var d = Deferred();
-            setTimeout(function(){ d.fail(false); }, 0);
+            Deferred.next(function(){ d.fail(false); });
             return d;
         }
 
@@ -106,7 +106,7 @@
     var openRepobrowser = function(url, rev){
         if (!url){
             var d = new Deferred();
-            setTimeout(function(){ d.fail(false); }, 0);
+            Deferred.next(function(){ d.fail(false); });
             return d;
         }
 
@@ -121,7 +121,7 @@
     var openLog = function(url, startrev, endrev){
         if (!url){
             var d = new Deferred();
-            setTimeout(function(){ d.fail(false); }, 0);
+            Deferred.next(function(){ d.fail(false); });
             return d;
         }
 
@@ -139,7 +139,7 @@
     var openBlame = function(url){
         if (!url){
             var d = new Deferred();
-            setTimeout(function(){ d.fail(false); }, 0);
+            Deferred.next(function(){ d.fail(false); });
             return d;
         }
 
@@ -159,7 +159,6 @@
     });
     var menu_callback_gen = function(func){
         return function(info, tab){
-            var ret = false;
             var url_data = null;
             try{
                 if (info.linkUrl){
@@ -173,16 +172,22 @@
                         if (!result){
                             alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
                         }
+
+                        if (response.result == gCommon.RESULT_SUCCESS){
+                            //
+                        }else if (response.result == gCommon.RESULT_FAILURE){
+                            alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
+                        }else{
+                            alert(chrome.i18n.getMessage("cannot_open_tortoisesvn_host"));
+                        }
                     }).error(function(){
                         alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
                     });
+                    return;  // deferred
                 }
             }catch(e){
-                ret = false;
             }
-            if (!ret){
-                alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
-            }
+            alert(chrome.i18n.getMessage("cannot_open_tortoisesvn"));
         };
     };
     chrome.contextMenus.create({

@@ -12,7 +12,22 @@ var gTortoiseSvn = (function(){
         var d = new Deferred();
         chrome.runtime.sendNativeMessage(NATIVE_MESSAGING_HOST, obj, function(response){
             var error = chrome.runtime.lastError;
-            setTimeout(function(){ d.call({ response: response, error: error }); }, 0);
+            Deferred.next(function(){
+                var ret = {};
+                if (response){
+                    if (response.result){
+                        ret.result = gCommon.RESULT_SUCCESS;
+                        ret.data = result.data;
+                    }else{
+                        ret.result = gCommon.RESULT_FAILURE;
+                        ret.error = result.error;
+                    }
+                }else{
+                    ret.result = gCommon.RESULT_INVALID_NATIVE_MESSAGING;
+                    ret.error = error;
+                }
+                d.call(ret);
+            });
         });
 
         return d;
