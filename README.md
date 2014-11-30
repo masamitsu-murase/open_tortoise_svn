@@ -5,10 +5,14 @@
 This extension enables you to open [TortoiseSVN](http://tortoisesvn.tigris.org/) directly.  
 When you click the link to one of the registered URLs, TortoiseSVN Repository Browser is opened automatically.
 
-This extension also provide some context menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer.
+This extension also provides some context menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer.
 
 This extension is a Google Chrome™ version of [Open TortoiseSVN for Firefox](https://addons.mozilla.org/en/firefox/addon/open-tortoisesvn/).
 
 ## For Developers
 
 This extension uses [Native Messaging](https://developer.chrome.com/extensions/messaging#native-messaging).
+
+[json11](https://github.com/dropbox/json11) is used to parse/dump JSON data.  
+Thank you, dropbox!
+
