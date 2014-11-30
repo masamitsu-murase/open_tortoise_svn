@@ -20,7 +20,7 @@ In the case of Open TortoiseSVN extension, users have to install [open_tortoise_
 
 * Place `open_tortoise_svn_host.exe` and `open_tortoise_svn.json` in `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn`.
 * Create a registry key `HKCU\Software\Google\Chrome\NativeMessagingHosts\masamitsu.murase.open_tortoise_svn\`, whose value is `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn\open_tortoise_svn.json`.  
-  Of course, the value must has an expanded absolute path, i.e. %LOCALAPPDATA% should be replaced with the real path.
+  Of course, the value must has an expanded absolute path, i.e. `%LOCALAPPDATA%` should be replaced with the real path.
 
 This registry key belongs to `HKEY_CURRENT_USER`, so it can be created without administrator privileges.
 
