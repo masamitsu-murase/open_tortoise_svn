@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Open TortoiseSVN</title>
+
+  <style type="text/css">
+    html {
+      margin: 1em;
+      padding: 1em;
+    }
+    body {
+      position: relative;
+      margin: 1em;
+      padding: 1em;
+    }
+    li {
+      margin: 3px;
+    }
+  </style>
+</head>
+<body>
+<article>
+<section>
+  <h1>Open TortoiseSVN テストページ</h1>
+  <section>
+    <h1>Spec</h1>
+    <ul>
+      <li><a href="./js/common/spec.html">Common</a></li>
+      <li><a href="./js/background/spec.html">Background</a></li>
+      <li><a href="./js/content_script/spec.html">Content Script</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h1>Example</h1>
+
+    <section>
+      <h1>Prepare</h1>
+      <ol>
+        <li>Set &quot;Path to TortoiseProc.exe&quot;.</li>
+        <li>Add a URL &quot;<code>https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk</code>&quot;.</li>
+        <li>Set default action to &quot;Repository Browser&quot;.</li>
+        <li>Add extension actions.
+          <ul>
+            <li>&quot;<code>*.md</code>&quot; as &quot;Log&quot;</li>
+            <li>&quot;<code>*.json, *.js</code>&quot; as &quot;Blame&quot;</li>
+            <li>&quot;<code>*.cpp</code>&quot; as &quot;Open in Chrome&quot;</li>
+          </ul>
+        </li>
+        <li>Check &quot;A help tip&quot;.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h1>Check URL and extension action</h1>
+      <ul>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk">/trunk</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/README.md">/trunk/README.md</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/extension/manifest.json">/trunk/extension/manifest.json</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/native_messaging/open_tortoise_svn_host.cpp">/trunk/native_messaging/open_tortoise_svn_host.cpp</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://www.google.co.jp/">https://www.google.co.jp/</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Check attribute</h1>
+      <ul>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk" data-tsvn-info="tsvn[log]">/trunk, tsvn[log]</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk" data-tsvn-info="tsvn[log][2]">/trunk, tsvn[log][2]</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk" data-tsvn-info="tsvn[log][10,8]">/trunk, tsvn[log][10,8]</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/README.md" data-tsvn-info="tsvn[blame]">/trunk/README.md, tsvn[blame]</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/extension/manifest.json" data-tsvn-info="tsvn[open_in_browser]">/trunk/extension/manifest.json, tsvn[open_in_browser]</a></li>
+        <li><a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome.git/trunk/native_messaging/open_tortoise_svn_host.cpp" data-tsvn-info="tsvn[browser]">/trunk/native_messaging/open_tortoise_svn_host.cpp, tsvn[browser]</a></li>
+      </ul>
+    </section>
+  </section>
+</section>
+</article>
+</body>
+</html>

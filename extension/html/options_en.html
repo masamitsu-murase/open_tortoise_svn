@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Open TortoiseSVN Options</title>
+  <link rel="stylesheet" href="../css/options.css" type="text/css" />
+  <script type="text/javascript" src="../js/common/misc.js"></script>
+  <script type="text/javascript" src="../js/common/action_matcher.js"></script>
+  <script type="text/javascript" src="../js/common/misc_settings.js"></script>
+  <script type="text/javascript" src="../js/common/error.js"></script>
+  <script type="text/javascript" src="../js/background/tortoise_svn_opener.js"></script>
+  <script type="text/javascript" src="../js/options/options.js"></script>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li class="selected">General</li>
+    <li>Action</li>
+    <li>About Open TortoiseSVN</li>
+  </ul>
+</nav>
+
+<article>
+  <section class="selected">
+    <h1>General</h1>
+
+    <section>
+      <h1>Installation</h1>
+      <p>Install the following tools.</p>
+      <ol>
+        <li>Download <a href="http://tortoisesvn.net/">TortoiseSVN</a> from <a href="http://tortoisesvn.net/downloads.html">Downloads page</a>, then install it.<br />
+          If you have already installed it, skip this step.</li>
+        <li>Download <a href="../open_tortoise_svn_host.zip">open_tortoise_svn_host.zip</a> and extract it.<br />
+          Run <code>install.bat</code> to install it.<br />
+          This is a bridge tool between Chrome and TortoiseSVN.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h1>Path to TortoiseProc.exe</h1>
+      <p>Copy the path to <strong>TortoiseProc.exe</strong> and paste it in the following field.</p>
+      <p><input id="tortoise_proc_path" type="text" maxlength="500" placeholder="e.g. C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" /></p>
+    </section>
+
+    <section>
+      <h1>URL list of Subversion repositories</h1>
+      <p>To add URLs of Subversion repositories.</p>
+      <p>When clicking on one of the registered URLs, TortoiseSVN opens.<br />
+        e.g. If you register the URL "http://svn_repos/" in the following field and save, everytime you will click on a link directing to "http://svn_repos/dir" the path will be opened in TortoiseSVN.</p>
+      <p><input id="added_url" type="text" maxlength="500" placeholder="e.g. http://svn.apache.org/repos/asf/subversion" /><input id="add_url_button" type="button" value="Add" /></p>
+      <ul id="added_url_list"></ul>
+    </section>
+
+    <p><input class="save_button" type="button" value="Save" /></p>
+  </section>
+
+  <section>
+    <h1>Action</h1>
+
+    <section>
+      <h1>TortoiseSVN action</h1>
+      <p>Select a default action for TortoiseSVN in the following menu.</p>
+      <p class="option_data">Action:
+        <select id="tortoise_svn_action">
+          <option value="browser">Repo-browser</option>
+          <option value="log">Log Viewer</option>
+          <option value="blame">Blame Viewer</option>
+          <option value="open_in_browser">Open in Google Chrome</option>
+        </select>
+      </p>
+    </section>
+
+    <section>
+      <h1>TortoiseSVN action for each file extension</h1>
+      <p>Select a default action for each file extension.</p>
+      <p>E.g. If you set the default action for <code>*.cpp</code> extension as "Log Viewer", everytime you will click on a link to <code>http://svn_repos/path/sample.cpp</code>, the link will be opened in "Log Viewer".</p>
+      <dl class="suffix_action_control">
+        <dt><label for="suffix_text">Suffix:</label></dt>
+        <dd><input type="text" placeholder="e.g. *.cpp, *.h" id="suffix_text" /></dd>
+        <dt><label for="suffix_action">Action:</label></dt>
+        <dd>
+          <select id="suffix_action">
+            <option value="browser">Repo-browser</option>
+            <option value="log">Log Viewer</option>
+            <option value="blame">Blame Viewer</option>
+            <option value="open_in_browser">Open in Google Chrome</option>
+          </select>
+        </dd>
+        <dd><input type="button" value="Add" id="suffix_action_add_button" /></dd>
+      </dl>
+      <table id="suffix_action_list">
+        <caption>Action for each extension</caption>
+        <thead>
+          <tr><th>Suffix</th><th>Action</th><th><span style="visibility: hidden;">Remove</span></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h1>Help tip</h1>
+      <p><input id="icon_indicator" type="checkbox" /><label for="icon_indicator">A help tip will be displayed when the mouse cursor is on the link to the registered URL.</label></p>
+    </section>
+
+    <p><input class="save_button" type="button" value="Save" /></p>
+  </section>
+
+  <section>
+    <h1>About Open TortoiseSVN</h1>
+
+    <section>
+      <h1>Overview</h1>
+      <p>This extension enables you to open a file directly in <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> instead of in the browser.<br />
+        When you click on a link to one of the registered URLs, TortoiseSVN Repository Browser will open.</p>
+      <p>This extension also displays some contextual menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer when right clicking on a URL.</p>
+    </section>
+
+    <section>
+      <h1>For Developers</h1>
+      <p>If you modify your HTML source and add <code>data-tsvn-info</code> attribute to &quot;a&quot; tag, you can specify the default action of TortoiseSVN as follows.</p>
+      <p>You can also use <code>rel</code> attribute in HTML4.1 instead of <code>data-tsvn-info</code> attribute.</p>
+      <ul>
+        <li>To open TortoiseSVN Log Viewer
+          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+        </li>
+        <li>To open TortoiseSVN Log Viewer of specific revision
+          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log][12,8]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+        </li>
+        <li>To open TortoiseSVN Blame Viewer
+          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[blame]&quot;&gt;Open Blame Viewer&lt;/a&gt;</pre>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Versions</h1>
+      <dl>
+        <dt>1.0.1</dt>
+        <dd>Shows a warning in the icon of this extensionwhen TortoiseSVN is not correctly installed.</dd>
+        <dt>1.0.0</dt>
+        <dd>Use of Native Messaging</dd>
+        <dt>0.0.6</dt>
+        <dd>Change of the manifest version.</dd>
+        <dt>0.0.5</dt>
+        <dd>Supports the pages loaded in iframe.</dd>
+        <dt>0.0.3, 0.0.4</dt>
+        <dd>Adds action for each extension.</dd>
+        <dt>0.0.2</dt>
+        <dd>Adds default TortoiseSVN action.</dd>
+        <dt>0.0.1</dt>
+        <dd>Release of the initial version</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h1>License</h1>
+      <p>You can use this extension under MIT License.<br />
+        Please refer to the <a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/blob/master/README.md">README</a> file for the detail.</p>
+      <p>If you would like to get the source code of this extension, you can download it from my <a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome">GitHub page</a>.</p>
+    </section>
+
+    <section>
+      <h1>Author</h1>
+      <dl>
+        <dt>Name</dt>
+        <dd>Masamitsu MURASE</dd>
+        <dt>Location</dt>
+        <dd>Kyoto, Japan</dd>
+        <dt>Homepage</dt>
+        <dd><a href="http://masamitsu-murase.blogspot.com/">Blog (Written in Japanese)</a></dd>
+        <dt>Repository</dt>
+        <dd><a href="https://github.com/masamitsu-murase">GitHub</a></dd>
+        <dt>Contact</dt>
+        <dd>If you find some bugs or have some requests, please let me know on my <a href="https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/issues">GitHub page</a>.</dd>
+      </dl>
+    </section>
+  </section>
+</article>
+</body>
+</html>
