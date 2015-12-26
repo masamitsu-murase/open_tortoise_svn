@@ -2,36 +2,68 @@
     "manifest_version": 2,
 
     "name": "Open TortoiseSVN for Google Chrome™",
-    "version": "1.0.1",
+    "version": "2.0.0",
 
     "description": "Extension to open TortoiseSVN directly.",
     "icons": {
-        "32": "icon32.png",
-        "48": "icon48.png",
-        "128": "icon128.png"
+        "32": "icons/icon32.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
     },
 
     "default_locale": "en",
 
-    "browser_action": {
-        "default_icon": "icon32.png",
-        "default_title": "Open TortoiseSVN"
+    "background": {
+        "scripts": [
+            "js/common/misc.js",
+            "js/common/action_matcher.js",
+            "js/common/misc_settings.js",
+            "js/common/error.js",
+            "js/common/data_migrator.js",
+            "js/common/svn_url.js",
+            "js/background/badge_manager.js",
+            "js/background/context_menu.js",
+            "js/background/message_receiver.js",
+            "js/background/tortoise_svn_opener.js",
+            "js/background/background.js"
+        ],
+        "persistent": false
     },
 
-    "background": {
-        "page": "background.html"
+    "browser_action": {
+        "default_icon": "icons/icon32.png",
+        "default_title": "Open TortoiseSVN"
     },
 
     "content_scripts": [
         {
-            "matches": [ "file://*/*", "http://*/*", "https://*/*" ],
-            "all_frames": true,
-            "js": [ "jsdeferred.nodoc.js", "chrome_jsdeferred.js", "handle_click.js", "common.js" ],
-            "run_at": "document_end"
+            "matches": [ "http://*/*", "https://*/*", "file:///*/*" ],
+            "css": [ "css/page.css" ],
+            "js": [
+                "js/common/misc.js",
+                "js/common/action_matcher.js",
+                "js/common/misc_settings.js",
+                "js/common/error.js",
+                "js/common/svn_url.js",
+                "js/content_script/a_tag_parser.js",
+                "js/content_script/icon.js",
+                "js/content_script/icon_decorator.js",
+                "js/content_script/message_sender.js",
+                "js/content_script/proxy.js",
+                "js/content_script/content_script.js"
+            ]
         }
-     ],
+    ],
 
-    "options_page": "options.html",
+    "options_ui": {
+        "page": "html/options.html",
+"open_in_tab": true,
+        "chrome_style": true
+    },
 
-    "permissions": [ "tabs", "contextMenus", "nativeMessaging" ]
+    "permissions": [ "tabs", "contextMenus", "nativeMessaging", "storage", "unlimitedStorage" ],
+
+    "web_accessible_resources": [
+        "icons/icon32.png"
+    ]
 }

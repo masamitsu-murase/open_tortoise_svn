@@ -1,21 +1,36 @@
 {
-    "cannot_open_tortoisesvn": {
-        "message": "TortoiseSVNを開けません。URLや設定を確認してください。"
+    "option_page": {
+        "message": "options_ja.html"
     },
-    "cannot_open_tortoisesvn_host": {
-        "message": "'open_tortoise_svn_host.exe' をインストールしてください。オプションページから入手できます。"
+
+    "browser": {
+        "message": "リポジトリブラウザ"
     },
-    "open_reposbrowser": {
+    "blame": {
+        "message": "注釈履歴"
+    },
+    "log": {
+        "message": "ログ"
+    },
+    "open_in_browser": {
+        "message": "Google Chrome で開く"
+    },
+
+    "context_menu_browser": {
         "message": "リポジトリブラウザを開く"
     },
-    "open_log": {
+    "context_menu_log": {
         "message": "ログを開く"
     },
-    "open_blame": {
+    "context_menu_blame": {
         "message": "注釈履歴を開く"
     },
-    "open_in_chrome": {
+    "context_menu_open_in_browser": {
         "message": "Google Chromeで開く"
+    },
+
+    "native_messaging_host_error": {
+        "message": "open_tortoise_svn_host.exe が適切にインストールされているか確認してください。"
     },
 
     "Add": {

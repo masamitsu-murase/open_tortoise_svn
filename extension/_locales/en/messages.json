@@ -1,21 +1,36 @@
 {
-    "cannot_open_tortoisesvn": {
-        "message": "Cannot open TortoiseSVN. Please check URL and settings."
+    "option_page": {
+        "message": "options_en.html"
     },
-    "cannot_open_tortoisesvn_host": {
-        "message": "Please install 'open_tortoise_svn_host.exe'. See option page to get it."
+
+    "browser": {
+        "message": "Repo-browser"
     },
-    "open_reposbrowser": {
-        "message": "Open Repository Browser"
+    "blame": {
+        "message": "Blame Viewer"
     },
-    "open_log": {
+    "log": {
+        "message": "Log Viewer"
+    },
+    "open_in_browser": {
+        "message": "Open in Google Chrome"
+    },
+
+    "context_menu_browser": {
+        "message": "Open Repo-browser"
+    },
+    "context_menu_log": {
         "message": "Open Log Viewer"
     },
-    "open_blame": {
+    "context_menu_blame": {
         "message": "Open Blame Viewer"
     },
-    "open_in_chrome": {
+    "context_menu_open_in_browser": {
         "message": "Open in Google Chrome"
+    },
+
+    "native_messaging_host_error": {
+        "message": "Please make sure that open_tortoise_svn_host.exe is installed properly."
     },
 
     "Add": {
