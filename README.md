@@ -1,4 +1,4 @@
-# ![Open TortoiseSVN logo](https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/raw/master/extension/icon128.png) Open TortoiseSVN for Google Chrome™
+# ![Open TortoiseSVN logo](https://raw.githubusercontent.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/master/extension/icons/icon128.png) Open TortoiseSVN for Google Chrome™
 
 ## Overview
 
