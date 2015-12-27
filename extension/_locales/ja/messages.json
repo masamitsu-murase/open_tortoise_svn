@@ -38,5 +38,15 @@
     },
     "Remove": {
         "message": "削除"
+    },
+
+    "icon_path_browser": {
+        "message": "images/ja/tooltip_repobrowser.png"
+    },
+    "icon_path_blame": {
+        "message": "images/ja/tooltip_blame.png"
+    },
+    "icon_path_log": {
+        "message": "images/ja/tooltip_log.png"
     }
 }
