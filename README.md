@@ -2,10 +2,10 @@
 
 ## Overview
 
-This extension enables you to open [TortoiseSVN](http://tortoisesvn.tigris.org/) directly.  
-When you click the link to one of the registered URLs, TortoiseSVN Repository Browser is opened automatically.
+This extension enables you to open a file directly in [TortoiseSVN](http://tortoisesvn.tigris.org/) instead of in the browser.  
+When you click on a link to one of the registered URLs, TortoiseSVN Repository Browser will open.
 
-This extension also provides some context menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer.
+This extension also displays some contextual menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer when right clicking on a URL.
 
 This extension is a Google Chrome™ version of [Open TortoiseSVN for Firefox](https://addons.mozilla.org/en/firefox/addon/open-tortoisesvn/).
 
