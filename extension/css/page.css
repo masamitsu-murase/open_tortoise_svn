@@ -1,42 +1,43 @@
 
 div.open_tortoise_svn_icon
 {
-   position: fixed;
-   display: block;
-   padding: 0px 0px 0px 24px;
-   margin: 0px;
-   border: 2px solid rgba(0, 0, 0, 0.95);
-   border-radius: 2px;
+   position: fixed !important;
+   display: block !important;
+   padding: 0px !important;
+   margin: 0px !important;
+   border: 0px solid rgba(0, 0, 0, 1) !important;
+   border-radius: 0px !important;
 
-   width: auto;
-   height: 22px;
-   background-image: url('chrome-extension://__MSG_@@extension_id__/icons/icon32.png');
-   background-repeat: no-repeat;
-   background-position: left center;
-   background-color: rgba(255, 255, 255, 0.95);
-   background-size: auto 22px;
+   width: auto !important;
+   height: 24px !important;
+   background-color: transparent !important;
 
-   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4) !important;
 
-   transition: opacity 400ms;
-   opacity: 1;
+   transition: opacity 400ms !important;
+   opacity: 1 !important;
+
+   z-index: 10000 !important;
+}
+
+div.open_tortoise_svn_icon, div.open_tortoise_svn_icon *
+{
+   box-sizing: content-box !important;
 }
 
 div.open_tortoise_svn_icon.open_tortoise_svn_icon_fadeout
 {
-   opacity: 0;
+   opacity: 0 !important;
 }
 
-div.open_tortoise_svn_icon > span
+div.open_tortoise_svn_icon > img
 {
-   display: inline-block;
+   display: inline-block !important;
 
-   padding: 0px 2px;
-   margin: 0px;
-   line-height: 22px;
-   vertical-align: middle;
-   font-size: 14px;
-   background-color: rgba(0, 0, 0, 0.95);
-   color: #FFF;
+   padding: 0px !important;
+   margin: 0px !important;
+   border: 0px solid rgba(0, 0, 0, 1) !important;
+   border-radius: 0px !important;
+   background-color: transparent !important;
 }
 

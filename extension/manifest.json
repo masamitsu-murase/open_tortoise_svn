@@ -57,13 +57,19 @@
 
     "options_ui": {
         "page": "html/options.html",
-"open_in_tab": true,
+        "open_in_tab": true,
         "chrome_style": true
     },
 
     "permissions": [ "tabs", "contextMenus", "nativeMessaging", "storage", "unlimitedStorage" ],
 
     "web_accessible_resources": [
-        "icons/icon32.png"
+        "images/en/tooltip_repobrowser.png",
+        "images/en/tooltip_blame.png",
+        "images/en/tooltip_log.png",
+
+        "images/ja/tooltip_repobrowser.png",
+        "images/ja/tooltip_blame.png",
+        "images/ja/tooltip_log.png"
     ]
 }

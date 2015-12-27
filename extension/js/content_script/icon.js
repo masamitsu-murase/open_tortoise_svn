@@ -5,8 +5,8 @@ if (!OpenTsvn) OpenTsvn = {};
     "use strict";
 
     const ICON_CLASS = "open_tortoise_svn_icon";
-    const ICON_HEIGHT = 22;
-    const ICON_BORDER = 2;
+    const ICON_HEIGHT = 24;
+    const ICON_BORDER = 0;
     const ICON_MARGIN = 2;
 
     const FADE_OUT_TIME_MSEC = 400;
@@ -21,9 +21,9 @@ if (!OpenTsvn) OpenTsvn = {};
             var root = document.body;
             var div = document.createElement("div");
             div.classList.add(ICON_CLASS);
-            var span = document.createElement("span");
-            span.appendChild(document.createTextNode(chrome.i18n.getMessage(type)));
-            div.appendChild(span);
+            var img = document.createElement("img");
+            img.src = chrome.runtime.getURL(chrome.i18n.getMessage(`icon_path_${type}`));
+            div.appendChild(img);
             root.appendChild(div);
 
             this[div_sym] = div;
