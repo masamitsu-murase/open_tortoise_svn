@@ -5,7 +5,7 @@ if (!OpenTsvn) OpenTsvn = {};
     "use strict";
 
     const ICON_CLASS = "open_tortoise_svn_icon";
-    const ICON_HEIGHT = 24;
+    const ICON_HEIGHT = 30;
     const ICON_BORDER = 0;
     const ICON_MARGIN = 2;
 

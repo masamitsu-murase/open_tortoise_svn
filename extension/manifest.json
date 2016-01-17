@@ -64,12 +64,12 @@
     "permissions": [ "tabs", "contextMenus", "nativeMessaging", "storage", "unlimitedStorage" ],
 
     "web_accessible_resources": [
-        "images/en/tooltip_repobrowser.png",
-        "images/en/tooltip_blame.png",
-        "images/en/tooltip_log.png",
+        "images/en/tooltip_repobrowser.svg",
+        "images/en/tooltip_blame.svg",
+        "images/en/tooltip_log.svg",
 
-        "images/ja/tooltip_repobrowser.png",
-        "images/ja/tooltip_blame.png",
-        "images/ja/tooltip_log.png"
+        "images/ja/tooltip_repobrowser.svg",
+        "images/ja/tooltip_blame.svg",
+        "images/ja/tooltip_log.svg"
     ]
 }

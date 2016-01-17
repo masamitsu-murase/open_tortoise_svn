@@ -41,12 +41,12 @@
     },
 
     "icon_path_browser": {
-        "message": "images/en/tooltip_repobrowser.png"
+        "message": "images/en/tooltip_repobrowser.svg"
     },
     "icon_path_blame": {
-        "message": "images/en/tooltip_blame.png"
+        "message": "images/en/tooltip_blame.svg"
     },
     "icon_path_log": {
-        "message": "images/en/tooltip_log.png"
+        "message": "images/en/tooltip_log.svg"
     }
 }
