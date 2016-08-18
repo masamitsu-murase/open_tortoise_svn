@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <title>Spec: Content Script</title>
 
-  <script src="../../lib/jasmine-2.4.1/jasmine.js"></script>
-  <script src="../../lib/jasmine-2.4.1/jasmine-html.js"></script>
-  <script src="../../lib/jasmine-2.4.1/boot.js"></script>
-  <script src="../../lib/jasmine-2.4.1/console.js"></script>
-  <link rel="stylesheet" href="../../lib/jasmine-2.4.1/jasmine.css" />
-  <link rel="shortcut icon" type="image/png" href="../../lib/jasmine-2.4.1/jasmine_favicon.png" />
+  <script src="../../lib/jasmine/jasmine.js"></script>
+  <script src="../../lib/jasmine/jasmine-html.js"></script>
+  <script src="../../lib/jasmine/boot.js"></script>
+  <script src="../../lib/jasmine/console.js"></script>
+  <link rel="stylesheet" href="../../lib/jasmine/jasmine.css" />
+  <link rel="shortcut icon" type="image/png" href="../../lib/jasmine/jasmine_favicon.png" />
 
   <!-- tested files -->
   <script src="../../../extension/js/common/misc.js"></script>
+  <script src="../../../extension/js/common/error.js"></script>
   <script src="../../../extension/js/background/tortoise_svn_opener.js"></script>
   <script src="../../../extension/js/background/badge_manager.js"></script>
   <script src="../../../extension/js/content_script/a_tag_parser.js"></script>
@@ -22,6 +23,9 @@
   <!-- spec -->
   <script src="./a_tag_parser_spec.js"></script>
   <script src="./proxy_spec.js"></script>
+  <script src="./icon_spec.js"></script>
+  <script src="./icon_decorator_spec.js"></script>
+  <script src="./message_sender_spec.js"></script>
 </head>
 <body>
 </body>
