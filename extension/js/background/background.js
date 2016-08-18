@@ -8,12 +8,19 @@ if (!OpenTsvn) OpenTsvn = {};
     var context_menu = new ctx.ContextMenu(opener);
     context_menu.registerHandler();
 
-    chrome.runtime.onInstalled.addListener(function() {
+    var onInstalledCallback = function() {
         context_menu.createContextMenu();
 
         var data_migrator = new ctx.DataMigrator();
         data_migrator.migrate();
-    });
+    };
+
+    if (chrome.runtime.onInstalled) {
+        chrome.runtime.onInstalled.addListener(onInstalledCallback);
+    } else {
+        // Firefox 50 does not support onInstalled.
+        onInstalledCallback();
+    }
 
     var badge_manager = new ctx.BadgeManager();
 
