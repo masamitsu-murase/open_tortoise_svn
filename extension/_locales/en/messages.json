@@ -13,7 +13,7 @@
         "message": "Log Viewer"
     },
     "open_in_browser": {
-        "message": "Open in Google Chrome"
+        "message": "Open in Firefox"
     },
 
     "context_menu_browser": {
@@ -26,7 +26,7 @@
         "message": "Open Blame Viewer"
     },
     "context_menu_open_in_browser": {
-        "message": "Open in Google Chrome"
+        "message": "Open in Firefox"
     },
 
     "native_messaging_host_error": {

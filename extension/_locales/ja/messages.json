@@ -13,7 +13,7 @@
         "message": "ログ"
     },
     "open_in_browser": {
-        "message": "Google Chrome で開く"
+        "message": "Firefox で開く"
     },
 
     "context_menu_browser": {
@@ -26,7 +26,7 @@
         "message": "注釈履歴を開く"
     },
     "context_menu_open_in_browser": {
-        "message": "Google Chromeで開く"
+        "message": "Firefoxで開く"
     },
 
     "native_messaging_host_error": {
