@@ -4,16 +4,14 @@ require("pathname")
 
 INSTALLER_HEADER = <<'EOS'
 @if (0)==(0) echo off
-cscript //E:JScript //Nologo "%~f0" install
-pause
+wscript //E:JScript //Nologo "%~f0" install
 exit
 @end
 EOS
 
 UNINSTALLER_HEADER = <<'EOS'
 @if (0)==(0) echo off
-cscript //E:JScript //Nologo "%~f0" uninstall
-pause
+wscript //E:JScript //Nologo "%~f0" uninstall
 exit
 @end
 EOS
@@ -32,17 +30,8 @@ def create_install_bat(exe_data, json_data)
   File.open(INSTALL_BAT, "w") do |file|
     file.puts INSTALLER_HEADER
 
-    file.puts "var EXE_DATA = ["
-    exe_data.each_byte.each_slice(16) do |list|
-      file.puts(list.map{ |i| "0x" + i.to_s(16).rjust(2, "0") }.join(", ") + ",")
-    end
-    file.puts "null ];"
-
-    file.puts "var JSON_DATA = ["
-    json_data.each_byte.each_slice(16) do |list|
-      file.puts(list.map{ |i| "0x" + i.to_s(16).rjust(2, "0") }.join(", ") + ",")
-    end
-    file.puts "null ];"
+    file.puts("var EXE_DATA = '" + exe_data.unpack("H*")[0] + "';")
+    file.puts("var JSON_DATA = '" + json_data.unpack("H*")[0] + "';")
 
     file.puts(File.open(MAIN_JS, "r", &:read))
   end
@@ -51,8 +40,8 @@ end
 def create_uninstall_bat
   File.open(UNINSTALL_BAT, "w") do |file|
     file.puts UNINSTALLER_HEADER
-    file.puts "var EXE_DATA = [ null ];"
-    file.puts "var JSON_DATA = [ null ];"
+    file.puts "var EXE_DATA = '';"
+    file.puts "var JSON_DATA = '';"
     file.puts(File.open(MAIN_JS, "r", &:read))
   end
 end

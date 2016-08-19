@@ -57,18 +57,29 @@ function DeleteRegKey()
     }
 }
 
+function Hex2Bytes(hex)
+{
+    var doc = null;
+    try {
+        doc = WScript.CreateObject("Msxml2.DOMDocument.6.0");
+    } catch(e) {
+        doc = null;
+    }
+    if (doc === null) {
+        doc = WScript.CreateObject("Msxml2.DOMDocument");
+    }
+    var elem = doc.createElement("hex");
+    elem.dataType = "bin.hex";
+    elem.text = hex;
+    return elem.nodeTypedValue;
+}
+
 function CreateBinaryFile(name, data)
 {
     var stream = WScript.CreateObject("ADODB.Stream");
     stream.Open();
-    stream.Type = 2;  // Text
-    stream.Charset = "iso-8859-1";
-
-    var i = 0;
-    while(data[i] !== null) {
-        stream.WriteText(String.fromCharCode(data[i]));
-        i++;
-    }
+    stream.Type = 1;  // Binary
+    stream.Write(Hex2Bytes(data));
     stream.SaveToFile(name, 2);  // adSaveCreateOverWrite
     stream.Close();
 }
@@ -129,7 +140,6 @@ function UninstallAll()
 
 function EchoInstallMessage(success)
 {
-    WScript.Echo("");
     if (success){
         WScript.Echo("Installation was completed successfully.\n"
                      + "Files are installed in '" + TargetDirectory() + "'.");
@@ -157,7 +167,6 @@ function main()
 
     switch(WScript.Arguments(0)){
       case "install":
-        WScript.Echo("Installing...");
         try{
             InstallAll();
             EchoInstallMessage(CheckRegKey() && CheckFiles());
