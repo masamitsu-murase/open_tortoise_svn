@@ -1,3 +1,6 @@
+//
+//================================================================
+//
 
 var gWshShell = WScript.CreateObject("WScript.Shell");
 var gFileObject = WScript.CreateObject("Scripting.FileSystemObject");
@@ -8,7 +11,13 @@ var THIS_DIR = WScript.ScriptFullName.substr(0, WScript.ScriptFullName.length - 
 var KEY_BASE = "HKCU\\Software\\Google\\Chrome\\NativeMessagingHosts";
 var OPEN_TSVN_KEY = KEY_BASE + "\\" + "masamitsu.murase.open_tortoise_svn\\";
 var JSON_FILENAME = "open_tortoise_svn.json";
-var FILE_LIST = [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe" ];
+var FILE_LIST = [ {
+  name: "open_tortoise_svn.json",
+  data: JSON_DATA
+}, {
+  name: "open_tortoise_svn_host.exe",
+  data: EXE_DATA
+} ];
 
 ////////////////////////////////////////////////////////////////
 function TargetDirectory()
@@ -48,6 +57,22 @@ function DeleteRegKey()
     }
 }
 
+function CreateBinaryFile(name, data)
+{
+    var stream = WScript.CreateObject("ADODB.Stream");
+    stream.Open();
+    stream.Type = 2;  // Text
+    stream.Charset = "iso-8859-1";
+
+    var i = 0;
+    while(data[i] !== null) {
+        stream.WriteText(String.fromCharCode(data[i]));
+        i++;
+    }
+    stream.SaveToFile(name, 2);  // adSaveCreateOverWrite
+    stream.Close();
+}
+
 function InstallFiles()
 {
     var dir = TargetDirectory();
@@ -57,8 +82,7 @@ function InstallFiles()
 
     var files = FILE_LIST;
     for (var i=0; i<files.length; i++){
-        var file = THIS_DIR + "\\" + files[i];
-        gFileObject.CopyFile(file, dir + "\\", true);
+        CreateBinaryFile(dir + "\\" + files[i].name, files[i].data);
     }
 }
 
@@ -80,7 +104,7 @@ function CheckFiles()
 
         var files = FILE_LIST;
         for (var i=0; i<files.length; i++){
-            var file = dir + "\\" + files[i];
+            var file = dir + "\\" + files[i].name;
             if (!gFileObject.FileExists(file)){
                 return null;
             }
@@ -105,8 +129,10 @@ function UninstallAll()
 
 function EchoInstallMessage(success)
 {
+    WScript.Echo("");
     if (success){
-        WScript.Echo("Installation was completed successfully.");
+        WScript.Echo("Installation was completed successfully.\n"
+                     + "Files are installed in '" + TargetDirectory() + "'.");
     }else{
         WScript.Echo("Installation failed.");
     }
@@ -131,6 +157,7 @@ function main()
 
     switch(WScript.Arguments(0)){
       case "install":
+        WScript.Echo("Installing...");
         try{
             InstallAll();
             EchoInstallMessage(CheckRegKey() && CheckFiles());
