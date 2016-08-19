@@ -8,7 +8,7 @@
     "icons": {
         "32": "icons/icon32.png",
         "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
+        "96": "icons/icon96.png"
     },
 
     "applications": {
@@ -38,7 +38,10 @@
     },
 
     "browser_action": {
-        "default_icon": "icons/icon32.png",
+        "default_icon": {
+            "32": "icons/icon32.png",
+            "48": "icons/icon48.png"
+        },
         "default_title": "Open TortoiseSVN"
     },
 
