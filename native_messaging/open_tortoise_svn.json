@@ -3,8 +3,7 @@
     "description": "Open TortoiseSVN extension",
     "path": "open_tortoise_svn_host.exe",
     "type": "stdio",
-    "allowed_origins": [
-        "chrome-extension://mhhincgnohhopnakokkcoifmnahapihn/",
-        "chrome-extension://damilknpkhofkfgpelmjdcdgpdlnjfng/"
+    "allowed_extensions": [
+        "open_tortoise_svn@masamitsu.murase.jp"
     ]
 }
