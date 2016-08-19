@@ -1,4 +1,4 @@
-# ![Open TortoiseSVN logo](https://raw.githubusercontent.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/master/extension/icons/icon128.png) Open TortoiseSVN for Google Chrome™
+# ![Open TortoiseSVN logo](https://raw.githubusercontent.com/masamitsu-murase/open_tortoise_svn/firefox_webextensions/extension/icons/icon96.png) Open TortoiseSVN
 
 ## Overview
 
@@ -7,19 +7,17 @@ When you click on a link to one of the registered URLs, TortoiseSVN Repository B
 
 This extension also displays some contextual menus to open TortoiseSVN Repository Browser, Log Viewer and Blame Viewer when right clicking on a URL.
 
-This extension is a Google Chrome™ version of [Open TortoiseSVN for Firefox](https://addons.mozilla.org/en/firefox/addon/open-tortoisesvn/).
-
 ## For Developers
 
-This extension uses [Native Messaging](https://developer.chrome.com/extensions/messaging#native-messaging).
+This extension uses [Native Messaging](https://wiki.mozilla.org/WebExtensions/Native_Messaging).
 
-Native Messaging is a feature supported by Google Chrome.  
+Native Messaging is a feature supported by Firefox.  
 It communicates with the pre-installed native exectable file.
 
-In the case of Open TortoiseSVN extension, users have to install [open_tortoise_svn_host.exe](https://github.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/raw/master/native_messaging/open_tortoise_svn_host.exe) in advance as follows:
+In the case of Open TortoiseSVN extension, users have to install [open_tortoise_svn_host.exe](https://github.com/masamitsu-murase/open_tortoise_svn/raw/firefox_webextensions/native_messaging/open_tortoise_svn_host.exe) in advance as follows:
 
-* Place `open_tortoise_svn_host.exe` and `open_tortoise_svn.json` in `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn`.
-* Create a registry key `HKCU\Software\Google\Chrome\NativeMessagingHosts\masamitsu.murase.open_tortoise_svn\`, whose value is `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn\open_tortoise_svn.json`.  
+* Place `open_tortoise_svn_host.exe` and `open_tortoise_svn.json` in `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn_fx`.
+* Create a registry key `HKCU\Software\Mozilla\NativeMessagingHosts\masamitsu.murase.open_tortoise_svn\`, whose value is `%LOCALAPPDATA%\masamitsu.murase.open_tortoise_svn_fx\open_tortoise_svn.json`.  
   Of course, the value must has an expanded absolute path, i.e. `%LOCALAPPDATA%` should be replaced with the real path.
 
 This registry key belongs to `HKEY_CURRENT_USER`, so it can be created without administrator privileges.
@@ -27,13 +25,13 @@ This registry key belongs to `HKEY_CURRENT_USER`, so it can be created without a
 This extension uses [json11](https://github.com/dropbox/json11) to parse/dump JSON data.  
 json11 is developed by Dropbox Inc.  
 Thank you, Dropbox!  
-You can check the license of json11 in the [source file](https://raw.githubusercontent.com/masamitsu-murase/open_tortoise_svn_for_google_chrome/master/native_messaging/json11.hpp).
+You can check the license of json11 in the [source file](https://raw.githubusercontent.com/masamitsu-murase/open_tortoise_svn/firefox_webextensions/native_messaging/json11.hpp).
 
 ## License
 
 You may use this software under the terms of the MIT License.
 
-Copyright (c) 2014 Masamitsu MURASE
+Copyright (c) 2016 Masamitsu MURASE
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
