@@ -5,7 +5,7 @@ var gFileObject = WScript.CreateObject("Scripting.FileSystemObject");
 
 var THIS_DIR = WScript.ScriptFullName.substr(0, WScript.ScriptFullName.length - WScript.ScriptName.length - 1);
 
-var KEY_BASE = "HKCU\\Software\\Google\\Chrome\\NativeMessagingHosts";
+var KEY_BASE = "HKCU\\Software\\Mozilla\\NativeMessagingHosts";
 var OPEN_TSVN_KEY = KEY_BASE + "\\" + "masamitsu.murase.open_tortoise_svn\\";
 var JSON_FILENAME = "open_tortoise_svn.json";
 var FILE_LIST = [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe" ];
@@ -13,7 +13,7 @@ var FILE_LIST = [ "open_tortoise_svn.json", "open_tortoise_svn_host.exe" ];
 ////////////////////////////////////////////////////////////////
 function TargetDirectory()
 {
-    return gWshShell.ExpandEnvironmentStrings("%LOCALAPPDATA%\\masamitsu.murase.open_tortoise_svn");
+    return gWshShell.ExpandEnvironmentStrings("%LOCALAPPDATA%\\masamitsu.murase.open_tortoise_svn_fx");
 }
 
 function SetRegKey()
