@@ -27,8 +27,7 @@
 
     <section>
       <h1>お知らせ</h1>
-      <p>Version 2.1.0 とそれ以前のバージョンには拡張機能の互換性がありません。<br />
-        お手数ですが、もう一度、設定項目を入力してください。</p>
+      <p>Version 2.1.0 とそれ以前のバージョンには拡張機能の互換性がありません。お手数ですが、アップデートされた方は、もう一度、設定項目を入力してください。</p>
     </section>
 
     <section>
@@ -37,15 +36,9 @@
       <ol>
         <li><a href="http://tortoisesvn.net/">TortoiseSVN</a> を<a href="http://tortoisesvn.net/downloads.html">ダウンロードページ</a>からダウンロードし、インストールしてください。<br />
           既にインストール済みなら、この手順をスキップしてください。</li>
-        <li><a href="../install.exe">install.exe</a> をダウンロードしてください。<br />
-          <code>install.exe</code> を実行し、インストールしてください。<br />
-          このツールは Firefox から TortoiseSVN を開くためのツールです。</li>
-      </ol>
-
-      <h1>アンインストール</h1>
-      <ol>
-        <li><a href="../uninstall.exe">uninstall.exe</a> をダウンロードしてください。<br />
-          <code>uninstall.exe</code> を実行し、アンインストールしてください。</li>
+        <li><a href="../copy_tsvn_tool.exe">copy_tsvn_tool.exe</a> をダウンロードし、実行してください。<br />
+          このツールは Firefox から TortoiseSVN を開くためのツールです。<br />
+          アンインストールには、<a href="../remove_tsvn_tool.exe">remove_tsvn_tool.exe</a> を実行してください。</li>
       </ol>
     </section>
 
@@ -60,7 +53,7 @@
       <p>Subversion リポジトリの URL を追加してください。</p>
       <p>登録した URL をクリックすると、 TortoiseSVN が開かれます。<br />
         例) "http://svn_repos/" を追加し、 "http://svn_repos/dir" のリンクをクリックすると、 TortoiseSVN で開かれます。</p>
-      <p><input id="added_url" type="text" maxlength="500" placeholder="e.g. http://svn.apache.org/repos/asf/subversion" /><input id="add_url_button" type="button" value="追加" /></p>
+      <p><input id="added_url" type="text" maxlength="500" placeholder="例) http://svn.apache.org/repos/asf/subversion" /><input id="add_url_button" type="button" value="追加" /></p>
       <ul id="added_url_list"></ul>
     </section>
 
