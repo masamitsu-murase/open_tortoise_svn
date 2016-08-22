@@ -71,8 +71,8 @@ def main
   uninstaller.rmtree if uninstaller.exist?
   system("ocra --windows --no-enc --gem-minimal --no-autodll uninstall.rb open_tortoise_svn.json open_tortoise_svn_host.exe")
 
-  FileUtils.cp("install.exe", "../extension/install.exe", verbose: true)
-  FileUtils.cp("uninstall.exe", "../extension/uninstall.exe", verbose: true)
+  FileUtils.cp("install.exe", "../extension/copy_tsvn_tool.exe", verbose: true)
+  FileUtils.cp("uninstall.exe", "../extension/remove_tsvn_tool.exe", verbose: true)
 end
 
 def clean
