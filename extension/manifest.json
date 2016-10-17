@@ -71,7 +71,7 @@
         "chrome_style": true
     },
 
-    "permissions": [ "tabs", "contextMenus", "nativeMessaging", "storage", "unlimitedStorage" ],
+    "permissions": [ "tabs", "contextMenus", "nativeMessaging", "storage" ],
 
     "web_accessible_resources": [
         "images/en/tooltip_repobrowser.svg",
