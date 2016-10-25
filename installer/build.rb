@@ -1,5 +1,7 @@
 # coding: utf-8
 
+require("fileutils")
+
 INSTALL_BAT_PREFIX = <<'EOS'
 @if(0)==(0) ECHO OFF
 start "" wscript.exe //nologo //E:JScript "%~f0" install
@@ -27,6 +29,8 @@ def create_installer
     file.puts("var EXE_DATA = \"#{exe_data}\";")
     file.puts(File.open(File.expand_path("../base.js", __FILE__), "r", &:read))
   end
+
+  FileUtils.cp(path, File.expand_path("../../extension/", __FILE__))
 end
 
 def create_uninstaller
@@ -35,6 +39,8 @@ def create_uninstaller
     file.puts(UNINSTALL_BAT_PREFIX)
     file.puts(File.open(File.expand_path("../base.js", __FILE__), "r", &:read))
   end
+
+  FileUtils.cp(path, File.expand_path("../../extension/", __FILE__))
 end
 
 create_installer
