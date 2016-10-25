@@ -2,14 +2,14 @@
 
 INSTALL_BAT_PREFIX = <<'EOS'
 @if(0)==(0) ECHO OFF
-cscript.exe //nologo //E:JScript "%~f0" install
+start "" wscript.exe //nologo //E:JScript "%~f0" install
 exit
 @end
 EOS
 
 UNINSTALL_BAT_PREFIX = <<'EOS'
 @if(0)==(0) ECHO OFF
-cscript.exe //nologo //E:JScript "%~f0" uninstall
+start "" wscript.exe //nologo //E:JScript "%~f0" uninstall
 exit
 @end
 EOS
