@@ -1,5 +1,5 @@
 @if(0)==(0) ECHO OFF
-start "" wscript.exe //nologo //E:JScript "%~f0" uninstall
+wscript.exe //nologo //E:JScript "%~f0" uninstall
 exit
 @end
 
