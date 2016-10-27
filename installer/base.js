@@ -153,7 +153,7 @@ function EchoInstallMessage(success)
 {
     if (success){
         gWshShell.Popup("Installation was completed successfully.\n"
-                        + "Files are installed in '" + TargetDirectory() + "'.", 0,
+                        + "Files were installed in '" + TargetDirectory() + "'.", 0,
                         INSTALLER_TITLE, 0);
     }else{
         gWshShell.Popup("Installation failed.\n"
