@@ -4,14 +4,14 @@ require("fileutils")
 
 INSTALL_BAT_PREFIX = <<'EOS'
 @if(0)==(0) ECHO OFF
-start "" wscript.exe //nologo //E:JScript "%~f0" install
+wscript.exe //nologo //E:JScript "%~f0" install
 exit
 @end
 EOS
 
 UNINSTALL_BAT_PREFIX = <<'EOS'
 @if(0)==(0) ECHO OFF
-start "" wscript.exe //nologo //E:JScript "%~f0" uninstall
+wscript.exe //nologo //E:JScript "%~f0" uninstall
 exit
 @end
 EOS
