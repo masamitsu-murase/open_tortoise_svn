@@ -33,8 +33,7 @@
             "js/background/message_receiver.js",
             "js/background/tortoise_svn_opener.js",
             "js/background/background.js"
-        ],
-        "persistent": false
+        ]
     },
 
     "browser_action": {
