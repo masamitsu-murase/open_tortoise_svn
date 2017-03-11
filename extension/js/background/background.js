@@ -15,12 +15,9 @@ if (!OpenTsvn) OpenTsvn = {};
         data_migrator.migrate();
     };
 
-    if (chrome.runtime.onInstalled) {
-        chrome.runtime.onInstalled.addListener(onInstalledCallback);
-    } else {
-        // Firefox 50 does not support onInstalled.
-        onInstalledCallback();
-    }
+    // Firefox does not support event page, so we need not 
+    // register onInstalledCallback as a callback for onInstalled.
+    onInstalledCallback();
 
     var badge_manager = new ctx.BadgeManager();
 
