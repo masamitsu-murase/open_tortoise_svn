@@ -1,10 +1,10 @@
 var OpenTsvn;
 if (!OpenTsvn) OpenTsvn = {};
 
-(function(ctx) {
+(function (ctx) {
     "use strict";
 
-    const SEARCH_PARAMS_SUPPORTED = (function() {
+    const SEARCH_PARAMS_SUPPORTED = (function () {
         var url = new URL("http://localhost/test?p=1");
         try {
             return (url.searchParams.get("p") === "1");
@@ -22,6 +22,11 @@ if (!OpenTsvn) OpenTsvn = {};
 
         get url() {
             return this[url_sym].href;
+        }
+
+        get url_without_parameters() {
+            var url = this[url_sym];
+            return url.protocol + "//" + url.host + url.pathname;
         }
 
         get p() {
@@ -43,7 +48,7 @@ if (!OpenTsvn) OpenTsvn = {};
         static parseParam(search, name) {
             try {
                 var params = search.replace(/^\?/, '').split('&');
-                for(let param of params) {
+                for (let param of params) {
                     var pair = param.split('=', 2);
                     if (pair[0] === name) {
                         return pair[1];
