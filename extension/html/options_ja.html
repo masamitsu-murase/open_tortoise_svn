@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <title>Open TortoiseSVN オプション</title>
@@ -11,189 +12,205 @@
   <script type="text/javascript" src="../js/background/tortoise_svn_opener.js"></script>
   <script type="text/javascript" src="../js/options/options.js"></script>
 </head>
+
 <body>
 
-<nav>
-  <ul>
-    <li class="selected">一般</li>
-    <li>アクション</li>
-    <li>Open TortoiseSVN について</li>
-  </ul>
-</nav>
+  <nav>
+    <ul>
+      <li class="selected">一般</li>
+      <li>アクション</li>
+      <li>Open TortoiseSVN について</li>
+    </ul>
+  </nav>
 
-<article>
-  <section class="selected">
-    <h1>一般</h1>
+  <article>
+    <section class="selected">
+      <h1>一般</h1>
 
-    <section>
-      <h1>お知らせ</h1>
-      <p>Version 2.1.0 とそれ以前のバージョンには拡張機能の互換性がありません。お手数ですが、アップデートされた方は、もう一度、設定項目を入力してください。</p>
+      <section>
+        <h1>お知らせ</h1>
+        <p>Version 2.1.0 とそれ以前のバージョンには拡張機能の互換性がありません。お手数ですが、アップデートされた方は、もう一度、設定項目を入力してください。</p>
+      </section>
+
+      <section>
+        <h1>インストール</h1>
+        <p>以下のツールをインストールしてください。</p>
+        <ol>
+          <li><a href="http://tortoisesvn.net/">TortoiseSVN</a> を<a
+              href="http://tortoisesvn.net/downloads.html">ダウンロードページ</a>からダウンロードし、インストールしてください。<br />
+            既にインストール済みなら、この手順をスキップしてください。</li>
+          <li><a href="../install.bat" download>install.bat</a> をダウンロードし、実行してください。<br />
+            このインストーラは Firefox から TortoiseSVN を開くためのツールをインストールします。<br />
+            アンインストールには、<a href="../uninstall.bat" download>uninstall.bat</a> を実行してください。</li>
+        </ol>
+      </section>
+
+      <section>
+        <h1>TortoiseProc.exe のパス</h1>
+        <p><strong>TortoiseProc.exe</strong> のパスの設定をしてください。</p>
+        <p><input id="tortoise_proc_path" type="text" maxlength="500"
+            placeholder="例) C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" /></p>
+      </section>
+
+      <section>
+        <h1>Subversion リポジトリの URL</h1>
+        <p>Subversion リポジトリの URL を追加してください。</p>
+        <p>登録した URL をクリックすると、 TortoiseSVN が開かれます。<br />
+          例) "http://svn_repos/" を追加し、 "http://svn_repos/dir" のリンクをクリックすると、 TortoiseSVN で開かれます。</p>
+        <p><input id="added_url" type="text" maxlength="500"
+            placeholder="例) http://svn.apache.org/repos/asf/subversion" /><input id="add_url_button" type="button"
+            value="追加" /></p>
+        <ul id="added_url_list"></ul>
+      </section>
+
+      <p><input class="save_button" type="button" value="保存" /></p>
     </section>
 
     <section>
-      <h1>インストール</h1>
-      <p>以下のツールをインストールしてください。</p>
-      <ol>
-        <li><a href="http://tortoisesvn.net/">TortoiseSVN</a> を<a href="http://tortoisesvn.net/downloads.html">ダウンロードページ</a>からダウンロードし、インストールしてください。<br />
-          既にインストール済みなら、この手順をスキップしてください。</li>
-        <li><a href="../install.bat" download>install.bat</a> をダウンロードし、実行してください。<br />
-          このインストーラは Firefox から TortoiseSVN を開くためのツールをインストールします。<br />
-          アンインストールには、<a href="../uninstall.bat" download>uninstall.bat</a> を実行してください。</li>
-      </ol>
-    </section>
+      <h1>アクション</h1>
 
-    <section>
-      <h1>TortoiseProc.exe のパス</h1>
-      <p><strong>TortoiseProc.exe</strong> のパスの設定をしてください。</p>
-      <p><input id="tortoise_proc_path" type="text" maxlength="500" placeholder="例) C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe" /></p>
-    </section>
-
-    <section>
-      <h1>Subversion リポジトリの URL</h1>
-      <p>Subversion リポジトリの URL を追加してください。</p>
-      <p>登録した URL をクリックすると、 TortoiseSVN が開かれます。<br />
-        例) "http://svn_repos/" を追加し、 "http://svn_repos/dir" のリンクをクリックすると、 TortoiseSVN で開かれます。</p>
-      <p><input id="added_url" type="text" maxlength="500" placeholder="例) http://svn.apache.org/repos/asf/subversion" /><input id="add_url_button" type="button" value="追加" /></p>
-      <ul id="added_url_list"></ul>
-    </section>
-
-    <p><input class="save_button" type="button" value="保存" /></p>
-  </section>
-
-  <section>
-    <h1>アクション</h1>
-
-    <section>
-      <h1>TortoiseSVN のアクション</h1>
-      <p>TortoiseSVN の既定の挙動を選んでください。</p>
-      <p class="option_data">アクション:
-        <select id="tortoise_svn_action">
-          <option value="browser">リポジトリブラウザ</option>
-          <option value="log">ログ</option>
-          <option value="blame">注釈履歴</option>
-          <option value="open_in_browser">Firefox で開く</option>
-        </select>
-      </p>
-    </section>
-
-    <section>
-      <h1>拡張子ごとの TortoiseSVN の挙動</h1>
-      <p>拡張子ごとのアクションを選んでください。</p>
-      <p><code>*.cpp</code> を "ログ" として追加し、 <code>http://svn_repos/path/sample.cpp</code> をクリックすると、 "ログ" が開かれます。</p>
-      <dl class="suffix_action_control">
-        <dt><label for="suffix_text">拡張子:</label></dt>
-        <dd><input type="text" placeholder="例) *.cpp, *.h" id="suffix_text" /></dd>
-        <dt><label for="suffix_action">アクション:</label></dt>
-        <dd>
-          <select id="suffix_action">
+      <section>
+        <h1>TortoiseSVN のアクション</h1>
+        <p>TortoiseSVN の既定の挙動を選んでください。</p>
+        <p class="option_data">アクション:
+          <select id="tortoise_svn_action">
             <option value="browser">リポジトリブラウザ</option>
             <option value="log">ログ</option>
             <option value="blame">注釈履歴</option>
             <option value="open_in_browser">Firefox で開く</option>
           </select>
-        </dd>
-        <dd><input type="button" value="追加" id="suffix_action_add_button" /></dd>
-      </dl>
-      <table id="suffix_action_list">
-        <caption>拡張子ごとのアクション</caption>
-        <thead>
-          <tr><th>拡張子</th><th>アクション</th><th><span style="visibility: hidden;">削除</span></th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+        </p>
+      </section>
+
+      <section>
+        <h1>拡張子ごとの TortoiseSVN の挙動</h1>
+        <p>拡張子ごとのアクションを選んでください。</p>
+        <p><code>*.cpp</code> を "ログ" として追加し、 <code>http://svn_repos/path/sample.cpp</code> をクリックすると、 "ログ" が開かれます。</p>
+        <dl class="suffix_action_control">
+          <dt><label for="suffix_text">拡張子:</label></dt>
+          <dd><input type="text" placeholder="例) *.cpp, *.h" id="suffix_text" /></dd>
+          <dt><label for="suffix_action">アクション:</label></dt>
+          <dd>
+            <select id="suffix_action">
+              <option value="browser">リポジトリブラウザ</option>
+              <option value="log">ログ</option>
+              <option value="blame">注釈履歴</option>
+              <option value="open_in_browser">Firefox で開く</option>
+            </select>
+          </dd>
+          <dd><input type="button" value="追加" id="suffix_action_add_button" /></dd>
+        </dl>
+        <table id="suffix_action_list">
+          <caption>拡張子ごとのアクション</caption>
+          <thead>
+            <tr>
+              <th>拡張子</th>
+              <th>アクション</th>
+              <th><span style="visibility: hidden;">削除</span></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section>
+        <h1>ツールチップ</h1>
+        <p><input id="icon_indicator" type="checkbox" /><label for="icon_indicator">マウスカーソルが登録済みの URL
+            へのリンクの上にある時、ツールチップを表示する</label></p>
+      </section>
+
+      <p><input class="save_button" type="button" value="保存" /></p>
     </section>
 
     <section>
-      <h1>ツールチップ</h1>
-      <p><input id="icon_indicator" type="checkbox" /><label for="icon_indicator">マウスカーソルが登録済みの URL へのリンクの上にある時、ツールチップを表示する</label></p>
+      <h1>Open TortoiseSVN について</h1>
+
+      <section>
+        <h1>概要</h1>
+        <p>この拡張機能では <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> をブラウザから直接開くことができます。<br />
+          登録済みの URL へのリンクをクリックすると、 TortoiseSVN のリポジトリブラウザが開かれます。</p>
+        <p>この拡張機能はコンテキストメニューに TortoiseSVN リポジトリブラウザ、ログ、注釈履歴を開くメニューを追加します。</p>
+      </section>
+
+      <section>
+        <h1>開発者向け情報</h1>
+        <p>HTML のソースを編集し、 <code>data-tsvn-info</code> の属性を &quot;a&quot; タグに追加すると、 TortoiseSVN の既定の動作を指定できます。</p>
+        <p>HTML 4.1 の <code>rel</code> 属性を <code>data-tsvn-info</code> 属性の代わりに使うこともできます。</p>
+        <ul>
+          <li>TortoiseSVN ログを開く場合：
+            <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+          </li>
+          <li>TortoiseSVN ログの特定のリビジョンを開く場合：
+            <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log][12,8]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
+          </li>
+          <li>TortoiseSVN 注釈履歴を開く場合：
+            <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[blame]&quot;&gt;Open Blame Viewer&lt;/a&gt;</pre>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Change Log</h1>
+        <dl>
+          <dt>2.2.0, 2.3.0, 2.3.1, 2.3.2, 2.3.3</dt>
+          <dd>Rewrite installer.</dd>
+          <dt>2.1.0</dt>
+          <dd>Rewrite from scratch to support WebExtensions API.</dd>
+          <dt>0.1.5</dt>
+          <dd>You can open the revision specified by “peg revision” parameter.</dd>
+          <dt>0.1.1, 0.1.2, 0.1.3, 0.1.4</dt>
+          <dd>
+            <ul>
+              <li>Bug fix.</li>
+              <li>TortoiseSVN is opened when you click one of the descendants of an anchor tag.</li>
+              <li>TortoiseSVN is opened when you click a URL which includes parameters.</li>
+            </ul>
+          </dd>
+          <dt>0.1.0</dt>
+          <dd>The following features are added:
+            <ul>
+              <li>You can set the default action.</li>
+              <li>You can set the action of each extension.</li>
+              <li>TortoiseSVN menus are shown in context menu.</li>
+            </ul>
+          </dd>
+          <dt>0.0.3</dt>
+          <dd>Bug fix.</dd>
+          <dt>0.0.2</dt>
+          <dd>Add help text for TortoiseProc.exe path.</dd>
+          <dt>0.0.1</dt>
+          <dd>Initial version.</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h1>ライセンス</h1>
+        <p>この拡張機能は、 MIT License のもとで使うことができます。<br />
+          詳細は <a
+            href="https://github.com/masamitsu-murase/open_tortoise_svn/blob/firefox_webextensions/README.md">README</a>
+          を参照してください。</p>
+        <p>ソースコードが必要な場合は、 <a href="https://github.com/masamitsu-murase/open_tortoise_svn">GitHub
+            のページ</a>からダウンロードすることができます。</p>
+      </section>
+
+      <section>
+        <h1>作者</h1>
+        <dl>
+          <dt>名前</dt>
+          <dd>Masamitsu MURASE</dd>
+          <dt>場所</dt>
+          <dd>Kyoto, Japan</dd>
+          <dt>ホームページ</dt>
+          <dd><a href="http://masamitsu-murase.blogspot.com/">Blog</a></dd>
+          <dt>リポジトリ</dt>
+          <dd><a href="https://github.com/masamitsu-murase">GitHub</a></dd>
+          <dt>連絡先</dt>
+          <dd>バグやリクエストは、 <a href="https://github.com/masamitsu-murase/open_tortoise_svn/issues">GitHub
+              のページ</a>までご連絡ください。</dd>
+        </dl>
+      </section>
     </section>
-
-    <p><input class="save_button" type="button" value="保存" /></p>
-  </section>
-
-  <section>
-    <h1>Open TortoiseSVN について</h1>
-
-    <section>
-      <h1>概要</h1>
-      <p>この拡張機能では <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> をブラウザから直接開くことができます。<br />
-        登録済みの URL へのリンクをクリックすると、 TortoiseSVN のリポジトリブラウザが開かれます。</p>
-      <p>この拡張機能はコンテキストメニューに TortoiseSVN リポジトリブラウザ、ログ、注釈履歴を開くメニューを追加します。</p>
-    </section>
-
-    <section>
-      <h1>開発者向け情報</h1>
-      <p>HTML のソースを編集し、 <code>data-tsvn-info</code> の属性を &quot;a&quot; タグに追加すると、 TortoiseSVN の既定の動作を指定できます。</p>
-      <p>HTML 4.1 の <code>rel</code> 属性を <code>data-tsvn-info</code> 属性の代わりに使うこともできます。</p>
-      <ul>
-        <li>TortoiseSVN ログを開く場合：
-          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
-        </li>
-        <li>TortoiseSVN ログの特定のリビジョンを開く場合：
-          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[log][12,8]&quot;&gt;Open Log Viewer&lt;/a&gt;</pre>
-        </li>
-        <li>TortoiseSVN 注釈履歴を開く場合：
-          <pre>&lt;a href=&quot;http://svn_repos/&quot; data-tsvn-info=&quot;tsvn[blame]&quot;&gt;Open Blame Viewer&lt;/a&gt;</pre>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h1>Change Log</h1>
-      <dl>
-        <dt>2.2.0, 2.3.0, 2.3.1, 2.3.2</dt>
-        <dd>Rewrite installer.</dd>
-        <dt>2.1.0</dt>
-        <dd>Rewrite from scratch to support WebExtensions API.</dd>
-        <dt>0.1.5</dt>
-        <dd>You can open the revision specified by “peg revision” parameter.</dd>
-        <dt>0.1.1, 0.1.2, 0.1.3, 0.1.4</dt>
-        <dd>
-          <ul>
-            <li>Bug fix.</li>
-            <li>TortoiseSVN is opened when you click one of the descendants of an anchor tag.</li>
-            <li>TortoiseSVN is opened when you click a URL which includes parameters.</li>
-          </ul>
-        </dd>
-        <dt>0.1.0</dt>
-        <dd>The following features are added:
-          <ul>
-            <li>You can set the default action.</li>
-            <li>You can set the action of each extension.</li>
-            <li>TortoiseSVN menus are shown in context menu.</li>
-          </ul></dd>
-        <dt>0.0.3</dt>
-        <dd>Bug fix.</dd>
-        <dt>0.0.2</dt>
-        <dd>Add help text for TortoiseProc.exe path.</dd>
-        <dt>0.0.1</dt>
-        <dd>Initial version.</dd>
-      </dl>
-    </section>
-
-    <section>
-      <h1>ライセンス</h1>
-      <p>この拡張機能は、 MIT License のもとで使うことができます。<br />
-        詳細は <a href="https://github.com/masamitsu-murase/open_tortoise_svn/blob/firefox_webextensions/README.md">README</a> を参照してください。</p>
-      <p>ソースコードが必要な場合は、 <a href="https://github.com/masamitsu-murase/open_tortoise_svn">GitHub のページ</a>からダウンロードすることができます。</p>
-    </section>
-
-    <section>
-      <h1>作者</h1>
-      <dl>
-        <dt>名前</dt>
-        <dd>Masamitsu MURASE</dd>
-        <dt>場所</dt>
-        <dd>Kyoto, Japan</dd>
-        <dt>ホームページ</dt>
-        <dd><a href="http://masamitsu-murase.blogspot.com/">Blog</a></dd>
-        <dt>リポジトリ</dt>
-        <dd><a href="https://github.com/masamitsu-murase">GitHub</a></dd>
-        <dt>連絡先</dt>
-        <dd>バグやリクエストは、 <a href="https://github.com/masamitsu-murase/open_tortoise_svn/issues">GitHub のページ</a>までご連絡ください。</dd>
-      </dl>
-    </section>
-  </section>
-</article>
+  </article>
 </body>
+
 </html>

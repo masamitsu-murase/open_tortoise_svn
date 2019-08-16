@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Open TortoiseSVN",
-    "version": "2.3.2",
+    "version": "2.3.3",
     "description": "Extension to open a file directly in TortoiseSVN instead of in the browser.",
     "icons": {
         "32": "icons/icon32.png",
