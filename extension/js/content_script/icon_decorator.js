@@ -1,7 +1,7 @@
 var OpenTsvn;
 if (!OpenTsvn) OpenTsvn = {};
 
-(function(ctx) {
+(function (ctx) {
     "use strict";
 
     const root_sym = Symbol();
@@ -126,18 +126,18 @@ if (!OpenTsvn) OpenTsvn = {};
         }
 
         openTsvn(atp, action) {
-            return ctx.Misc.async(function*(){
+            return ctx.Misc.async(function* () {
                 try {
                     switch (action) {
-                      case "log":
-                        yield this[tsvn_sym].openLog(atp.url, atp.start_rev, atp.end_rev);
-                        break;
-                      case "browser":
-                        yield this[tsvn_sym].openRepobrowser(atp.url, atp.start_rev);
-                        break;
-                      case "blame":
-                        yield this[tsvn_sym].openBlame(atp.url);
-                        break;
+                        case "log":
+                            yield this[tsvn_sym].openLog(atp.url_without_parameters, atp.start_rev, atp.end_rev);
+                            break;
+                        case "browser":
+                            yield this[tsvn_sym].openRepobrowser(atp.url_without_parameters, atp.start_rev);
+                            break;
+                        case "blame":
+                            yield this[tsvn_sym].openBlame(atp.url_without_parameters);
+                            break;
                     }
                 } catch (error) {
                     if (error instanceof ctx.TsvnError) {

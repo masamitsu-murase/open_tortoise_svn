@@ -1,7 +1,7 @@
 var OpenTsvn;
 if (!OpenTsvn) OpenTsvn = {};
 
-(function(ctx) {
+(function (ctx) {
     "use strict";
 
     const url_sym = Symbol();
@@ -15,7 +15,7 @@ if (!OpenTsvn) OpenTsvn = {};
 
     var ATagParser = class {
         constructor(a_tag) {
-            this[url_sym] = a_tag.href;
+            this[url_sym] = new ctx.SvnUrl(a_tag.href);
             this[action_sym] = null;
             this[start_rev_sym] = null;
             this[end_rev_sym] = null;
@@ -47,7 +47,11 @@ if (!OpenTsvn) OpenTsvn = {};
         }
 
         get url() {
-            return this[url_sym];
+            return this[url_sym].url;
+        }
+
+        get url_without_parameters() {
+            return this[url_sym].url_without_parameters;
         }
 
         get action() {
